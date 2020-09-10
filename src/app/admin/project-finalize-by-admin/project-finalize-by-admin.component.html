@@ -1,0 +1,76 @@
+<!-- finalize by admin modal -->
+<div class="modal-body">
+    <div class="profile-work-experience-modal-bg-part Final-detail-project">
+        <div class="profile-work-experience-modal-dtl-part">
+            <div class="profile-work-experience-tp-head">
+                <div class="edit-event-back" appCloseModal>
+                    <a href="javascript:;" id="back-modal">
+                        <img src="assets/images/pop-back-arrow.png">
+                        <h6>Back</h6>
+                    </a>
+                </div>
+                <h2>Final Details of Project</h2>
+            </div>
+            <div class="profile-work-experience-men-dtl">
+                <div class="profile-work-experience-men-pic">
+                    <img [src]="projectProData.picBase64">
+                </div>
+                <div class="profile-work-experience-men-profile-sub-dtl">
+                    <h5>{{projectProData.proName}}</h5>
+                    <h6>$
+                        <strong>{{projectProData.hourlyFee}}</strong> /hr</h6>
+                    <p> {{projectProData.workAvailability ? 'Available '+projectProData.workAvailability : ''}}</p>
+                    <div class="rating-stars">
+                        <ul id="stars">
+                            <li class="star selected" title="Poor" data-value="1">
+                                <i class="fa fa-star fa-fw"></i>
+                            </li>
+                            <li class="star selected" title="Fair" data-value="2">
+                                <i class="fa fa-star fa-fw"></i>
+                            </li>
+                            <li class="star selected" title="Good" data-value="3">
+                                <i class="fa fa-star fa-fw"></i>
+                            </li>
+                            <li class="star selected" title="Excellent" data-value="4">
+                                <i class="fa fa-star fa-fw"></i>
+                            </li>
+                            <li class="change-color star" title="WOW!!!" data-value="5">
+                                <i class="fa fa-star fa-fw"></i>
+                            </li>
+                        </ul>
+                        <p>(1 Review)</p>
+                    </div>
+                </div>
+            </div>
+            <div class="Final-desc-detail-project">
+                <div class="Final-detail-project-sm-box">
+                    <p>
+                        <span>Project Name:</span>{{projectProData.projectName}}</p>
+                    <p>
+                        <span>Hours Required:</span>{{projectProData.requiredHours}}</p>
+                    <p>
+                        <span>Scope of Work:</span>
+                        <br>{{projectProData.workScope}}</p>
+                    <p>
+                        <span>Project Deadline:</span>{{projectProData.deadLine | customDate:'dateOnly':true}}</p>
+                </div>
+                <div class="Final-detail-project-th-btn">
+                    <ng-container *ngIf="projectProData.projectAdditionalTimeId; else elseView">
+                        <div class="Final-detail-project-sm-btn">
+                            <a href="javascript:;" class="f-dtl-pr-btn active width400" (click)="approveAdditionalTime()">Approve</a>
+                        </div>
+                    </ng-container>
+                    <ng-template #elseView>
+                        <div class="Final-detail-project-sm-btn">
+                            <a href="javascript:;" class="f-dtl-pr-btn active width400" (click)="depositeReceivedAndAcceptProject(projectProData.projectFinalizeId,projectProData.projectId)">Deposite Received & Move to Accepted</a>
+                        </div>
+                        <div class="Final-detail-project-sm-btn">
+                            <a href="javascript:;" class="f-dtl-pr-btn">Edit</a>
+                        </div>
+                    </ng-template>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- finalize by admin modal -->

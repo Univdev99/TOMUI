@@ -1,0 +1,89 @@
+<div class="modal-body">
+    <form id="projectScheduleByProForm" #projectScheduleByProForm="ngForm" [ngClass]="{submitted: submitted}">
+        <div class="profile-work-experience-modal-bg-part Final-detail-project" id="choose-metting-time">
+            <div class="profile-work-experience-modal-dtl-part">
+                <div class="profile-work-experience-tp-head" appCloseModal>
+                    <div class="edit-event-back" appCloseModal>
+                        <a href="javascript:;" id="back-modal">
+                            <img src="assets/images/pop-back-arrow.png">
+                            <h6>Back</h6>
+                        </a>
+                    </div>
+                    <h2>Choose Meeting Time</h2>
+                </div>
+                <div class="profile-work-experience-men-dtl">
+                    <p>We're happy to hear you're interested in this project. Please select a time to chat with the client to
+                        find out more and see if this project is the right fit for you!</p>
+                </div>
+                <div class="choose-metting-time-main-part">
+                    <div class="schedule-call-mod-op-sm-box profile-work-experience-check-part">
+                        <div class="schedule-call-date-box">
+                            <label></label>
+                            <h6>1st Option</h6>
+                        </div>
+                        <div class="schedule-call-date-box">
+                            <label>Date and Time</label>
+                            <h5>{{projectSchedule.scheduleDateTime1 | customDate: 'fromUTCDateTime'}}</h5>
+                        </div>
+                        <label class="checkbox-small">
+                            <input [disabled]="projectScheduleByPro.isNotAvailable" type="checkbox" name="scheduleDateTime1"
+                                [(ngModel)]="projectScheduleByPro.o1Selected">
+                            <span class="checkmark"></span>
+                        </label>
+                    </div>
+                    <div class="schedule-call-mod-op-sm-box profile-work-experience-check-part">
+                        <div class="schedule-call-date-box">
+                            <label></label>
+                            <h6>2nd Option</h6>
+                        </div>
+                        <div class="schedule-call-date-box">
+                            <label>Date and Time</label>
+                            <h5>{{projectSchedule.scheduleDateTime2 | customDate: 'fromUTCDateTime'}}</h5>
+                        </div>
+
+                        <label class="checkbox-small">
+                            <input [disabled]="projectScheduleByPro.isNotAvailable"  type="checkbox" name="scheduleDateTime2"
+                                [(ngModel)]="projectScheduleByPro.o2Selected">
+                            <span class="checkmark"></span>
+                        </label>
+                    </div>
+                    <div class="schedule-call-mod-op-sm-box profile-work-experience-check-part">
+                        <div class="schedule-call-date-box">
+                            <label></label>
+                            <h6>3rd Option</h6>
+                        </div>
+                        <div class="schedule-call-date-box">
+                            <label>Date and Time</label>
+                            <h5>{{projectSchedule.scheduleDateTime3 | customDate: 'fromUTCDateTime'}}</h5>
+                        </div>
+                        <label class="checkbox-small">
+                            <input [disabled]="projectScheduleByPro.isNotAvailable" (click)="setAdminDate('fromSchedule3')" type="checkbox" name="scheduleDateTime3"
+                                [(ngModel)]="projectScheduleByPro.o3Selected">
+                            <span class="checkmark"></span>
+                        </label>
+                    </div>
+                    <div class="schedule-call-mod-op-sm-box profile-work-experience-check-part">
+                        <div class="schedule-call-date-box">
+                            <label></label>
+                            <span class="notAvailableLink">I'm not available for these times</span>
+                        </div>
+                        <label class="checkbox-small">
+                            <input [disabled]="projectScheduleByPro.o1Selected || projectScheduleByPro.o2Selected || projectScheduleByPro.o3Selected"
+                                type="checkbox" name="isNotAvailable" [(ngModel)]="projectScheduleByPro.isNotAvailable">
+                            <span class="checkmark"></span>
+                        </label>
+                    </div>
+                    <ng-container *ngIf="valMessage">
+                        <p class="errorColorClass">{{valMessage}}</p>
+                    </ng-container>
+                    <div class="professional-profile-fild-btn-last">
+                        <a href="javascript:;" (click)="sendScheduleByPro()">Confirm</a>
+                    </div>
+                    <div class="my-jobs-part-confirm-btm-part">
+                        <a href="javascript:;"></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>

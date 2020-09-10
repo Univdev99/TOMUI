@@ -1,0 +1,13 @@
+<!-- <div class="tom_date-picker">
+    <p-calendar  [(ngModel)]="dateNgModel" (ngModelChange)="selectDate($event)" (onSelect)="selectDate($event)"  [dateFormat]="dateFormate"></p-calendar>
+</div> -->
+<!-- <div class="tom_date-picker"> -->
+    <div class="">
+    <ng-container *ngIf="inLine; else elseBlock">
+        <ngb-datepicker [disabled]="disabled" #d [(ngModel)]="dateNgModel" [minDate]="minDate" name="dp" (dateSelect)="selectBootstrapDate($event)" [navigation]="'arrows'"></ngb-datepicker>
+    </ng-container>
+    <ng-template #elseBlock>
+        <input [placeholder]="placeholder" class="form-control l-inp" [minDate]="minDate" [(ngModel)]="dateNgModel" name="dp" (dateSelect)="selectBootstrapDate($event)" [navigation]="'arrows'"
+            ngbDatepicker #d="ngbDatepicker" (click)="d.toggle()">
+    </ng-template>
+</div>

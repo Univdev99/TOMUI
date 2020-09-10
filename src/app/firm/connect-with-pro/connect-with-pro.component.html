@@ -1,0 +1,39 @@
+<div class="modal-body">
+    <div class="personal-profile-form-main" id="New-project">
+        <div class="connect-expert-main-desc-dtl">
+            <div class="personal-profile-form-head">
+                <h4>Connect with Professional</h4>
+                <h6>
+                    <span>{{todayDate |   customDate:'dateOnly':true}}</span> </h6>
+            </div>
+            <div class="connect-expert-new-project">
+                <p>Tell the professional about the project you have in mind for them.</p>
+                <div class="professional-profile-fild-btn-last" id="New-project-btn">
+                    <a href="javascript:;" (click)="openCreateProjectModal()">New Project</a>
+                </div>
+            </div>
+            <div class="saved-project">
+                <h6>Saved Projects</h6>
+                <div class="project-details-main">
+                    <ng-container *ngFor="let project of projectList">
+                        <div class="project-details-small-box act-now">
+                            <div class="project-details-left">
+                                <h4>{{project.projectName}}</h4>
+                                <h5>{{project.createdDate | customDate:'dateOnly':true}}</h5>
+                            </div>
+                            <div class="project-details-rigth-btn">
+
+                                <ng-container *ngIf="project.proProfileId; else elseView">
+                                    <a href="javascript:;" class="nocursor">Project Details</a>
+                                </ng-container>
+                                <ng-template #elseView>
+                                    <a href="javascript:;" (click)="openProjectInEditMode(project)">Project Details</a>
+                                </ng-template>
+                            </div>
+                        </div>
+                    </ng-container>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

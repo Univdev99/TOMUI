@@ -1,0 +1,215 @@
+<ng-container *ngIf="isSampleProfile ; else staticDynamicView">
+    <div class="profile-work-experience-modal-bg-part">
+        <div class="profile-work-experience-modal-dtl-part">
+            <div class="profile-work-experience-tp-head">
+                <h2>Sample Profile</h2>
+            </div>
+            <div class="profile-work-experience-men-dtl">
+                <div class="profile-work-experience-men-pic">
+                    <img src="assets/images/work-experince-mea2.png">
+                </div>
+                <div class="profile-work-experience-men-profile-sub-dtl">
+                    <h5>Tom, CPA</h5>
+                    <h6>$
+                        <strong>50.00</strong> /hr</h6>
+                    <p>Available &gt; 40 hours/week</p>
+                    <div class="rating-stars">
+                        <ul id="stars">
+                            <li class="star" title="Poor" data-value="1">
+                                <i class="fa fa-star fa-fw"></i>
+                            </li>
+                            <li class="star" title="Fair" data-value="2">
+                                <i class="fa fa-star fa-fw"></i>
+                            </li>
+                            <li class="star" title="Good" data-value="3">
+                                <i class="fa fa-star fa-fw"></i>
+                            </li>
+                            <li class="star" title="Excellent" data-value="4">
+                                <i class="fa fa-star fa-fw"></i>
+                            </li>
+                            <li class="change-color star" title="WOW!!!" data-value="5">
+                                <i class="fa fa-star fa-fw"></i>
+                            </li>
+                        </ul>
+                        <p>(1 Review)</p>
+                    </div>
+                </div>
+            </div>
+            <div class="work-experince-sub-dtl-box">
+                <div class="work-experince-sub-sm-dtl-bg">
+                    <h6>Overview</h6>
+                    <p>I am an experienced professional with over 10 years experience in audit small to medium size companies.
+                        My experience includes leading engagement teams of 2-3 people. After working at one of the international
+                        audit firms for 4 years, I worked for a medium size firm for 6 years where I had a wide variety of
+                        audit clients. As a quick-learner, I am passionate about continuously setting challenges for myself
+                        and overcoming them with hard-work and positive mindset. Currently, I balance my commitments as a
+                        new dad with part-time contract engagements. </p>
+                </div>
+                <div class="work-experince-sub-sm-dtl-bg">
+                    <h6>Work Experience</h6>
+                    <p>2017-2019: Senior Manager at a mid-size firm</p>
+                    <p>2012-2017: Senior Auditor / Manager at International public accounting firm </p>
+                </div>
+                <div class="work-experince-sub-sm-dtl-bg">
+                    <h6>Education/Designations</h6>
+                    <p>2006 - graduated with a Bachelor's degree from University of Toronto </p>
+                    <p>2010 - obtained CPA designation</p>
+                </div>
+                <div class="work-experince-sub-sm-dtl-bg">
+                    <h6>Professional Highlights</h6>
+                    <p>Completed over 1000 Notice-to-Reader engagements</p>
+                    <p>Completed a first-time audit engagement in the first year of audit experience; received exceptional performance
+                        review
+                    </p>
+                    <p>Specialized in review engagements for small manufacturing companies </p>
+                    <p>Led teams of 2-5 individual professionals</p>
+                </div>
+                <div class="work-experince-sub-sm-dtl-bg Skilled-part">
+                    <h6>Professional Experience/Strengths </h6>
+                    <span>Skilled in:</span>
+                    <p>Financial Statement Audit</p>
+                    <p>Review Engagements</p>
+                    <p>IFRS</p>
+                    <p>Business Valuations - Corporate tax compliance</p>
+                    <span>Software / Applications: </span>
+                    <p>TaxPrep</p>
+                    <p>Caseware </p>
+                </div>
+            </div>
+        </div>
+    </div>
+</ng-container>
+<ng-template #staticDynamicView>
+    <div class="professional-profile-modal-part">
+        <div class="profile-work-experience-modal-bg-part" id="professional_profile">
+            <div class="profile-work-experience-modal-dtl-part">
+                <div class="profile-work-experience-tp-head">
+                    <div class="edit-event-back">
+                        <ng-container *ngIf="argFrom === appConstant.fromFirm">
+                            <a href="javascript:;" id="back-modal" (click)="closeProViewModel()">
+                                <img src="assets/images/pop-back-arrow.png">
+                                <h6>Back to Results</h6>
+                            </a>
+                        </ng-container>
+                    </div>
+                    <h2>Professional Profile</h2>
+                </div>
+                <div class="profile-work-experience-men-dtl">
+                    <div class="profile-work-experience-men-pic">
+                        <ng-container *ngIf="proPersonal.picBase64; else emptyView">
+                            <img class="circleImage" [src]="proPersonal.picBase64">
+                        </ng-container>
+                        <ng-template #emptyView>
+                            <img class="circleImage" src="assets/images/work-experince-mea2.png">
+                        </ng-template>
+                    </div>
+                    <div class="profile-work-experience-men-profile-sub-dtl">
+                        <h5>{{proPersonal.lastName}}{{proPersonal.firstName}}</h5>
+                        <ng-container *ngIf="argFrom === appConstant.fromFirm">
+                            <h6>$
+                                <strong>{{proPersonal.hourlyFee}}</strong> /hr</h6>
+                        </ng-container>
+                        <p>Available {{proWorkAvail.workAvailability}}</p>
+                        <ng-container *ngIf="argFrom === appConstant.fromFirm">
+                            <div class="rating-stars">
+                                <ul id="stars">
+                                    <li class="star selected" title="Poor" data-value="1">
+                                        <i class="fa fa-star fa-fw"></i>
+                                    </li>
+                                    <li class="star selected" title="Fair" data-value="2">
+                                        <i class="fa fa-star fa-fw"></i>
+                                    </li>
+                                    <li class="star selected" title="Good" data-value="3">
+                                        <i class="fa fa-star fa-fw"></i>
+                                    </li>
+                                    <li class="star selected" title="Excellent" data-value="4">
+                                        <i class="fa fa-star fa-fw"></i>
+                                    </li>
+                                    <li class="change-color star" title="WOW!!!" data-value="5">
+                                        <i class="fa fa-star fa-fw"></i>
+                                    </li>
+                                </ul>
+                                <p>(1 Review)</p>
+                            </div>
+                        </ng-container>
+                    </div>
+                    <div class="professional-profile-right-tp-btn">
+                        <ng-container *ngIf="argFrom === appConstant.fromFirm">
+                            <a href="javascript:;" (click)="openProjectModal()">Connect with Professional</a>
+                        </ng-container>
+                    </div>
+                </div>
+                <div class="work-experince-sub-dtl-box">
+                    <div class="work-experince-sub-sm-dtl-bg">
+                        <h6>Overview</h6>
+                        <p>{{proWorkExp.selfDescription}} </p>
+                    </div>
+                    <div class="work-experince-sub-sm-dtl-bg">
+                        <h6>Work Experience</h6>
+                        <ng-container *ngIf="proWorkExp.workExperienceDetail.length">
+                            <ng-container *ngFor="let expDetail of proWorkExp.workExperienceDetail">
+                                <p>{{expDetail.startYear | removeSelect}}{{(expDetail.endYear | removeSelect) ? ' - '+(expDetail.endYear
+                                    | removeSelect) : ''}} {{(expDetail.posTitle | removeSelect) ? (': '+expDetail.posTitle
+                                    | removeSelect) : ''}} {{(expDetail.firmType | removeSelect) ? ('at a '+expDetail.firmType
+                                    | removeSelect) : '' }}</p>
+                            </ng-container>
+                        </ng-container>
+                    </div>
+                    <div class="work-experince-sub-sm-dtl-bg">
+                        <h6>Education/Designations</h6>
+                        <ng-container *ngIf="proWorkExp.proEducation.length">
+                            <ng-container *ngFor="let education of proWorkExp.proEducation">
+                                <p>{{education.year | removeSelect}} {{education.degree ? ' - '+education.degree: ''}} </p>
+                            </ng-container>
+                        </ng-container>
+                    </div>
+                    <div class="work-experince-sub-sm-dtl-bg">
+                        <h6>Professional Highlights</h6>
+                        <p>{{proWorkExp.proHighLights}}</p>
+                    </div>
+                    <div class="work-experince-sub-sm-dtl-bg Skilled-part">
+                        <h6>Professional Experience/Strengths </h6>
+                        <span>Skilled in:</span>
+                        <ng-container *ngIf="skillArray.length">
+                            <ng-container *ngFor="let master of skillArray | GroupByPipe : 'masterSkillName'">
+                                <p>{{master.key}}</p>
+                                <ng-container *ngFor="let category of master.value | GroupByPipe : 'categorySkillName'">
+                                    <ng-container *ngIf="category.key && category.key != 'null' && category.key !== 'undefined'">
+                                        <p class="m-l-10">{{category.key}}</p>
+                                    </ng-container>
+                                    <ng-container *ngFor="let detail of category.value">
+                                        <ng-container *ngIf="detail.detailSkillName && detail.detailSkillName != 'null' && detail.detailSkillName != 'undefined'">
+                                            <p class="m-l-20">{{detail.detailSkillName}}</p>
+                                        </ng-container>
+                                    </ng-container>
+                                </ng-container>
+                            </ng-container>
+                        </ng-container>
+                    </div>
+                    <div class="work-experince-sub-sm-dtl-bg">
+                        <h6>Software/ Application</h6>
+                        <ng-container *ngIf="proWorkExp.proKnowledge.length">
+                            <ng-container *ngFor="let loop of proWorkExp.proKnowledge">
+                                <ng-container *ngIf="loop.knowledge === 'Other'; else elseTemplate">
+                                    <p>{{loop.otherValue1}}</p>
+                                    <p>{{loop.otherValue2}}</p>
+                                    <p>{{loop.otherValue3}}</p>
+                                    <p>{{loop.otherValue4}}</p>
+                                    <p>{{loop.otherValue5}}</p>
+                                </ng-container>
+                                <ng-template #elseTemplate>
+                                    <p>{{loop.knowledge}}</p>
+                                </ng-template>
+                            </ng-container>
+                        </ng-container>
+                    </div>
+                    <div class="load-more-btn">
+                        <ng-container *ngIf="appConstant.fromFirm === argFrom">
+                            <a href="javascript:;" (click)="openProjectModal()">Connect with Professional</a>
+                        </ng-container>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</ng-template>

@@ -1,0 +1,378 @@
+<!-- <div class="project-details-main new-section-design"> -->
+<div class="project-details-main-mid-part" id="open_project_dtl">
+    <div class="project-details-left-part-tab same-height beforeScroll" style="height: 800px;">
+        <div class="project-details-main-left-desc-dtl customScrollBar">
+            <h2>My Projects</h2>
+            <div class="job-list customScrollLeftside">
+                <ng-container *ngIf="projectNameList.length; else emptyView">
+                    <ng-container *ngFor="let project of projectNameList; let i = index;let first = first;">
+                        <ng-container *ngIf="first">
+                            <div class="job-see-all">
+                                <p>Open
+                                    <span>{{projectNameList.length}}</span>
+                                </p>
+                            </div>
+                        </ng-container>
+                        <div (click)="changeViewParameter(project.projectId, i)" class="pointer my-project-right" [ngClass]="project.isView ? 'active': ''">
+                            <div class="my-open-project-right">
+                                <h5>{{project.projectName}}</h5>
+                                <h6>{{project.createdDate | customDate:'dateOnly':true}}</h6>
+                            </div>
+                        </div>
+                    </ng-container>
+                </ng-container>
+                <ng-template #emptyView>
+                    <div class="profile-update-my-project">
+                        <h6>What are you waiting for? </h6>
+                        <p>Connect with professionals and they will appear here.</p>
+                    </div>
+                </ng-template>
+            </div>
+        </div>
+    </div>
+    <div class="project-details-right-part-main same-height beforeScroll" style="height: 800px;">
+        <div class="project-details-main-right-desc-dtl customScrollBar ">
+            <div class="project-details-main-right-head">
+                <h2>Project Details</h2>
+            </div>
+            <div class="project-details-tp-desc-dtl">
+                <ng-container *ngFor="let project of projectList; let mainIndex = index;let first = first;">
+                    <ng-container *ngFor="let subProject of project.value; let subIndex = index;let subFirst = first;">
+                        <ng-container *ngIf="subProject.isView && subFirst">
+                            <div class="project-details-tp-desc-dtl-sm-box">
+                                <h5>
+                                    <span>Date:</span>{{subProject.createdDate | customDate:'dateOnly':true}}</h5>
+                            </div>
+                            <div class="project-details-tp-desc-dtl-sm-box">
+                                <h5>
+                                    <span>Project Name:</span>{{subProject.projectName}}</h5>
+                            </div>
+                            <div class="project-details-tp-desc-dtl-sm-box">
+                                <h5>
+                                    <span>Required Expertise:</span>{{subProject.expertise}}</h5>
+                            </div>
+                            <div class="project-details-tp-desc-dtl-sm-box">
+                                <h5>
+                                    <span>City:</span>{{subProject.cityName}}</h5>
+                            </div>
+                            <div class="project-details-tp-desc-dtl-sm-box">
+                                <h5>
+                                    <span>Location of Work:</span>{{subProject.workLocation}}</h5>
+                            </div>
+                            <div class="project-details-tp-desc-dtl-sm-box">
+                                <h5>
+                                    <span>Hours Required:</span>{{subProject.hours}}{{subProject.hoursDuration ? '/ ': ' '}}{{subProject.hoursDuration}}</h5>
+                            </div>
+                            <div class="project-details-tp-desc-dtl-sm-box">
+                                <h5>
+                                    <span>Project Description:</span>{{subProject.projectDescription}}
+                                </h5>
+                                <h6></h6>
+                            </div>
+                            <div class="project-details-tp-desc-dtl-sm-box">
+                                <h5>
+                                    <span>Project Deadline:</span>{{subProject.targetDate | customDate:'dateOnly':true}}</h5>
+                            </div>
+                        </ng-container>
+                    </ng-container>
+                </ng-container>
+            </div>
+            <div class="project-details-table-part">
+                <ng-container>
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Professional</th>
+                                <th>Status</th>
+                                <th>Final Details</th>
+                                <th>Action</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <ng-container *ngFor="let project of projectList; let proMainIndex = index">
+                                <ng-container *ngFor="let professional of project.value; let proIndex = index;">
+                                    <ng-container *ngIf="professional.isView">
+                                        <tr>
+                                            <td>{{professional.proName}}</td>
+                                            <td [ngClass]="professional.projectStatus === 'Accepted' ? 'Accepted': (professional.projectStatus === 'Declined' ? 'Declined' : 'P-Meeting')">{{professional.projectStatus}}</td>
+                                            <td class="View">
+                                                <ng-container *ngIf="((professional.projectStatus === appConstant.pendingApproval && professional.projectFinalizeId) || professional.projectStatus === appConstant.accepted)">
+                                                    <a href="javascript:;" (click)="viewAndFinalieProject(professional, proMainIndex, proIndex)">View</a>
+                                                </ng-container>
+                                            </td>
+                                            <td class="Decline ">
+                                                <ng-container *ngIf="professional.projectStatus !== appConstant.accepted && professional.projectStatus !== appConstant.declined">
+                                                    <span class="pointer" (click)="declineProjectByFirm(professional,proMainIndex,proIndex)">Decline</span>
+                                                </ng-container>
+                                            </td>
+                                        </tr>
+                                    </ng-container>
+                                </ng-container>
+                            </ng-container>
+                        </tbody>
+                    </table>
+                </ng-container>
+            </div>
+
+        </div>
+    </div>
+</div>
+<div class="project-details-main-mid-part" id="Accepted_project_dtl" style="display: none;">
+    <div class="project-details-left-part-tab same-height" style="height: 0px;">
+        <div class="project-details-main-left-desc-dtl">
+            <h2>My Projects</h2>
+            <div class="job-list">
+                <div class="job-see-all">
+                    <p>Accepted
+                        <i class="fas fa-check-circle"></i>
+                    </p>
+                </div>
+                <div class="my-project-right active">
+                    <div class="my-open-project-right">
+                        <h5>Financial Statement Audit</h5>
+                        <h6>May 2, 2020</h6>
+                    </div>
+                </div>
+                <div class="my-project-right">
+                    <div class="my-open-project-right">
+                        <h5>Project Name B</h5>
+                        <h6>May 10, 2020</h6>
+                    </div>
+                </div>
+                <div class="my-project-right">
+                    <div class="my-open-project-right">
+                        <h5>Project Name C</h5>
+                        <h6>May 10, 2020</h6>
+                    </div>
+                </div>
+                <div class="my-project-right">
+                    <div class="my-open-project-right">
+                        <h5>Project Name D</h5>
+                        <h6>May 10, 2020</h6>
+                    </div>
+                </div>
+                <div class="my-project-right">
+                    <div class="my-open-project-right">
+                        <h5>Project Name E</h5>
+                        <h6>May 10, 2020</h6>
+                    </div>
+                </div>
+                <div class="my-project-right">
+                    <div class="my-open-project-right">
+                        <h5>Project Name F</h5>
+                        <h6>May 10, 2020</h6>
+                    </div>
+                </div>
+                <div class="my-project-right">
+                    <div class="my-open-project-right">
+                        <h5>Project Name G</h5>
+                        <h6>May 10, 2020</h6>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="project-details-right-part-main same-height" style="height: 800px;">
+        <div class="project-details-main-right-desc-dtl ">
+            <div class="project-details-main-right-head">
+                <h2>Project Details</h2>
+            </div>
+            <div class="project-details-tp-desc-dtl">
+                <div class="project-details-tp-desc-dtl-sm-box">
+                    <h5>
+                        <span>Date:</span>March 21, 2020</h5>
+                </div>
+                <div class="project-details-tp-desc-dtl-sm-box">
+                    <h5>
+                        <span>Project Name:</span>Financial Statement Audit</h5>
+                </div>
+                <div class="project-details-tp-desc-dtl-sm-box">
+                    <h5>
+                        <span>Required Expertise:</span>Experience with creating financial statements and audits</h5>
+                </div>
+                <div class="project-details-tp-desc-dtl-sm-box">
+                    <h5>
+                        <span>City:</span>Toronto, ON</h5>
+                </div>
+                <div class="project-details-tp-desc-dtl-sm-box">
+                    <h5>
+                        <span>Location of Work:</span>On-site Mandatory</h5>
+                </div>
+                <div class="project-details-tp-desc-dtl-sm-box">
+                    <h5>
+                        <span>Hours Required:</span>42/Total</h5>
+                </div>
+                <div class="project-details-tp-desc-dtl-sm-box">
+                    <h5>
+                        <span>Project Description:</span>Review our current financial statements and prepare them for an audit.</h5>
+                    <h6></h6>
+                </div>
+                <div class="project-details-tp-desc-dtl-sm-box">
+                    <h5>
+                        <span>Project Deadline:</span>June 30, 2020</h5>
+                </div>
+            </div>
+            <div class="Accepted_project_perso_dtl">
+                <div class="profile-work-experience-men-dtl">
+                    <div class="profile-work-experience-men-pic">
+                        <img src="images/work-experince-mea2.png">
+                    </div>
+                    <div class="profile-work-experience-men-profile-sub-dtl">
+                        <h5>Tom, CPA</h5>
+                        <div class="rating-stars">
+                            <ul id="stars">
+                                <li class="star selected" title="Poor" data-value="1">
+                                    <i class="fa fa-star fa-fw"></i>
+                                </li>
+                                <li class="star selected" title="Fair" data-value="2">
+                                    <i class="fa fa-star fa-fw"></i>
+                                </li>
+                                <li class="star selected" title="Good" data-value="3">
+                                    <i class="fa fa-star fa-fw"></i>
+                                </li>
+                                <li class="star selected" title="Excellent" data-value="4">
+                                    <i class="fa fa-star fa-fw"></i>
+                                </li>
+                                <li class="change-color star" title="WOW!!!" data-value="5">
+                                    <i class="fa fa-star fa-fw"></i>
+                                </li>
+                            </ul>
+                            <p>(1 Review)</p>
+                        </div>
+                        <a href="javascript:;" class="view-profile">View Profile</a>
+                    </div>
+                    <div class="professional-profile-right-tp-btn">
+                        <a href="javascript:;">Completed</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="project-details-main-mid-part histroy_project_dtl" id="histroy_project_dtl" style="display: none;">
+    <div class="project-details-left-part-tab same-height" style="height: 0px;">
+        <div class="project-details-main-left-desc-dtl">
+            <h2>My Projects</h2>
+            <div class="job-list">
+                <div class="job-see-all">
+                    <p>History
+                        <i class="fas fa-history"></i>
+                    </p>
+                </div>
+                <div class="my-project-right active">
+                    <div class="my-open-project-right">
+                        <h5>Financial Statement Audit</h5>
+                        <h6>May 2, 2020</h6>
+                    </div>
+                </div>
+                <div class="my-project-right">
+                    <div class="my-open-project-right">
+                        <h5>Project Name B</h5>
+                        <h6>May 10, 2020</h6>
+                    </div>
+                </div>
+                <div class="my-project-right">
+                    <div class="my-open-project-right">
+                        <h5>Project Name C</h5>
+                        <h6>May 10, 2020</h6>
+                    </div>
+                </div>
+                <div class="my-project-right">
+                    <div class="my-open-project-right">
+                        <h5>Project Name D</h5>
+                        <h6>May 10, 2020</h6>
+                    </div>
+                </div>
+                <div class="my-project-right">
+                    <div class="my-open-project-right">
+                        <h5>Project Name E</h5>
+                        <h6>May 10, 2020</h6>
+                    </div>
+                </div>
+                <div class="my-project-right">
+                    <div class="my-open-project-right">
+                        <h5>Project Name F</h5>
+                        <h6>May 10, 2020</h6>
+                    </div>
+                </div>
+                <div class="my-project-right">
+                    <div class="my-open-project-right">
+                        <h5>Project Name G</h5>
+                        <h6>May 10, 2020</h6>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="project-details-right-part-main same-height" style="height: 0px;">
+        <div class="project-details-main-right-desc-dtl ">
+            <div class="project-details-main-right-head">
+                <h2>Project Details</h2>
+            </div>
+            <div class="project-details-tp-desc-dtl">
+                <div class="project-details-tp-desc-dtl-sm-box">
+                    <p>
+                        <span>Date:</span>March 21, 2020</p>
+                </div>
+                <div class="project-details-tp-desc-dtl-sm-box">
+                    <p>
+                        <span>Project Name:</span>Financial Statement Audit</p>
+                </div>
+                <div class="project-details-tp-desc-dtl-sm-box">
+                    <p>
+                        <span>Hours Required:</span>22</p>
+                </div>
+                <div class="project-details-tp-desc-dtl-sm-box">
+                    <p>
+                        <span>Scope of Work:</span>
+                        <br>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore
+                        et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
+                        aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum
+                        dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui
+                        officia deserunt mollit anim id est laborum.</p>
+                </div>
+
+                <div class="project-details-tp-desc-dtl-sm-box">
+                    <p>
+                        <span>Project Description:</span>Review our current financial statements and prepare them for an audit.</p>
+                    <h6></h6>
+                </div>
+                <div class="project-details-tp-desc-dtl-sm-box">
+                    <p>
+                        <span>Completed: May 10, 2020</span>
+                    </p>
+                </div>
+            </div>
+            <div class="histroy_project_dtl_btm_part">
+                <div class="project-details-table-part">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th style="width: 203px;text-align: left;">Professional</th>
+                                <th>Status</th>
+                                <th>Payment</th>
+                                <th>Action</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td style="width: 203px;text-align: left;">Tom, CPA</td>
+                                <td style="color: #2b3768;font-size: 14px;">Completed</td>
+                                <td style="color: #2b3768;font-size: 14px;">Received</td>
+                                <td class="View">
+                                    <a href="javascript:;" style="text-transform: capitalize;" data-toggle="modal" data-target="#largeModal4">Review</a>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <div class="histroy_project_dtl_btm_btn">
+                <div class="professional-profile-right-tp-btn">
+                    <a href="javascript:;">Invite to Continue Work</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- </div> -->

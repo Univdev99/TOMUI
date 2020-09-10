@@ -1,0 +1,147 @@
+<div class="project-details-main-mid-part" id="my_jobs_page">
+    <div class="project-details-left-part-tab same-height beforeScroll" style="height: 800px;">
+        <div class="project-details-main-left-desc-dtl customScrollBar">
+            <h2>My Projects</h2>
+
+            <div class="job-list">
+                <ng-container *ngIf="jobList.length; else emptyView">
+                    <div class="job-see-all">
+                        <p>Requests</p>
+                    </div>
+                    <ng-container *ngFor="let job of jobList; let i = index;let first = first;">
+                        <div (click)="changeViewParameter(i)" class="pointer my-project-right" [ngClass]="job.isView ? 'active': ''">
+                            <div class="my-open-project-right">
+                                <h5>{{job.businessName}}</h5>
+                                <h6>{{job.projectName}}</h6>
+                            </div>
+                        </div>
+                    </ng-container>
+                </ng-container>
+                <ng-template #emptyView>
+                    <div class="profile-update-my-project">
+                        <h6>No Record Found </h6>
+                    </div>
+                </ng-template>
+            </div>
+        </div>
+    </div>
+    <div class="project-details-right-part-main same-height tab-content beforeScroll" style="height: 800px;">
+        <div id="overViewSection" class="project-details-main-right-desc-dtl tab-pane active customScrollBar">
+            <div class="project-details-main-right-head">
+                <h2>Overview</h2>
+            </div>
+            <ng-container *ngIf="jobList.length">
+                <div class="my-jobs-part">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th class="width265">Job Requests</th>
+                                <th>Status</th>
+                                <th class="width160">Action</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <ng-container *ngFor="let job of jobList">
+                                <ng-container *ngIf="job.isView">
+                                    <tr>
+                                        <td>
+                                            <h3> {{job.businessName}}</h3>
+                                            <h5>{{job.projectName}}</h5>
+                                        </td>
+                                        <td>
+                                            <h5>{{job.jobStatus}}</h5>
+                                        </td>
+                                        <td>
+                                            <a href="javascript:;" (click)="callJQuery('overViewSection','projectDetailSection')">Review</a>
+                                        </td>
+                                    </tr>
+                                </ng-container>
+                            </ng-container>
+                        </tbody>
+                    </table>
+                </div>
+
+            </ng-container>
+
+        </div>
+        <div id="projectDetailSection" class="project-details-main-right-desc-dtl tab-pane customScrollBar" style="display: none;">
+            <div class="project-details-main-right-head project-details-main-right-two-part">
+                <h2>Project Details</h2>
+                <a href="javascript:;" (click)="callJQuery('projectDetailSection','overViewSection')">Back to Requests Overview</a>
+            </div>
+            <ng-container *ngFor="let jobProject of jobList; let rightIndex = index;let first = first;let last = last;">
+                <ng-container *ngIf="jobProject.isView">
+                    <div class="my-job-project-details-head-btm">
+                        <div class="my-jobs-part-project-dtl-head-bg">
+                            <div class="my-open-project-right">
+                                <h5>{{jobProject.projectName}}</h5>
+                                <h6>{{jobProject.createdDate | customDate:'dateOnly':true}}</h6>
+                            </div>
+                            <div class="my-open-project-right">
+                                <h6>Status</h6>
+                                <p>{{jobProject.jobStatus}}</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="my-jobs-part-project-dtl">
+                        <div class="project-details-tp-desc-dtl">
+                            <div class="project-details-tp-desc-dtl-sm-box">
+                                <h5>
+                                    <span>Date:</span>{{jobProject.createdDate | customDate:'dateOnly':true}}</h5>
+                            </div>
+                            <div class="project-details-tp-desc-dtl-sm-box">
+                                <h5>
+                                    <span>Project Name:</span>{{jobProject.projectName}}</h5>
+                            </div>
+                            <div class="project-details-tp-desc-dtl-sm-box">
+                                <h5>
+                                    <span>Required Expertise:</span>{{jobProject.expertise}}</h5>
+                            </div>
+                            <div class="project-details-tp-desc-dtl-sm-box">
+                                <h5>
+                                    <span>City:</span>{{jobProject.cityName}}</h5>
+                            </div>
+                            <div class="project-details-tp-desc-dtl-sm-box">
+                                <h5>
+                                    <span>Location of Work:</span>{{jobProject.workLocation}}</h5>
+                            </div>
+                            <div class="project-details-tp-desc-dtl-sm-box">
+                                <h5>
+                                    <span>Hours Required:</span>{{jobProject.hours}}{{jobProject.hoursDuration ? '/ ': ' '}}{{jobProject.hoursDuration}}</h5>
+                            </div>
+                            <div class="project-details-tp-desc-dtl-sm-box">
+                                <h5>
+                                    <span>Project Description:</span>{{jobProject.projectDescription}}</h5>
+                                <h6></h6>
+                            </div>
+                            <div class="project-details-tp-desc-dtl-sm-box">
+                                <h5>
+                                    <span>Project Deadline:</span>{{jobProject.targetDate | customDate:'dateOnly':true}}</h5>
+                            </div>
+                        </div>
+                        <ng-container *ngIf="jobProject.jobStatus === appConstant.pendingReview">
+                            <div class="my-jobs-part-btm-btn">
+                                <div class="Final-detail-project-sm-btn">
+                                    <a href="javascript:;" class="f-dtl-pr-btn active" (click)="openScheduleByProModal(jobProject.projectScheduleId, rightIndex)">I'm Interested</a>
+                                </div>
+                                <div class="Final-detail-project-sm-btn">
+                                    <a href="javascript:;" class="f-dtl-pr-btn" (click)="projectDeclineByPro(jobProject.projectScheduleId, rightIndex)">Decline</a>
+                                </div>
+                            </div>
+                        </ng-container>
+                        <ng-container *ngIf="jobProject.jobStatus === appConstant.pendingApproval && !jobProject.projectFinalizeId">
+                            <div class="my-jobs-part-btm-btn">
+                                <div class="Final-detail-project-sm-btn">
+                                    <a href="javascript:;" class="width300 f-dtl-pr-btn active" (click)="openProjectFinalizeModal(jobProject.projectId, rightIndex, jobProject)">Finalize Details &amp; Accept Job</a>
+                                </div>
+                                <div class="Final-detail-project-sm-btn">
+                                    <a href="javascript:;" class="f-dtl-pr-btn" (click)="projectDeclineAfterMeeting(jobProject.projectId, jobProject.projectScheduleId, rightIndex)">Decline</a>
+                                </div>
+                            </div>
+                        </ng-container>
+                    </div>
+                </ng-container>
+            </ng-container>
+        </div>
+    </div>
+</div>

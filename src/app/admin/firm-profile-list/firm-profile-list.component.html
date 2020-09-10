@@ -1,0 +1,174 @@
+<div class="project-details-main-mid-part" id="find-job-details">
+    <div class="project-details-left-part-tab beforeScroll" style="height: 800px">
+        <div class="project-details-main-left-desc-dtl customScrollBar">
+            <h2>Firms </h2>
+            <ng-container *ngIf="firmNameList.length; else emptyView">
+                <div class="job-list">
+                    <div class="job-see-all">
+                        <p>Name</p>
+                    </div>
+                    <ng-container *ngFor="let firmDetail of firmNameList; let i = index;let first = first;">
+                        <div class="my-project-right pointer" (click)="chanegViewParams(firmDetail.firmProfileId, i)" [ngClass]="firmDetail.isView ? 'active': ''">
+                            <div class="my-open-project-right">
+                                <h5 [ngClass]="!firmDetail.userStatus ? 'bold' : ''">{{firmDetail.businessName}}</h5>
+                            </div>
+                        </div>
+                    </ng-container>
+                </div>
+            </ng-container>
+        </div>
+    </div>
+    <div class="project-details-right-part-main same-height beforeScroll" style="height: 800px;">
+        <div class="project-details-main-right-desc-dtl customScrollBar">
+            <div class="project-details-main-right-head">
+                <h2>Business Profile</h2>
+                <ng-container *ngIf="firmProfileStatus">
+                        <div class="Employee_profile_tp_right_dtl">
+                            <ng-container *ngIf="firmProfileStatus === appConstant.accepted">
+                                <a href="javascript:;">Accepted
+                                    <i class="fas fa-check-circle"></i>
+                                </a>
+                            </ng-container>
+                            <ng-container *ngIf="firmProfileStatus === appConstant.declined">
+                                <a href="javascript:;">Declined
+                                    <i class="fas fa-times"></i>
+                                </a> 
+                            </ng-container>
+                        </div>
+                    </ng-container>
+            </div>
+            <ng-container *ngFor="let firm of firmProfileList; let i= index">
+                <ng-container *ngIf="firm.isView">
+                    <div class="firm-job-details-main-part project-preview-main-part">
+                        <div class="Employee_profile_sm_box_dtl_part">
+                            <table>
+                                <tbody>
+                                    <tr>
+                                        <th>Business Name</th>
+                                        <th>Branch Of applicable</th>
+                                    </tr>
+                                    <tr>
+                                        <td>{{firm.businessName}}</td>
+                                        <td>{{firm.branchName}}</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        <div class="Employee_profile_sm_box_dtl_part">
+                            <table>
+                                <tbody>
+                                    <tr>
+                                        <th>Business Address </th>
+                                        <th>City </th>
+                                    </tr>
+                                    <tr>
+                                        <td>{{firm.streetAddress}}</td>
+                                        <td>{{firm.cityName}}</td>
+                                    </tr>
+                                    <tr>
+                                        <th>Province </th>
+                                        <th>Zip Code</th>
+                                    </tr>
+                                    <tr>
+                                        <td>{{firm.provinceName}}</td>
+                                        <td>{{firm.zipcode}}</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        <div class="Employee_profile_sm_box_dtl_part">
+                            <table>
+                                <tbody>
+                                    <tr>
+                                        <th>Brief Description of your Business</th>
+                                    </tr>
+                                    <tr>
+                                        <td>{{firm.businessDesc}}</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        <div class="Employee_profile_sm_box_dtl_part">
+                            <table>
+                                <tbody>
+                                    <tr>
+                                        <th>Is your business an accounting firm?</th>
+                                        <th>is it a registered business?</th>
+                                    </tr>
+                                    <tr>
+                                        <td>{{firm.isAccountingFirm == '1' ? 'Yes' : 'No'}}</td>
+                                        <td>{{firm.isRegisteredFirm == '1' ? 'Yes' : 'No'}}</td>
+                                    </tr>
+                                    <tr>
+                                        <th>Business HST Number</th>
+                                        <th>Business Website</th>
+                                    </tr>
+                                    <tr>
+                                        <td>{{firm.hstNumber}}</td>
+                                        <td>{{firm.webSite}}</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        <div class="Employee_profile_sm_box_dtl_part">
+                            <table>
+                                <tbody>
+                                    <tr>
+                                        <th>Billing Details </th>
+                                        <th></th>
+                                    </tr>
+                                    <tr>
+                                        <th>Billing Address </th>
+                                        <th>City </th>
+                                    </tr>
+                                    <tr>
+                                        <td>{{firm.billStreetAddress}}</td>
+                                        <td>{{firm.billCityName}}</td>
+                                    </tr>
+                                    <tr>
+                                        <th>Province </th>
+                                        <th>Zip Code</th>
+                                    </tr>
+                                    <tr>
+                                        <td>{{firm.billProvinceName}}</td>
+                                        <td>{{firm.billZipcode}}</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        <div class="Employee_profile_sm_box_dtl_part">
+                            <table>
+                                <tbody>
+                                    <tr>
+                                        <th>First Name</th>
+                                        <th>Last Name </th>
+                                    </tr>
+                                    <tr>
+                                        <td>{{firm.firstName}}</td>
+                                        <td>{{firm.lastName}}</td>
+                                    </tr>
+                                    <tr>
+                                        <th>Phone Number</th>
+                                        <th>Work Email</th>
+                                    </tr>
+                                    <tr>
+                                        <td>{{firm.phoneNumber}}</td>
+                                        <td>{{firm.workEmail}}</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        <div class="my-jobs-part-btm-btn">
+                            <div class="Final-detail-project-sm-btn">
+                                <a href="javascript:;" class="f-dtl-pr-btn active" (click)="approveFirmProfileByAdmin(firm.userId,i, appConstant.approve)">Accept</a>
+                            </div>
+                            <div class="Final-detail-project-sm-btn">
+                                <a href="javascript:;" class="f-dtl-pr-btn" (click)="approveFirmProfileByAdmin(firm.userId,i, appConstant.decline)">Decline</a>
+                            </div>
+                        </div>
+                    </div>
+                </ng-container>
+            </ng-container>
+        </div>
+    </div>
+</div>

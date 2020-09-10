@@ -1,0 +1,86 @@
+<!-- responsive-sidebar -->
+<div class="sidebar-main desktop-view">
+    <div class="top-logo-main">
+        <img src="assets/images/dashbord-logo.png" class="logo-img">
+        <img src="assets/images/dashbord-logo-small.png" class="logo-img-close-dash">
+        <a href="javascript:;" class="close-sidemenu">
+            <img src="assets/images/back.png">
+        </a>
+    </div>
+    <div class="sidebar-menu-main">
+        <ul>
+            <li>
+                <a href="javascript:;">
+                    <span class="m-icon">
+                        <img src="assets/images/dh-home.png">
+                    </span>
+                    <span class="menu-text" [routerLink]="pathList.CLIENT_URL.adminDashBoard">Home</span>
+                </a>
+            </li>
+            <li class="child-menu">
+                <a href="javascript:;">
+                    <span class="m-icon">
+                        <img src="assets/images/dh-jobs.png">
+                    </span>
+                    <span class="menu-text">Firms</span>
+                    <span class="menu-arrow">
+                        <img src="assets/images/dh-arw.png">
+                    </span>
+                </a>
+                <ul class="sub-menu">
+                    <li>
+                        <a href="javascript:;" [routerLink]="pathList.CLIENT_URL.adminSearchFirm">Job Status</a>
+                    </li>
+                    <li>
+                        <a href="javascript:;" [routerLink]="pathList.CLIENT_URL.adminFirmProfileList">Business Profile</a>
+                    </li>
+                </ul>
+            </li>
+            <li class="child-menu">
+                <a href="javascript:;">
+                    <span class="m-icon">
+                        <img src="assets/images/dh-profile.png">
+                    </span>
+                    <span class="menu-text">Professionals</span>
+                    <span class="menu-arrow">
+                        <img src="assets/images/dh-arw.png">
+                    </span>
+                </a>
+                <ul class="sub-menu">
+                    <li>
+                        <a href="javascript:;" [routerLink]="pathList.CLIENT_URL.adminSearchPro">Job Status</a>
+                    </li>
+                    <li>
+                        <a href="javascript:;" [routerLink]="pathList.CLIENT_URL.adminProProfiles">Employee Profile</a>
+                    </li>
+                </ul>
+            </li>
+            <li>
+                <a href="javascript:;">
+                    <span class="m-icon">
+                        <img src="assets/images/dh-home.png">
+                    </span>
+                    <span class="menu-text">Notification</span>
+                </a>
+            </li>
+            <li>
+                <a href="javascript:;">
+                    <span class="m-icon">
+                        <img src="assets/images/dh-home.png">
+                    </span>
+                    <span class="menu-text" [routerLink]="pathList.CLIENT_URL.masterAdmin">Setting</span>
+                </a>
+            </li>
+
+            <li>
+                <a href="javascript:;">
+                    <span class="m-icon">
+                        <img src="assets/images/dh-home.png">
+                    </span>
+                    <span class="menu-text" (click)="logoutUser()">Log out</span>
+                </a>
+            </li>
+        </ul>
+    </div>
+</div>
+<!-- responsive-sidebar -->

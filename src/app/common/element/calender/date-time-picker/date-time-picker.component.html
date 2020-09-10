@@ -1,0 +1,12 @@
+<div class="datetimepicker">
+    <div class="input-group mr-2">
+        <input class="form-control l-inp" (blur)="inputBlur($event)" [ngModel]="dateString | date:inputDatetimeFormat" [placeholder]="placeholder"
+            (change)="onInputChange($event)" [placement]="placement" [ngbPopover]="calendarContent" [disabled]='disabled' [required]="required"
+        />
+    </div>
+    <ng-template #calendarContent>
+        <ngb-datepicker #dp name="datepicker" [ngModel]="datetime" [minDate]="minDate" (ngModelChange)="onDateChange($event)" [navigation]="navigation"></ngb-datepicker>
+        <ngb-timepicker #tp name="timepicker" [ngModel]="datetime" (ngModelChange)="onTimeChange($event)" [seconds]="seconds" [hourStep]="hourStep"
+            [minuteStep]="minuteStep" [secondStep]="secondStep"></ngb-timepicker>
+    </ng-template>
+</div>

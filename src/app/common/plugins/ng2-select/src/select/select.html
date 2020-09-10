@@ -1,0 +1,96 @@
+
+<div tabindex="0" *ngIf="multiple === false" (keyup)="mainClick($event)" (keyup.enter)="sendEventToSaal()" [offClick]="clickedOutside" (openSelectBox)="matchClick($event)"
+    class="ui-select-container dropdown open" >
+    <div [ngClass]="{'ui-disabled': disabled}"></div>
+    <div class="ui-select-match customSoftSearch" *ngIf="!inputMode" >
+        <div tabindex="-1" class="form-control ui-select-toggle elliptext" (click)="matchClick($event)">
+            <span *ngIf="active.length <= 0" class="ui-select-placeholder text-muted">{{placeholder}}</span>
+            <span *ngIf="active.length > 0" class="ui-select-match-text customSoftTxt elliptext" [ngClass]="{'ui-select-allow-clear': allowClear && active.length > 0}"
+                [innerHTML]="sanitize(active[0].label)"></span>
+            <i class="dropdown-toggle"></i>
+            <i class="caret"></i>
+            <a *ngIf="allowClear && active.length>0" class="btn btn-xs customSofticon btn-link pull-right" (click)="removeClick(active[0], $event)">
+                <i class="omio om_close"></i>
+            </a>
+        </div>
+    </div>
+    <input type="text" autocomplete="false" tabindex="-1" (keydown)="inputEvent($event)" (keyup)="inputEvent($event, true)" [disabled]="disabled"
+        class="form-control ui-select-search" *ngIf="inputMode" placeholder="{{active.length <= 0 ? placeholder : ''}}">
+    <!-- options template -->
+    <ul *ngIf="optionsOpened && options && options.length > 0 && !firstItemHasChildren" class=" ui-select-choices dropdown-menu {{class}}"
+        role="menu">
+        <div class="drawerPopScrol ">
+            <li *ngFor="let o of options" role="menuitem" class="setOne">
+                <div class="ui-select-choices-row" [class.active]="isActive(o)" (mouseenter)="selectActive(o)" (click)="selectMatch(o, $event)" *ngIf="o.value !== 'IAmParent'; else header">
+                    <a href="javascript:void(0)" class="dropdown-item">
+                        <div class="setDDcolorDesign" [innerHtml]="sanitize(o.label | highlight:inputValue)"></div>
+                    </a>
+                </div>
+                <ng-template #header>
+                <div>
+                    <a class="dropdownMenu_Heading">
+                        <div [innerHtml]="o.label"></div>
+                    </a>
+                </div>
+                </ng-template>
+            </li>
+        </div>
+    </ul>
+
+    <ul *ngIf="optionsOpened && options && options.length > 0 && firstItemHasChildren" class="ui-select-choices dropdown-menu"
+        role="menu">
+        <li *ngFor="let c of options; let index=index" role="menuitem" classs="setTwo">
+            <div class="divider dropdown-divider" *ngIf="index > 0"></div>
+            <div class="dropdown-header">{{c.label}}</div>
+
+            <div *ngFor="let o of c.children" class="ui-select-choices-row" [class.active]="isActive(o)" (mouseenter)="selectActive(o)"
+                (click)="selectMatch(o, $event)" [ngClass]="{'active': isActive(o)}">
+                <a href="javascript:void(0)" class="dropdown-item ">
+                    <div class="ui-select-match-text" [innerHtml]="sanitize(o.label | highlight:inputValue)"></div>
+                </a>
+            </div>
+        </li>
+    </ul>
+</div>
+
+<div tabindex="0" *ngIf="multiple === true" (keyup)="mainClick($event)" (focus)="focusToInput('')" [offClick]="clickedOutside"
+    (openSelectBox)="matchClick($event)" class="ui-select-container ui-select-multiple dropdown form-control open">
+    <div [ngClass]="{'ui-disabled': disabled}"></div>
+    <div class="ui-select-match">
+        <div *ngFor="let a of active" class="ui-select-match-item btn btn-default btn-secondary btn-xs" tabindex="-1" type="button"
+            [ngClass]="{'btn-default': true}">
+            <a class="close" (click)="removeClick(a, $event)">&times;</a>
+            <div class="multiValue" [innerHtml]="sanitize(a.label)"></div>
+        </div>
+
+    </div>
+    <input type="text" (keydown)="inputEvent($event)" (keyup)="inputEvent($event, true)" (click)="matchClick($event)" [disabled]="disabled"
+        autocomplete="false" autocorrect="off" autocapitalize="off" spellcheck="false" class="form-control ui-select-search"
+        placeholder="{{active.length <= 0 ? placeholder : ''}}" role="combobox">
+    <!-- options template -->
+    <ul *ngIf="!hideOptionsMultiselectSaal && optionsOpened && options && options.length > 0 && !firstItemHasChildren" class="ui-select-choices dropdown-menu"
+        role="menu">
+        <li *ngFor="let o of options" role="menuitem" class="setThree">
+            <div class="ui-select-choices-row" [class.active]="isActive(o)" (mouseenter)="selectActive(o)" (click)="selectMatch(o, $event)">
+                <a href="javascript:void(0)" class="dropdown-item">
+                    <div [innerHtml]="sanitize(o.label | highlight:inputValue)"></div>
+                </a>
+            </div>
+        </li>
+    </ul>
+
+    <ul *ngIf="optionsOpened && options && options.length > 0 && firstItemHasChildren" class="ui-select-choices dropdown-menu"
+        role="menu">
+        <li *ngFor="let c of options; let index=index" role="menuitem" class="setFour">
+            <div class="divider dropdown-divider" *ngIf="index > 0"></div>
+            <div class="dropdown-header">{{c.label}}</div>
+
+            <div *ngFor="let o of c.children" class="ui-select-choices-row" [class.active]="isActive(o)" (mouseenter)="selectActive(o)"
+                (click)="selectMatch(o, $event)" [ngClass]="{'active': isActive(o)}">
+                <a href="javascript:void(0)" class="dropdown-item">
+                    <div [innerHtml]="sanitize(o.label | highlight:inputValue)"></div>
+                </a>
+            </div>
+        </li>
+    </ul>
+</div>

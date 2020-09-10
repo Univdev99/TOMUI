@@ -1,0 +1,72 @@
+<app-nav-bar></app-nav-bar>
+<!-- START :: SIGN-UP-FIRM-PART -->
+<div class="sign-up-firm-main-part">
+    <div class="sign-up-container">
+        <div class="sign-up-firm-mid-sec-part">
+            <div class="col-lg-6 col-md-6 cl-sm-6 col-xs-12 p_0">
+                <div class="sign-up-firm-left-part">
+                    <div class="sign-up-firm-left-desc-dtl-main">
+                        <h4>Take your career to new heights.</h4>
+                        <p>You want to align with the right client, the one who will allow you to take your skills in the direction
+                            you want.</p>
+                        <p>Open and run your very own virtual office, where you'll be able to choose exactly what projects to
+                            take on. Short or long-term. Let us take care of all the admin tasks like invoicing and searching
+                            for your next client.</p>
+                        <div class="sign-firm-left-pic">
+                            <img src="assets/images/sign-pros-left-pic.png">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-6 col-md-6 cl-sm-6 col-xs-12 p_0">
+                <div class="sign-up-firm-right-main-part firmSignUp">
+                    <form id="proSignUpForm" #proSignUpForm="ngForm" [ngClass]="{submitted: submitted}">
+                        <div class="login-fr-head">
+                            <h5>Looking to get hired?
+                                <br>Sign up here.</h5>
+                        </div>
+                        <div class="login-fr-desc-dtl">
+                            <div class="sign-up-firm-fr-fild-inp">
+                                <input type="text" name="First name" placeholder="First name" class="form-control l-inp" [(ngModel)]="proSignUp.firstName" maxlength="50"
+                                    required>
+                            </div>
+                            <div class="sign-up-firm-fr-fild-inp">
+                                <input type="text" name="last name" placeholder="Last name" class="form-control l-inp" [(ngModel)]="proSignUp.lastName" maxlength="50"
+                                    required>
+                            </div>
+                            <div class="sign-up-firm-fr-fild-inp">
+                                <input type="email" name="Work email" placeholder="Work email" class="form-control l-inp" [(ngModel)]="proSignUp.workEmail" maxlength="50"
+                                    required appEmailValidator>
+                            </div>
+                            <div class="sign-up-firm-fr-fild-inp">
+                                <input type="password" name="Create a password" id="password-field" placeholder="Create a password" class="form-control l-inp"
+                                    [(ngModel)]="proSignUp.password" maxlength="50" required maxlength="20">
+                                <ng-container *ngIf="proSignUp.password && proSignUp.password.length < 8">
+                                    <p>Password must be atleast 8 characters</p>
+                                </ng-container>
+                                <span toggle="#password-field" class="field-icon toggle-password" name="Create a password">
+                                    <img src="assets/images/pwd-loak.png">
+                                </span>
+                            </div>
+                            <ng-container *ngIf="proSignUpForm.invalid && submitted">
+                                <div class="sign-up-firm-fr-fild-inp">
+                                  <p class="errorColorClass">There are errors on ther form. Please fix them before continuing</p>
+                                </div>
+                              </ng-container>
+                              <ng-container *ngIf="userAlreadyExist && !submitted">
+                                <div class="sign-up-firm-fr-fild-inp">
+                                  <p class="errorColorClass">{{userAlreadyExist}}</p>
+                                </div>
+                              </ng-container>
+                            <div class="login-fr-btn-part">
+                                <input type="submit" (click)="createProAccount()"name="Sign up" value="Sign up" class="form-control l-inp">
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- START :: SIGN-UP-FIRM-PART -->
+<app-footer></app-footer>

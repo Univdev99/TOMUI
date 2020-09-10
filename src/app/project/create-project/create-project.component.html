@@ -1,0 +1,198 @@
+<form id="projectForm" #projectForm="ngForm" [ngClass]="{submitted: submitted}">
+    <div class="modal-body connect-expert-main-pop-part">
+        <div class="personal-profile-form-main" id="New-project-long">
+            <div class="connect-expert-main-desc-dtl">
+                <div class="personal-profile-form-head">
+                    <h4>New Project </h4>
+                    <h6>{{todayDate | customDate:'dateOnly':true}}</h6>
+                </div>
+                <div class="New-project-desc-dtl-main-part">
+                    <div class="tab-part-project">
+                        <ul class="nav nav-tabs" role="tablist" [ngClass]="{'custom-disabled': editMode}">
+                            <li class="nav-item">
+                                <a href="javascript:;" data-toggle="tab" role="tab" href="#tabs-1" class="nav-link" [ngClass]="{'active': project.isShortOrLong === 'Short'}"
+                                    (click)="project.isShortOrLong = 'Short'">Short-term or part-time work</a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="javascript:;" data-toggle="tab" role="tab" href="#tabs-1" class="nav-link" [ngClass]="{'active': project.isShortOrLong === 'Long'}"
+                                    (click)="project.isShortOrLong = 'Long'">Dedicated, long term work</a>
+                            </li>
+                        </ul>
+                        <div class="tab-content">
+                            <div class="tab-pane active" id="tabs-1" role="tabpanel">
+                                <div class="New-project-form-fild">
+                                    <div class="col-lg-12 col-md-12 cl-sm-12 col-xs-12">
+                                        <div class="sign-up-firm-fr-fild-inp">
+                                            <label>Name of the Project</label>
+                                            <input [disabled]="editMode" type="text" name="projectName" required placeholder="Enter the name of your project" class="form-control l-inp"
+                                                [(ngModel)]="project.projectName">
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-6 col-md-6 cl-sm-6 col-xs-12">
+                                        <div class="sign-up-firm-fr-fild-inp">
+                                            <label>Required Expertise </label>
+                                            <input [disabled]="editMode" type="text" name="requiredExpertise" placeholder="Enter the Expertise" class="form-control l-inp"
+                                                required [(ngModel)]="project.expertise">
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-6 col-md-6 cl-sm-6 col-xs-12">
+                                        <div class="">
+                                            <label class="truno16Label">City</label>
+                                            <app-simple-soft-search name="cityId" [disabled]="editMode" [placeholder]="'Enter the City'" [dataUrl]="'allCity'" [whereClause]="'1=1'"
+                                                [(ngModel)]="project.cityId" required>
+                                            </app-simple-soft-search>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-6 col-md-6 cl-sm-6 col-xs-12 margin0">
+                                        <div class="sign-up-firm-fr-fild-inp">
+                                            <label>Location of Work</label>
+                                            <select [disabled]="editMode" [disabled]="editMode" id="workLocation" name="workLocation" class="l-inp" appSelectValidator="select"
+                                                [(ngModel)]="project.workLocation" #workLocation="ngModel">
+                                                <option *ngFor="let item of workLocationArray" [value]="item.value">{{item.label}}</option>
+                                            </select>
+                                            <!-- <app-common-dropdown [placeholder]="'Select'" [returnType]="appConstant.string" name="workLocation" [(ngModel)]="project.workLocation"
+                                                [required]="true" [options]="workLocationArray"></app-common-dropdown> -->
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-6 col-md-6 cl-sm-6 col-xs-12 login-fr-desc-dtl">
+                                        <div class="sign-up-firm-fr-fild-inp ">
+                                            <label>Hours Required</label>
+                                            <div class="hour-part">
+                                                <div class="hour-part-digit">
+                                                    <input [disabled]="editMode" type="number" name="hour" placeholder="Enter Hours" class="form-control l-inp" required [(ngModel)]="project.hours">
+                                                </div>
+                                                <div class="hour-part-radio" [ngClass]="{'custom-disabled': editMode}">
+                                                    <ul>
+                                                        <li>
+                                                            <input [(ngModel)]="project.hoursDuration" [value]="'Total'" type="radio" class="regular-radio" name="radio-1-set" id="radio-1-set">
+                                                            <label for="radio-1-set"></label>
+                                                            <span>Total</span>
+                                                        </li>
+                                                        <li>
+                                                            <input [(ngModel)]="project.hoursDuration" [value]="'Weekly'" type="radio" class="regular-radio" name="radio-1-set" id="radio-2-set">
+                                                            <label for="radio-2-set"></label>
+                                                            <span>Weekly</span>
+                                                        </li>
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-12 col-md-12 cl-sm-12 col-xs-12">
+                                        <div class="sign-up-firm-fr-fild-inp">
+                                            <label>Project Description</label>
+                                            <textarea [disabled]="editMode" name="projectDesc" class="form-control l-inp" placeholder="Enter the Project Description"
+                                                required [(ngModel)]="project.projectDescription"></textarea>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-12 col-md-6 cl-sm-6 col-xs-12 txt-align-center">
+                                        <label></label>
+                                        <app-calender [minDate]="minDate" [disabled]="editMode" [inLine]="true" [(ngModel)]="project.targetDate" name="targetDate" [inLine]="true"></app-calender>
+                                    </div>
+                                    <div class="col-lg-12 col-md-12 cl-sm-12 col-xs-12">
+                                        <div class="login-fr-btn-part">
+                                            <ng-container *ngIf="editMode; else elseView">
+                                                <input type="submit" name="connectwp" value="Connect With Professional" (click)="openProjectSchedule(project.projectId)" class="form-control l-inp" id="b-profile-btn">
+                                            </ng-container>
+                                            <ng-template #elseView>
+                                                <input type="submit" name="createproject" value="Save Project" (click)="createProject()" class="form-control l-inp" id="b-profile-btn">
+                                            </ng-template>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</form>
+
+<!-- <div class="modal-body">
+    <div class="personal-profile-form-main personal-business-profile-form-main" id="personal-business-profile-fild-pop" style="display: flex;">
+        <form id="projectForm" #projectForm="ngForm" [ngClass]="{submitted: submitted}">
+            <div class="personal-profile-form-head">
+                <h4>New Project</h4>
+            </div>
+            <div class="login-fr-desc-dtl">
+                <div class="col-lg-6 col-md-6 cl-sm-6 col-xs-12">
+                    <div class="professional-profile-fild-tw-btn">
+                        <div class="professional-sm-btn">
+                            <label>
+                                <input type="radio" name="isShortOrLong" [(ngModel)]="project.isShortOrLong" [value]="'Short'">Short term</label>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-6 col-md-6 cl-sm-6 col-xs-12">
+                    <div class="professional-profile-fild-tw-btn">
+                        <div class="professional-sm-btn">
+                            <label>
+                                <input type="radio" name="isShortOrLong" [(ngModel)]="project.isShortOrLong" [value]="'Long'">Dedicated, long term work</label>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-12 col-md-12 cl-sm-12 col-xs-12">
+                    <div class="sign-up-firm-fr-fild-inp">
+                        <div class="sign-up-firm-fr-fild-inp">
+                            <label>Name of the Project</label>
+                            <input type="text" name="branch" placeholder="Enter the name of your project" class="form-control l-inp" [(ngModel)]="project.projectName">
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-6 col-md-6 cl-sm-6 col-xs-12">
+                    <div class="sign-up-firm-fr-fild-inp Description-business">
+                        <label>Required Expertise</label>
+                        <input type="text" name="streetAddress" placeholder="Enter the Expertise" class="form-control l-inp" required [(ngModel)]="project.expertise">
+                    </div>
+                </div>
+                <div class="col-lg-6 col-md-6 cl-sm-6 col-xs-12">
+                    <div class="Description-business">
+                        <label>City</label>
+                        <app-simple-soft-search name="cityId" [placeholder]="'Enter City'" [dataUrl]="'allCity'" [whereClause]="'1=1'" [(ngModel)]="project.cityId"
+                            required>
+                        </app-simple-soft-search>
+                    </div>
+                </div>
+                <div class="col-lg-6 col-md-6 cl-sm-6 col-xs-12">
+                    <div class="sign-up-firm-fr-fild-inp">
+                        <label>Location of Work</label>
+                        <input type="text" name="province" placeholder="Enter Province" class="form-control l-inp" required [(ngModel)]="project.workLocation">
+                    </div>
+                </div>
+                <div class="col-lg-6 col-md-6 cl-sm-6 col-xs-12">
+                    <label>Hours Required</label>
+                    <div class="row">
+                        <div class="col-lg-6 col-md-6 cl-sm-6 col-xs-12">
+                            <div class="sign-up-firm-fr-fild-inp">
+                                <input type="text" name="zipcode" placeholder="Enter Hours" class="form-control l-inp" required [(ngModel)]="project.hours">
+                            </div>
+                        </div>
+                        <div class="col-lg-6 col-md-6 cl-sm-6 col-xs-12">
+                            <div class="sign-up-firm-fr-fild-inp">
+                                <input type="radio" name="hourDuration" [(ngModel)]="project.hoursDuration" [value]="'Total'">Total
+                                <input type="radio" name="hourDuration" [(ngModel)]="project.hoursDuration" [value]="'Weekly'">Weekly
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+                <div class="col-lg-12 col-md-6 cl-sm-6 col-xs-12">
+                    <div class="sign-up-firm-fr-fild-inp">
+                        <label>Project Description</label>
+                        <input type="text" name="projectDesc" placeholder="Enter the Project Description" class="form-control l-inp" required [(ngModel)]="project.projectDescription">
+                    </div>
+                </div>
+                <div class="col-lg-12 col-md-6 cl-sm-6 col-xs-12">
+                    <label></label>
+                    <app-calender [(ngModel)]="project.targetDate" name="targetDate" [inLine]="true"></app-calender>
+                </div>
+                <div class="col-lg-12 col-md-12 cl-sm-12 col-xs-12">
+                    <div class="login-fr-btn-part">
+                        <input type="submit" name="createproject" value="Save Project" (click)="createProject()" class="form-control l-inp" id="b-profile-btn">
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+</div> -->

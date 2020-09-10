@@ -1,0 +1,307 @@
+<div class="deshboad-content profile-update-main">
+    <div class="desktop-data-start">
+        <div class="desktop-view-box">
+            <div class="desktop-left">
+                <h2 (click)="openProjectModal()">My Projects</h2>
+                <ng-container *ngIf="projectList.length; else projectElseView">
+                    <ng-container *ngFor="let project of projectList | GroupByPipe: 'status'; let i=index; let firstIndex = first;">
+                        <div class="job-list">
+                            <div class="job-see-all">
+                                <p>{{project.key}}
+                                    <span>{{project.value[0].projectCount}}</span>
+                                </p>
+                                <a href="#" href="javascript:;" (click)="navigateToProjectList(project.key)">See All</a>
+                            </div>
+                            <div class="job-info">
+                                <ng-container *ngFor="let subArray of project.value; let sIndex=index;">
+                                    <ng-container *ngIf="sIndex < 2">
+                                        <h3 class="width-100">{{subArray.projectName}}</h3>
+                                    </ng-container>
+                                </ng-container>
+                            </div>
+                        </div>
+                    </ng-container>
+                </ng-container>
+                <ng-template #projectElseView>
+                    <div class="profile-update-my-project">
+                        <h6>What are you waiting for? </h6>
+                        <p>Connect with professionals and they will appear here.</p>
+                    </div>
+                </ng-template>
+            </div>
+            <div class="desktop-view-second">
+                <div class="desktop-start-right">
+                    <div class="top-des-title">
+                        <h1>Calendar</h1>
+                    </div>
+                    <div class="desltp-calander">
+                        <div class="table-title">
+                            <h2>Mon, March 8</h2>
+                        </div>
+                        <table class="hk-calendar">
+                            <thead>
+                                <tr class="hk-calendar__days hk-calendar__row">
+                                    <th class="hk-calendar__day">Mon</th>
+                                    <th class="hk-calendar__day">Tue</th>
+                                    <th class="hk-calendar__day">Wed</th>
+                                    <th class="hk-calendar__day">Thu</th>
+                                    <th class="hk-calendar__day">Fri</th>
+                                    <th class="hk-calendar__day">Sat</th>
+                                    <th class="hk-calendar__day">Sun</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr class="hk-calendar__dates hk-calendar__row">
+                                    <td class="hk-calendar__date">
+                                        <a href="#" class="hk-calendar__date-link -disabled">29</a>
+                                    </td>
+                                    <td class="calendar__date">
+                                        <a href="#" class="hk-calendar__date-link -disabled">30</a>
+                                    </td>
+                                    <td class="hk-calendar__date">
+                                        <a href="#" class="hk-calendar__date-link">1</a>
+                                    </td>
+                                    <td class="hk-calendar__date">
+                                        <a href="#" class="hk-calendar__date-link">2</a>
+                                    </td>
+                                    <td class="hk-calendar__date">
+                                        <a href="#" class="hk-calendar__date-link -has-event">3</a>
+                                    </td>
+                                    <td class="hk-calendar__date">
+                                        <a href="#" class="hk-calendar__date-link">4</a>
+                                    </td>
+                                    <td class="hk-calendar__date">
+                                        <a href="#" class="hk-calendar__date-link">5</a>
+                                    </td>
+                                </tr>
+                                <tr class="hk-calendar__dates hk-calendar__row">
+                                    <td class="hk-calendar__date">
+                                        <a href="#" class="hk-calendar__date-link">6</a>
+                                    </td>
+                                    <td class="hk-calendar__date">
+                                        <a href="#" class="hk-calendar__date-link">7</a>
+                                    </td>
+                                    <td class="hk-calendar__date">
+                                        <a href="#myModal" class="hk-calendar__date-link active">8</a>
+                                    </td>
+                                    <td class="hk-calendar__date">
+                                        <a href="#" class="hk-calendar__date-link">9</a>
+                                    </td>
+                                    <td class="hk-calendar__date">
+                                        <a href="#" class="hk-calendar__date-link">10</a>
+                                    </td>
+                                    <td class="hk-calendar__date">
+                                        <a href="#" class="hk-calendar__date-link">11</a>
+                                    </td>
+                                    <td class="hk-calendar__date">
+                                        <a href="#" class="hk-calendar__date-link -has-event">12</a>
+                                    </td>
+                                </tr>
+                                <tr class="hk-calendar__dates hk-calendar__row">
+                                    <td class="hk-calendar__date">
+                                        <a href="#" class="hk-calendar__date-link">13</a>
+                                    </td>
+                                    <td class="hk-calendar__date">
+                                        <a href="#" class="hk-calendar__date-link">14</a>
+                                    </td>
+                                    <td class="hk-calendar__date">
+                                        <a href="#" class="hk-calendar__date-link">15</a>
+                                    </td>
+                                    <td class="hk-calendar__date">
+                                        <a href="#" class="hk-calendar__date-link">16</a>
+                                    </td>
+                                    <td class="hk-calendar__date">
+                                        <a href="#" class="hk-calendar__date-link">17</a>
+                                    </td>
+                                    <td class="hk-calendar__date">
+                                        <a href="#" class="hk-calendar__date-link">18</a>
+                                    </td>
+                                    <td class="hk-calendar__date">
+                                        <a href="#" class="hk-calendar__date-link">19</a>
+                                    </td>
+                                </tr>
+                                <tr class="hk-calendar__dates hk-calendar__row">
+                                    <td class="hk-calendar__date">
+                                        <a href="#" class="hk-calendar__date-link">20</a>
+                                    </td>
+                                    <td class="hk-calendar__date">
+                                        <a href="#" class="hk-calendar__date-link -has-event">21</a>
+                                    </td>
+                                    <td class="hk-calendar__date">
+                                        <a href="#" class="hk-calendar__date-link">22</a>
+                                    </td>
+                                    <td class="hk-calendar__date">
+                                        <a href="#" class="hk-calendar__date-link">23</a>
+                                    </td>
+                                    <td class="hk-calendar__date">
+                                        <a href="#" class="hk-calendar__date-link">24</a>
+                                    </td>
+                                    <td class="hk-calendar__date">
+                                        <a href="#" class="hk-calendar__date-link">25</a>
+                                    </td>
+                                    <td class="hk-calendar__date">
+                                        <a href="#" class="hk-calendar__date-link">26</a>
+                                    </td>
+                                </tr>
+                                <tr class="hk-calendar__dates hk-calendar__row">
+                                    <td class="hk-calendar__date">
+                                        <a href="#" class="hk-calendar__date-link">27</a>
+                                    </td>
+                                    <td class="hk-calendar__date">
+                                        <a href="#" class="hk-calendar__date-link -has-event">28</a>
+                                    </td>
+                                    <td class="hk-calendar__date">
+                                        <a href="#" class="hk-calendar__date-link">29</a>
+                                    </td>
+                                    <td class="hk-calendar__date">
+                                        <a href="#" class="hk-calendar__date-link">30</a>
+                                    </td>
+                                    <td class="hk-calendar__date">
+                                        <a href="#" class="hk-calendar__date-link">31</a>
+                                    </td>
+                                    <td class="hk-calendar__date">
+                                        <a href="#" class="hk-calendar__date-link -disabled">1</a>
+                                    </td>
+                                    <td class="hk-calendar__date">
+                                        <a href="#" class="hk-calendar__date-link -disabled">2</a>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="profile-update-main-right-part">
+            <div class="profile-update-right-side-desc-dtl">
+                <div class="profile-update-right-part-form">
+                    <div class="profile-update-professinoal-head">
+                        <h4>Find a Professional</h4>
+                        <p>Use the search bar or search by accounting service below so we can find the right professional for
+                            your project.</p>
+                    </div>
+                    <div class="profile-update-professinoal-form-dtl">
+                        <!-- <app-common-checkbox [options]="abc" [reloadable]="'options'"></app-common-checkbox> -->
+                        <div class="profile-professinoal-serch pro-serch-btn">
+                            <!-- {{proSearchParams | json}} -->
+                            <input type="text" name="searchbox" placeholder="Search" class="search-bar" [(ngModel)]="proSearchParams.searchBoxValue">
+                            <button (click)="searchProfFromTxtBox()" class="searchbtn">
+                                <i class="fa fa-search"></i>
+
+                            </button>
+                        </div>
+                        <div class="professional-profile-fild-type">
+                            <h4>Are you looking for accounting services for:</h4>
+                            <div class="professional-profile-fild-tw-btn">
+                                <div class="professional-sm-btn">
+                                    <a href="javascript:;" class="profile-sm-btn" [ngClass]="{'active': proSearchParams.isAccountingFirm}" (click)="proSearchParams.isAccountingFirm = 1">Accounting Firm</a>
+                                </div>
+                                <div class="professional-sm-btn">
+                                    <a href="javascript:;" class="profile-sm-btn" [ngClass]="{'active': !proSearchParams.isAccountingFirm}" (click)="proSearchParams.isAccountingFirm = 0">Business</a>
+                                </div>
+                            </div>
+                            <div class="professional-profile-fild-inp">
+                                <select class="pr-pro-inp" [(ngModel)]="proSearchParams.proMasterSkill">
+                                    <option *ngFor="let item of masterSkillArray" [value]="item.value">{{item.label}}</option>
+                                </select>
+                            </div>
+                            <div class="professional-profile-fild-inp">
+                                <select class="pr-pro-inp" [(ngModel)]="proSearchParams.proCategorySkill">
+                                    <option *ngFor="let item of categorySkillArray" [value]="item.value">{{item.label}}</option>
+                                </select>
+
+                            </div>
+                            <div class="professional-profile-fild-btn-last">
+                                <a href="javascript:;" (click)="searchProfessional()">Search</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal dashbord-clc-pop">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <!-- <div class="modal-header"></div> -->
+            <div class="modal-body">
+                <div class="dashbord-clc-pop-head">
+                    <h1>Project A</h1>
+                </div>
+                <div class="dashbord-clc-pop-event-date-dtl">
+                    <h5>Mon, March 8, 2020</h5>
+                    <h6>02:30 PM</h6>
+                </div>
+                <div class="dashbord-clc-pop-date-btm-big-dtl">
+                    <p>Lorem ipsum dolor sit amet, consectetur nisi ut</p>
+                </div>
+                <div class="dashbord-clc-pop-btm-btn-part">
+                    <div class="dashbord-clc-pop-btn-small">
+                        <a href="#myModal2" class="d-clc-p-btn-bg d-clc-p-btn-bg-edit active">Edit Event</a>
+                    </div>
+                    <div class="dashbord-clc-pop-btn-small">
+                        <a href="javascript:;" class="d-clc-p-btn-bg d-clc-p-btn-bg-remove">remove</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- EDIT-EVENT-POP-UP -->
+<div class="modal edit-event-pop-part">
+
+
+    <script>
+        $(document).ready(function () {
+            $('#menu-icon').click(function () {
+                $('.res-menubar-top').toggleClass('res-menu-open');
+                $('#menu-icon').toggleClass('menu-open');
+            });
+        });
+    </script>
+    <script>
+        $(document).ready(function () {
+            $('.top-logo-main').click(function () {
+                $(".sidebar-main").toggleClass('sidemenu-effect');
+                // $('.dashboard-right-side-main').toggleClass('d-right-effect');
+                // $('.top-header-main').toggleClass('d-right-effect');
+                // $('.top-dashboard-title').toggleClass('d-right-effect');
+            });
+
+            // $('.sidebar-main').click(function() {
+            //     $(".sidebar-main").toggleClass('sidemenu-effect');
+            // });
+            $('li.child-menu').click(function () {
+                $(this).find("ul.sub-menu").slideToggle(150);
+                $(this).find(".menu-arrow").toggleClass('before');
+            });
+
+            $('#menu-icon').click(function () {
+                $('.sidebar-main.mobile-view').addClass('open-menu');
+            });
+        });
+    </script>
+    <script>
+        $(function () {
+            $('.hk-calendar__date-link').click(function () {
+                $('.dashbord-clc-pop').show('show');
+            });
+
+            $('.dashbord-clc-pop-btn-small .d-clc-p-btn-bg-edit').click(function () {
+                $('.dashbord-clc-pop').hide('slow');
+                $('.edit-event-pop-part').show('slow');
+            });
+            $('.edit-event-back a').click(function () {
+                $('.dashbord-clc-pop').show('slow');
+                $('.edit-event-pop-part').hide('slow');
+            });
+            $('.d-clc-p-btn-bg-remove').click(function () {
+                $('.dashbord-clc-pop').hide('slow');
+            });
+            $('.edit-event-submit-btn a').click(function () {
+                $('.edit-event-pop-part').hide('slow');
+            });
+        });
+    </script>

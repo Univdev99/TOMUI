@@ -1,0 +1,7 @@
+<ng-container *ngIf="items">
+    <div class="tom_drodown">
+        <ng-select [allowClear]="true" [placeholder]="placeholder" [idField]="idField" [textField]="textField" [minLength]="0" [items]="items"
+            [disabled]="disabled" [active]="selectedValue" (data)="refreshValue($event)" (selected)="selected($event)" (removed)="removed($event)"
+            (typed)="typed($event)" [required]="required" [class]="class"> </ng-select>
+    </div>
+</ng-container>

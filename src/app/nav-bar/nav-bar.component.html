@@ -1,0 +1,84 @@
+<!-- START :: HEADER -->
+<div class="header">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="sub-header">
+                <div class="col-lg-3 col-md-3 cl-sm-3 col-xs-12 p_0">
+                    <div class="logo pointer">
+                        <img src="../../assets/images/head-logo.png">
+                    </div>
+                </div>
+                <div class="col-lg-7 col-md-7 cl-sm-7 col-xs-12 p_0">
+                    <div class="menubar">
+                        <nav>
+                            <ul>
+                                <li>
+                                    <a href="javascript:;" class="active" [routerLink]="pathList.CLIENT_URL.home">Home</a>
+                                </li>
+                                <li>
+                                    <a href="javascript:;" [routerLink]="pathList.CLIENT_URL.about">About</a>
+                                </li>
+                                <li>
+                                    <a href="javascript:;" (click)="navigatoTOHowItWorks($event)">How it Works</a>
+                                </li>
+                                <li>
+                                    <a href="javascript:;">Blog</a>
+                                </li>
+                                <li>
+                                    <a href="javascript:;" [routerLink]="pathList.CLIENT_URL.contact">Contact</a>
+                                </li>
+                            </ul>
+                        </nav>
+                    </div>
+                </div>
+                <div class="col-lg-2 col-md-2 cl-sm-2 col-xs-12 p_0">
+                    <div class="sub-header-right-side-btn sub-header-right-desk">
+                        <div class="login-btn">
+                            <a href="javascript:;" (click)="reDirectLogin(appConstant.fromFirm)">Log in</a>
+                        </div>
+                        <div class="get-started">
+                            <a href="javascript:;" [routerLink]="pathList.CLIENT_URL.generalLogin">get started</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="main-menu-icon">
+                    <a href="JavaScript:;" id="menu-icon">
+                        <span></span>
+                    </a>
+                </div>
+                <div class="res-menubar-top">
+                    <div class="menubar">
+                        <nav>
+                            <ul>
+                                <li>
+                                    <a href="javascript:;" class="active" [routerLink]="pathList.CLIENT_URL.firmSignUp">Home</a>
+                                </li>
+                                <li>
+                                    <a href="javascript:;">About</a>
+                                </li>
+                                <li>
+                                    <a href="javascript:;">How it Works</a>
+                                </li>
+                                <li>
+                                    <a href="javascript:;">Blog</a>
+                                </li>
+                                <li>
+                                    <a href="javascript:;">Contact</a>
+                                </li>
+                            </ul>
+                        </nav>
+                    </div>
+                    <div class="sub-header-right-side-btn sub-header-right-res">
+                        <div class="login-btn">
+                            <a href="javascript:;" [routerLink]="pathList.CLIENT_URL.login">Log in</a>
+                        </div>
+                        <div class="get-started">
+                            <a href="javascript:;">get started</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- START :: HEADER -->

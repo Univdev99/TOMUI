@@ -1,0 +1,108 @@
+<!-- responsive-sidebar -->
+<div class="sidebar-main desktop-view">
+    <div class="top-logo-main">
+        <img src="assets/images/dashbord-logo.png" class="logo-img">
+        <img src="assets/images/dashbord-logo-small.png" class="logo-img-close-dash">
+        <a href="javascript:;" class="close-sidemenu">
+            <img src="assets/images/back.png">
+        </a>
+    </div>
+    <div class="sidebar-menu-main">
+        <ul>
+            <li>
+                <a href="javascript:;">
+                    <span class="m-icon">
+                        <img src="assets/images/dh-home.png">
+                    </span>
+                    <span class="menu-text" [routerLink]="pathList.CLIENT_URL.proDashBoard">Home</span>
+                </a>
+            </li>
+            <li class="child-menu">
+                <a href="javascript:;">
+                    <span class="m-icon">
+                        <img src="assets/images/dh-jobs.png">
+                    </span>
+                    <span class="menu-text">My Jobs</span>
+                    <span class="menu-arrow">
+                        <img src="assets/images/dh-arw.png">
+                    </span>
+                </a>
+                <ul class="sub-menu">
+                    <li>
+                        <a href="javascript:;" [routerLink]="pathList.CLIENT_URL.requestedJob">Requests</a>
+                    </li>
+                    <li>
+                        <a href="javascript:;" [routerLink]="pathList.CLIENT_URL.acceptedJob">Accepted</a>
+                    </li>
+                    <li>
+                        <a href="javascript:;" [routerLink]="pathList.CLIENT_URL.historyJob">Histroy</a>
+                    </li>
+                </ul>
+            </li>
+            <li class="child-menu">
+                <a href="javascript:;">
+                    <span class="m-icon">
+                        <img src="assets/images/dh-help.png">
+                    </span>
+                    <span class="menu-text">Help</span>
+                    <span class="menu-arrow">
+                        <img src="assets/images/dh-arw.png">
+                    </span>
+                </a>
+                <ul class="sub-menu">
+                    <li>
+                        <a href="javascript:;" (click)="redirecToHowItWorks()">How it Work</a>
+                    </li>
+                    <li>
+                        <a href="javascript:;" [routerLink]="pathList.CLIENT_URL.proHelp">Contact us</a>
+                    </li>
+                </ul>
+            </li>
+            <li>
+                <a href="javascript:;">
+                    <span class="m-icon">
+                        <img src="assets/images/dh-notification.png">
+                    </span>
+                    <span class="menu-text">Notification</span>
+                    <ng-container *ngIf="notificationCount > 0">
+                        <span class="notification-txt">{{notificationCount}}</span>
+                    </ng-container>
+                </a>
+            </li>
+            <li class="child-menu">
+                <a href="javascript:;">
+                    <span class="m-icon">
+                        <img src="assets/images/dh-profile.png">
+                    </span>
+                    <span class="menu-text">Profile</span>
+                    <span class="menu-arrow">
+                        <img src="assets/images/dh-arw.png">
+                    </span>
+                </a>
+                <ul class="sub-menu">
+                    <li>
+                        <a href="javascript:;" (click)="openWorkAvalabilityModal()">Work Avalability</a>
+                    </li>
+                    <li>
+                        <a href="javascript:;" (click)="openProWorkExperienceProfile()">Work Profile</a>
+                    </li>
+                    <li>
+                        <a href="javascript:;" (click)="openPersonalProfile()">Personal Profile</a>
+                    </li>
+                    <li>
+                        <a href="javascript:;" (click)="openChangePassword()">Password Change</a>
+                    </li>
+                </ul>
+            </li>
+            <li>
+                <a href="javascript:;">
+                    <span class="m-icon">
+                        <img src="assets/images/dh-home.png">
+                    </span>
+                    <span class="menu-text" (click)="logoutUser()">Log out</span>
+                </a>
+            </li>
+        </ul>
+    </div>
+</div>
+<!-- responsive-sidebar -->

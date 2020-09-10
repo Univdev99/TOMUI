@@ -1,0 +1,86 @@
+<!-- finalize by firm modal -->
+<div class="modal-body">
+    <div class="profile-work-experience-modal-bg-part Final-detail-project">
+        <div class="profile-work-experience-modal-dtl-part">
+            <div class="profile-work-experience-tp-head">
+                <h2>Final Details of Project</h2>
+            </div>
+            <div class="profile-work-experience-men-dtl">
+                <div class="profile-work-experience-men-pic">
+                    <img [src]="projectProData.picBase64 ? projectProData.picBase64  : 'assets/images/work-experince-mea2.png'">
+                </div>
+                <div class="profile-work-experience-men-profile-sub-dtl">
+                    <h5>{{projectProData.proName}}</h5>
+                    <h6>$
+                        <strong>{{projectProData.hourlyFee}}</strong> /hr</h6>
+                    <p> {{projectProData.workAvailability ? 'Available '+projectProData.workAvailability : ''}}</p>
+                    <div class="">
+                        <ng-template #avgReview let-fill="fill">
+                            <span class="reviewHeader" [class.full]="fill === 100">
+                                <span class="half" [style.width.%]="fill">
+                                    &#9733;</span>&#9733;
+                            </span>
+                        </ng-template>
+                        <ngb-rating [(rate)]="projectProData.avgProRating" [starTemplate]="avgReview" [max]="5" [readonly]="true"></ngb-rating>
+                    </div>
+                    <p>({{projectProData.proReviewCount}} Review)</p>
+                </div>
+            </div>
+            <div class="Final-desc-detail-project">
+                <div class="Final-detail-project-sm-box">
+                    <p>
+                        <span>Project Name:</span>{{projectProData.projectName}}</p>
+                    <p>
+                        <span>Hours Required:</span>{{projectProData.requiredHours}}</p>
+                    <p>
+                        <span>Scope of Work:</span>
+                        <br>{{projectProData.workScope}}</p>
+                    <p>
+                        <span>Project Deadline:</span>{{projectProData.deadLine | customDate:'dateOnly':true}}</p>
+                    <ng-container *ngIf="showAmends; else elseView">
+                        <div class="">
+                            <p>
+                                <span>Amends:</span>
+                            </p>
+                            <textarea name="amendsByFirm" maxlength="1000" [(ngModel)]="amendsByFirm" class="form-control l-inp"></textarea>
+                        </div>
+                    </ng-container>
+                    <ng-template #elseView>
+                        <p>
+                            <span>Amends:</span>{{projectProData.amendsByFirm}}</p>
+                    </ng-template>
+
+                </div>
+                <div class="Final-detail-project-th-btn">
+                    <ng-container *ngIf="projectProData.projectStatus === appConstant.pendingApproval">
+                        <div class="Final-detail-project-sm-btn">
+                            <a href="javascript:;" class="f-dtl-pr-btn active" (click)="projectFinalizeByFirm()">Approve</a>
+                        </div>
+                        <div class="Final-detail-project-sm-btn">
+                            <a href="javascript:;" class="f-dtl-pr-btn" (click)="projectDeclineAfterMeeting()">Decline</a>
+                        </div>
+                    </ng-container>
+                     <ng-container *ngIf="projectProData.projectAdditionalTimeId && !projectProData.isFinalizeByFirm && !projectProData.isDeclineByFirm">
+                        <div class="Final-detail-project-sm-btn">
+                            <a href="javascript:;" class="f-dtl-pr-btn active" (click)="addtionalReqFinalizeByFirm()">Approve</a>
+                        </div>
+                        <div class="Final-detail-project-sm-btn">
+                            <a href="javascript:;" class="f-dtl-pr-btn" (click)="declineAddionalRequest()">Decline</a>
+                        </div>
+                    </ng-container>
+                    <ng-container *ngIf="!showAmends">
+                        <div class="Final-detail-project-sm-btn">
+                            <a href="javascript:;" class="f-dtl-pr-btn" (click)="hideShowAmends()">Make Amends</a>
+                        </div>
+                    </ng-container>
+                    <ng-container *ngIf="showAmends">
+                        <div class="Final-detail-project-sm-btn">
+                            <a href="javascript:;" class="f-dtl-pr-btn active" (click)="saveAmendOfFirm()">Save</a>
+                        </div>
+                    </ng-container>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- finalize by firm modal -->

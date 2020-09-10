@@ -1,0 +1,50 @@
+<!-- <div class="container">
+    <div class="col-lg-3 col-sm-3 form-group">
+        <input type="text" placeholder="Email" class="form-control" name="Email" [(ngModel)]="login.username"
+          maxlength="50" required >
+      </div>
+      <div class="col-lg-3 col-sm-3 form-group">
+        <input type="password" placeholder="password" class="form-control" name="lastName" [(ngModel)]="login.password"
+          maxlength="50" required >
+      </div>
+      <button (click)="authenticateUser()">Login</button>
+</div> -->
+<app-nav-bar></app-nav-bar>
+<!-- START :: LOGIN-PART -->
+<div class="login-part-main">
+  <div class="login-form-part">
+    <div class="login-form-head">
+      <h3>Welcome back! <br>Get that project going.</h3>
+    </div>
+    <div class="login-form-part-main">
+      <form id="loginForm" #loginForm="ngForm">
+        <div class="login-fr-head">
+          <h5>Log in</h5>
+        </div>
+        <div class="login-fr-desc-dtl">
+          <div class="login-fr-fild-inp">
+            <input type="email" name="email" placeholder="Email address" class="form-control l-inp"
+              [(ngModel)]="login.username" maxlength="50" required appEmailValidator>
+          </div> 
+          <div class="login-fr-fild-inp">
+            <input type="password" name="password" placeholder="Create a password" class="form-control l-inp"
+              [(ngModel)]="login.password" maxlength="50" required>
+          </div>
+          <div class="login-fr-btn-part">
+            <input type="submit" (click)="authenticateUser()" name="Log in" value="Log in" class="form-control l-inp">
+          </div>
+          <div class="login-fr-btm-part">
+            <div class="login-fg-password">
+              <a href="javascript:;"  [routerLink]="pathList.CLIENT_URL.forgotPassword">Forgot password?</a>
+            </div>
+            <div class="login-sign-up-btm">
+              <h6>Don't have an account?<a href="javascript:;" [routerLink]="pathList.CLIENT_URL.generalLogin"> Sign up</a></h6>
+            </div>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+<!-- START :: LOGIN-PART -->
+<app-footer></app-footer>

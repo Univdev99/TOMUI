@@ -1,0 +1,113 @@
+<div class="project-details-main-mid-part" id="my_jobs_page">
+    <div class="project-details-left-part-tab same-height">
+        <div class="project-details-main-left-desc-dtl" style="height: 400px;">
+            <h2>Professional</h2>
+            <div class="job-list">
+                <div class="job-see-all">
+                    <p></p>
+                    <a href="javascript:;" [routerLink]="pathList.CLIENT_URL.adminProProfiles">See All</a>
+                </div>
+                <ng-container *ngIf="proList.length; else elseProview">
+                    <ng-container *ngFor="let pro of proList; let i=index">
+                        <div class="pointer my-project-right">
+                            <div class="my-open-project-right">
+                                <h5>{{pro.name}}</h5>
+                            </div>
+                        </div>
+                    </ng-container>
+                </ng-container>
+                <ng-template #elseProview>
+                    <div class="profile-update-my-project">
+                        <h6>No Record Found !!</h6>
+                    </div>
+                </ng-template>
+            </div>
+        </div>
+        <div class="project-details-main-left-desc-dtl" style="height: 400px;">
+            <h2>Firm</h2>
+            <div class="job-list">
+                <div class="job-see-all">
+                    <p></p>
+                    <a href="javascript:;" [routerLink]="pathList.CLIENT_URL.adminFirmProfileList">See All</a>
+                </div>
+                <ng-container *ngIf="firmList.length; else elseFirmView">
+                    <ng-container *ngFor="let firm of firmList; let i=index">
+                        <div class="pointer my-project-right">
+                            <div class="my-open-project-right">
+                                <h5>{{firm.name}}</h5>
+                            </div>
+                        </div>
+                    </ng-container>
+                </ng-container>
+                <ng-template #elseFirmView>
+                    <div class="profile-update-my-project">
+                        <h6>No Record Found !!</h6>
+                    </div>
+                </ng-template>
+            </div>
+        </div>
+    </div>
+    <div class="project-details-right-part-main same-height tab-content">
+        <div id="adminViewSection" class="project-details-main-right-desc-dtl tab-pane active">
+            <div class="project-details-main-right-head">
+                <h2>Admin Support</h2>
+                <div class="col-md-12 customScheduler">
+                    <ng-container *ngIf="isShow">
+                        <full-calendar id="adminCalender" [options]="calendarOptions"></full-calendar>
+                    </ng-container>
+                    <ng-container *ngIf="!isShow">
+                        <full-calendar id="adminCalender" [options]="calendarOptions"></full-calendar>
+                    </ng-container>
+                </div>
+                <div class="calander-detail">
+                    <form id="calenderScheduleForm" #calenderScheduleForm="ngForm" [ngClass]="{submitted: submitted}">
+                        <div class="calander-detail-one">
+                            <div class="calander-detail-staart">
+                                <label>Event Title</label>
+                                <input class="form-control l-inp" type="text" maxlength="50" [(ngModel)]="calenderSchedule.eventTitle" name="eventTitle"
+                                    required>
+                            </div>
+                            <div class="calander-detail-staart">
+                                <label>Date & Time</label>
+                                <app-date-time-picker [placeholder]="'Date & Time'" [placement]="'top'" [required]="true" [(ngModel)]="calenderSchedule.eventDateTime"
+                                    name="eventDateTime"></app-date-time-picker>
+                            </div>
+                        </div>
+                        <div class="calander-detail-one">
+                            <div class="calander-detail-staartt">
+                                <label>Description</label>
+                                <input class="form-control l-inp" type="text" name="Description" maxlength="500 " placeholder="Description" [(ngModel)]="calenderSchedule.description"
+                                    required>
+                            </div>
+                        </div>
+                        <div class="calander-detail-one">
+                            <div class="add-evet">
+                                <a href="javascript:;" (click)="saveCalenderSchedule()">Add Event</a>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="popupAmit modal-body">
+    <div class="personal-profile-form-main Business-profile-pop-part width250 height300">
+        <div class="popupAmitHead">
+            <h4>{{eventTitle}}</h4>
+            <div class="m-t-10">
+                <div class="pointer my-project-right ng-star-inserted">
+                    <div class="my-open-project-right">
+                        <h5>{{eventDate}}</h5>
+                        <h6>{{eventTime}}</h6>
+                    </div>
+                </div>
+                <div class="pointer my-project-right ng-star-inserted">
+                    <div class="my-open-project-right">
+                        <h5>{{eventDescription}}</h5>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

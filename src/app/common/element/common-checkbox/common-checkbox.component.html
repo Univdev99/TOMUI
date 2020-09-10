@@ -1,0 +1,7 @@
+<div class="tom_checkbox omnicheckbox">
+<ng-container *ngIf="items.length">
+    <ng-container *ngFor="let item of items">
+        <p-checkbox  (ngModelChange)="onSimpleSoftsearchNgModelChange($event)" [class]="class" (onchange)="onSelect($event)" class="omnicheckbox" name="group2" [value]="item.value" [label]="item.label" [(ngModel)]="simpleSoftsearchValue"></p-checkbox>
+    </ng-container>
+</ng-container> 
+</div>

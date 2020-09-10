@@ -1,0 +1,80 @@
+<app-nav-bar></app-nav-bar>
+<!-- START :: SIGN-UP-FIRM-PART -->
+<div class="sign-up-firm-main-part">
+  <div class="sign-up-container">
+    <div class="sign-up-firm-mid-sec-part">
+      <div class="col-lg-6 col-md-6 cl-sm-6 col-xs-12 p_0">
+        <div class="sign-up-firm-left-part">
+          <div class="sign-up-firm-left-desc-dtl-main">
+            <h4>Operating a business is no small feat. Trust us, we know.</h4>
+            <p>Get access to accounting professionals who have exactly the expertise you need. Simply specify the skills
+              you're looking for, and we will connect you to the right professional. Oh and did we mention? You can hire
+              full-time experts, too!</p>
+            <div class="sign-firm-left-pic">
+              <img src="assets/images/sign-firm-left-pic.png">
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-6 col-md-6 cl-sm-6 col-xs-12 p_0">
+        <div class="sign-up-firm-right-main-part">
+          <form id="firmSignUpForm" #firmSignUpForm="ngForm" [ngClass]="{submitted: submitted}">
+            <div class="login-fr-head">
+              <h5>Looking to hire a professional?<br>Sign up here.</h5>
+            </div>
+            <div class="login-fr-desc-dtl">
+              <div class="sign-up-firm-fr-fild-inp">
+                <input type="text" name="First name" placeholder="First name" class="form-control l-inp"
+                  [(ngModel)]="firm.firstName" maxlength="50" required>
+              </div>
+              <div class="sign-up-firm-fr-fild-inp">
+                <input type="text" name="last name" placeholder="Last name" class="form-control l-inp"
+                  [(ngModel)]="firm.lastName" maxlength="50" required>
+              </div>
+              <div class="sign-up-firm-fr-fild-inp">
+                <input type="password" name="Create a password" id="password-field" placeholder="Create a password"
+                  class="form-control l-inp" [(ngModel)]="firm.password" maxlength="50" required >
+                <ng-container *ngIf="firm.password && firm.password.length < 8">
+                  <p>Password must be atleast 8 characters</p>
+                </ng-container>
+                <!--  -->
+                <span toggle="#password-field" class="field-icon toggle-password" name="Create a password"><img
+                    src="assets/images/pwd-loak.png"></span>
+              </div>
+              <div class="sign-up-firm-fr-fild-inp">
+                <input type="text" name="Business name" placeholder="Business name" class="form-control l-inp"
+                  [(ngModel)]="firm.businessName" maxlength="50" required>
+              </div>
+              <div class="sign-up-firm-fr-fild-inp">
+                <input type="email" name="Work email" placeholder="Work email" class="form-control l-inp"
+                  [(ngModel)]="firm.workEmail" maxlength="50" required appEmailValidator>
+              </div>
+              <div class="sign-up-firm-fr-fild-inp">
+                <select id="bCategory" name="bCategory" class="l-inp" appSelectValidator="select"
+                  [(ngModel)]="firm.businessCategory" #bCategory="ngModel">
+                  <option *ngFor="let item of businessCategory" [value]="item.value">{{item.label}}</option>
+                </select>
+                <p>By signing up, I agree to the <a href="javascript:;">Terms of Use.</a></p>
+              </div>
+              <ng-container *ngIf="firmSignUpForm.invalid && submitted">
+                <div class="sign-up-firm-fr-fild-inp">
+                  <p class="errorColorClass">There are errors on ther form. Please fix them before continuing</p>
+                </div>
+              </ng-container>
+              <ng-container *ngIf="userAlreadyExist && !submitted">
+                <div class="sign-up-firm-fr-fild-inp">
+                  <p class="errorColorClass">{{userAlreadyExist}}</p>
+                </div>
+              </ng-container>
+              <div class="login-fr-btn-part">
+                <input type="submit" name="Sign up" value="Sign up" (click)="firmSignUp()" class="form-control l-inp" />
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- START :: SIGN-UP-FIRM-PART -->
+<app-footer></app-footer>

@@ -1,0 +1,54 @@
+<div class="modal-body">
+    <form id="projectScheduleForm" #projectScheduleForm="ngForm" [ngClass]="{submitted: submitted}">
+        <div class="personal-profile-form-main" id="schedule-call-mod">
+            <div class="connect-expert-main-desc-dtl">
+                <div class="personal-profile-form-head">
+                    <h4>Schedule a Call</h4>
+                    <h6>Step 2 of 2</h6>
+                </div>
+                <div class="schedule-call-mod-desc-dtl-part">
+                    <div class="col-lg-12 col-md-12 cl-sm-12 col-xs-12">
+                        <div class="schedule-call-mod-desc">
+                            <p>We may be a bit old school but we never do business with someone without at least talking to
+                                them. Schedule an Initial meeting with the professional to tell them more about the project
+                                and determine if they're the right fit! </p>
+                        </div>
+                    </div>
+                    <div class="col-lg-12 col-md-12 cl-sm-12 col-xs-12">
+                        <div class="schedule-call-th-box-part sign-up-firm-fr-fild-inp">
+                            <div class="schedule-call-mod-op-sm-box form-group">
+                                <h6 class="form-group">1st Option</h6>
+                                <div class="schedule-call-date-box">
+                                    <label></label>
+                                    <app-date-time-picker [placeholder]="'Date & Time'" [placement]="'left'" [required]="true" [(ngModel)]="prjSchedule.scheduleDateTime1"
+                                        name="scheduleDateTime1"></app-date-time-picker>
+                                </div>
+                            </div>
+                            <div class="schedule-call-mod-op-sm-box form-group">
+                                <h6 class="form-group">2nd Option</h6>
+                                <div class="schedule-call-date-box">
+                                    <label></label>
+                                    <app-date-time-picker [placeholder]="'Date & Time'" [placement]="'left'" [required]="true" [(ngModel)]="prjSchedule.scheduleDateTime2"
+                                        name="scheduleDateTime2"></app-date-time-picker>
+                                </div>
+                            </div>
+                            <div class="schedule-call-mod-op-sm-box form-group">
+                                <h6 class="form-group">3rd Option</h6>
+                                <div class="schedule-call-date-box">
+                                    <label></label>
+                                    <app-date-time-picker [placeholder]="'Date & Time'" [placement]="'left'" [required]="true" [(ngModel)]="prjSchedule.scheduleDateTime3"
+                                        name="scheduleDateTime3"></app-date-time-picker>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-12 col-md-12 cl-sm-12 col-xs-12">
+                        <div class="professional-profile-fild-btn-last">
+                            <a href="javascript:;" id="send-to-professional" (click)="saveProjectSchedule()">Send to Professional</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>

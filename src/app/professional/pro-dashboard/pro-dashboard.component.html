@@ -1,0 +1,379 @@
+<div class="deshboad-content">
+    <div class="desktop-data-start">
+        <div class="desktop-data-same-part">
+            <div class="desktop-view-box">
+                <div class="desktop-left">
+                    <h2>My Jobs</h2>
+                    <ng-container *ngIf="jobList.length; else emptyView">
+                        <ng-container> 
+                            <ng-container>
+                                <div class="job-list">
+                                    <!-- <div class="job-see-all">
+                                        <p>Requests
+                                            <span>8</span>
+                                        </p>
+                                        <a href="#">See All</a>
+                                    </div> -->
+                                    <ng-container *ngFor="let job of jobList | GroupByPipe: 'status'; let i = index;let first = first;">
+                                        <div class="job-list">
+                                            <div class="job-see-all">
+                                                <ng-container>
+                                                    <p>{{job.key}}
+                                                        <span>{{job.value.length}}</span>
+                                                    </p>
+                                                </ng-container>
+                                                <a href="#" href="javascript:;" (click)="navigateToProjectList(job.key)">See All</a>
+                                            </div>
+                                            <div class="job-info">
+                                                <ng-container *ngFor="let subArray of job.value; let sIndex=index;">
+                                                    <ng-container *ngIf="sIndex < 2">
+                                                        <div class="my-open-project-right" style="border-bottom: none;">
+                                                            <h3>{{subArray.projectName}}</h3>
+                                                        </div>
+                                                    </ng-container>
+                                                </ng-container>
+                                            </div>
+                                        </div>
+                                        <!-- <div class="notification-modal-part">
+                                            <div class="notification-modal-bg-main">
+                                                <div class="notification-modal-sm-box">
+                                                    <h6>Notifications</h6>
+                                                    <a href="javascript:;">2 New Activities</a>
+                                                </div>
+                                                <div class="noti-detail">
+                                                    <p>You have received a Job Request.</p>
+                                                    <div class="noti-le-right">
+                                                        <p>2 hours ago</p>
+                                                        <a href="#">Mark as Reads</a>
+                                                    </div>
+                                                </div>
+                                                <div class="noti-detail">
+                                                    <p>You have received a Job Request.</p>
+                                                    <div class="noti-le-right">
+                                                        <p>2 hours ago</p>
+                                                        <a href="#">Mark as Reads</a>
+                                                    </div>
+                                                </div>
+                                                <div class="noti-see-all">
+                                                    <a href="#">See All Recent Activity</a>
+                                                </div>
+                                            </div>
+
+                                        </div> -->
+                                    </ng-container>
+                                    <!-- <div class="job-info">
+                                        <h3>Company 02</h3>
+                                        <p>Project Name B</p>
+                                    </div>
+                                    <div class="job-info">
+                                        <h3>Company 03</h3>
+                                        <p>Project Name C</p>
+                                    </div> -->
+                                </div>
+                            </ng-container>
+                        </ng-container>
+                    </ng-container>
+                    <!-- <div class="job-list">
+                        <div class="job-see-all">
+                            <p>Accepted
+                                <i class="fas fa-check-circle"></i>
+                            </p>
+                            <a href="#">See All</a>
+                        </div>
+                        <div class="job-info">
+                            <h3>Company 03</h3>
+                            <p>Project Name D</p>
+                        </div>
+                        <div class="job-info">
+                            <h3>Company 01</h3>
+                            <p>Project Name F</p>
+                        </div>
+                        <div class="job-info">
+                            <h3>Company 02</h3>
+                            <p>Project Name G</p>
+                        </div>
+                    </div> -->
+                </div>
+            </div>
+        </div>
+        <div class="desktop-data-same-part">
+            <div class="desktop-view-second">
+                <div class="desktop-start-right celender-part">
+                    <div class="top-des-title">
+                        <h1>Calendar</h1>
+                        <p>Input your meetings and events to stay on top of your schedule. Hover over dates to see meetings.</p>
+                    </div>
+                    <div id="calendar">
+                        <div class="table-title">
+                            <h2>Mon, March 8</h2>
+                        </div>
+                        <div class="header">
+                            <h1>July 2020</h1>
+                            <div class="right"></div>
+                            <div class="left"></div>
+                        </div>
+                        <div class="month new">
+                            <div class="week">
+                                <div class="day other">
+                                    <div class="day-name">Sun</div>
+                                    <div class="day-number">28</div>
+                                    <div class="day-events"></div>
+                                </div>
+                                <div class="day other">
+                                    <div class="day-name">Mon</div>
+                                    <div class="day-number">29</div>
+                                    <div class="day-events"></div>
+                                </div>
+                                <div class="day other">
+                                    <div class="day-name">Tue</div>
+                                    <div class="day-number">30</div>
+                                    <div class="day-events"></div>
+                                </div>
+                                <div class="day">
+                                    <div class="day-name">Wed</div>
+                                    <div class="day-number">01</div>
+                                    <div class="day-events"></div>
+                                </div>
+                                <div class="day">
+                                    <div class="day-name">Thu</div>
+                                    <div class="day-number">02</div>
+                                    <div class="day-events"></div>
+                                </div>
+                                <div class="day">
+                                    <div class="day-name">Fri</div>
+                                    <div class="day-number">03</div>
+                                    <div class="day-events">
+                                        <span class="orange"></span>
+                                    </div>
+                                </div>
+                                <div class="day">
+                                    <div class="day-name">Sat</div>
+                                    <div class="day-number">04</div>
+                                    <div class="day-events">
+                                        <span class="orange"></span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="week">
+                                <div class="day">
+                                    <div class="day-name">Sun</div>
+                                    <div class="day-number">05</div>
+                                    <div class="day-events">
+                                        <span class="blue"></span>
+                                    </div>
+                                </div>
+                                <div class="day">
+                                    <div class="day-name">Mon</div>
+                                    <div class="day-number">06</div>
+                                    <div class="day-events"></div>
+                                </div>
+                                <div class="day">
+                                    <div class="day-name">Tue</div>
+                                    <div class="day-number">07</div>
+                                    <div class="day-events"></div>
+                                </div>
+                                <div class="day">
+                                    <div class="day-name">Wed</div>
+                                    <div class="day-number">08</div>
+                                    <div class="day-events">
+                                        <span class="blue"></span>
+                                    </div>
+                                </div>
+                                <div class="day">
+                                    <div class="day-name">Thu</div>
+                                    <div class="day-number">09</div>
+                                    <div class="day-events">
+                                        <span class="yellow"></span>
+                                    </div>
+                                </div>
+                                <div class="day">
+                                    <div class="day-name">Fri</div>
+                                    <div class="day-number">10</div>
+                                    <div class="day-events">
+                                        <span class="green"></span>
+                                    </div>
+                                </div>
+                                <div class="day">
+                                    <div class="day-name">Sat</div>
+                                    <div class="day-number">11</div>
+                                    <div class="day-events">
+                                        <span class="blue"></span>
+                                    </div>
+                                </div>
+                                <div class="details in">
+                                    <div class="arrow" style="left: 327px;"></div>
+                                    <div class="events in">
+                                        <div class="event">
+                                            <div class="event-category green"></div>
+                                            <span>Bowling Team</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="week">
+                                <div class="day today">
+                                    <div class="day-name">Sun</div>
+                                    <div class="day-number">12</div>
+                                    <div class="day-events"></div>
+                                </div>
+                                <div class="day">
+                                    <div class="day-name">Mon</div>
+                                    <div class="day-number">13</div>
+                                    <div class="day-events"></div>
+                                </div>
+                                <div class="day">
+                                    <div class="day-name">Tue</div>
+                                    <div class="day-number">14</div>
+                                    <div class="day-events"></div>
+                                </div>
+                                <div class="day">
+                                    <div class="day-name">Wed</div>
+                                    <div class="day-number">15</div>
+                                    <div class="day-events"></div>
+                                </div>
+                                <div class="day">
+                                    <div class="day-name">Thu</div>
+                                    <div class="day-number">16</div>
+                                    <div class="day-events"></div>
+                                </div>
+                                <div class="day">
+                                    <div class="day-name">Fri</div>
+                                    <div class="day-number">17</div>
+                                    <div class="day-events">
+                                        <span class="green"></span>
+                                    </div>
+                                </div>
+                                <div class="day">
+                                    <div class="day-name">Sat</div>
+                                    <div class="day-number">18</div>
+                                    <div class="day-events"></div>
+                                </div>
+                            </div>
+                            <div class="week">
+                                <div class="day">
+                                    <div class="day-name">Sun</div>
+                                    <div class="day-number">19</div>
+                                    <div class="day-events"></div>
+                                </div>
+                                <div class="day">
+                                    <div class="day-name">Mon</div>
+                                    <div class="day-number">20</div>
+                                    <div class="day-events">
+                                        <span class="orange"></span>
+                                        <span class="blue"></span>
+                                    </div>
+                                </div>
+                                <div class="day">
+                                    <div class="day-name">Tue</div>
+                                    <div class="day-number">21</div>
+                                    <div class="day-events">
+                                        <span class="orange"></span>
+                                        <span class="green"></span>
+                                    </div>
+                                </div>
+                                <div class="day">
+                                    <div class="day-name">Wed</div>
+                                    <div class="day-number">22</div>
+                                    <div class="day-events">
+                                        <span class="yellow"></span>
+                                    </div>
+                                </div>
+                                <div class="day">
+                                    <div class="day-name">Thu</div>
+                                    <div class="day-number">23</div>
+                                    <div class="day-events"></div>
+                                </div>
+                                <div class="day">
+                                    <div class="day-name">Fri</div>
+                                    <div class="day-number">24</div>
+                                    <div class="day-events">
+                                        <span class="yellow"></span>
+                                    </div>
+                                </div>
+                                <div class="day">
+                                    <div class="day-name">Sat</div>
+                                    <div class="day-number">25</div>
+                                    <div class="day-events">
+                                        <span class="yellow"></span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="week">
+                                <div class="day">
+                                    <div class="day-name">Sun</div>
+                                    <div class="day-number">26</div>
+                                    <div class="day-events">
+                                        <span class="green"></span>
+                                    </div>
+                                </div>
+                                <div class="day">
+                                    <div class="day-name">Mon</div>
+                                    <div class="day-number">27</div>
+                                    <div class="day-events"></div>
+                                </div>
+                                <div class="day">
+                                    <div class="day-name">Tue</div>
+                                    <div class="day-number">28</div>
+                                    <div class="day-events"></div>
+                                </div>
+                                <div class="day">
+                                    <div class="day-name">Wed</div>
+                                    <div class="day-number">29</div>
+                                    <div class="day-events"></div>
+                                </div>
+                                <div class="day">
+                                    <div class="day-name">Thu</div>
+                                    <div class="day-number">30</div>
+                                    <div class="day-events"></div>
+                                </div>
+                                <div class="day">
+                                    <div class="day-name">Fri</div>
+                                    <div class="day-number">31</div>
+                                    <div class="day-events"></div>
+                                </div>
+                                <div class="day other">
+                                    <div class="day-name">Sat</div>
+                                    <div class="day-number">01</div>
+                                    <div class="day-events"></div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="legend">
+                            <span class="entry orange">Work</span>
+                            <span class="entry blue">Sports</span>
+                            <span class="entry yellow">Kids</span>
+                            <span class="entry green">Other</span>
+                        </div>
+                    </div>
+                    <div class="calander-detail">
+                        <div class="calander-detail-one">
+                            <div class="calander-detail-staart">
+                                <label>Event Title</label>
+                                <input type="text" name="" placeholder="Project A">
+                            </div>
+                            <div class="calander-detail-staart">
+                                <label>Date</label>
+                                <input type="text" name="" placeholder="May 2, 2020">
+                            </div>
+                            <div class="calander-detail-staart">
+                                <label>Time</label>
+                                <input type="text" name="" placeholder="02:30 PM">
+                            </div>
+                        </div>
+                        <div class="calander-detail-one">
+                            <div class="calander-detail-staartt">
+                                <label>Description</label>
+                                <input type="text" name="" placeholder="Lorem ipsum dolor sit amet, consectetur nisi ut">
+                            </div>
+                        </div>
+                        <div class="calander-detail-one">
+                            <div class="add-evet">
+                                <a href="#">Add Event</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

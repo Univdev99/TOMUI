@@ -1,0 +1,511 @@
+<ng-container *ngIf="!componentsAsModal">
+    <app-nav-bar></app-nav-bar>
+</ng-container>
+<div [ngClass]="componentsAsModal ? 'modal-body':'' ">
+    <!-- START :: PERSONAL-PROFILE -->
+    <div class="personal-profile-main profile-work-experience">
+        <div [ngClass]="componentsAsModal ? '': 'sign-up-container'">
+            <ng-container *ngIf="!componentsAsModal">
+                <div class="profile-complate-head">
+                    <h3>This is what clients will be seeing.
+                        <br> Tailor it to stand out - it's okay to boast!</h3>
+                    <p>Need some inspiration?
+                        <a href="javascript:;">Check out</a> this
+                        <a href="javascript:;" (click)="openFullProfile('sample')">profile.</a>
+                    </p>
+                </div>
+            </ng-container>
+            <div class="personal-profile-form-main">
+                <form id="proWorkExpForm" #proWorkExpForm="ngForm" [ngClass]="{submitted: submitted}">
+                    <div class="personal-profile-form-head">
+                        <h4>Work Experience</h4>
+                        <h6>Step 2 of 3</h6>
+                    </div>
+                    <div class="login-fr-desc-dtl">
+                        <div class="col-lg-12 col-md-12 cl-sm-12 col-xs-12">
+                            <div class="profile-work-experience-fr-sm-box">
+                                <h6>Overview</h6>
+                                <div class="sign-up-firm-fr-fild-inp">
+                                    <p>Please provide a few sentences summarizing your professional experience. Keep it short
+                                        and sweet.
+                                    </p>
+                                    <textarea name="professionalSelfDec" [(ngModel)]="proWorkExp.selfDescription" placeholder="Introduce yourself" class="form-control l-inp"
+                                        required></textarea>
+                                </div>
+                                <div class="professional-accountant-part sign-up-radio-part">
+                                    <p>Are you a Chartered Professional Accountant (CPA)?</p>
+                                    <ul>
+                                        <li>
+                                            <input id="radio-1-set" type="radio" class="regular-radio" name="isCA" [(ngModel)]="proWorkExp.isCA" [value]="true">
+                                            <label for="radio-1-set"></label>
+                                            <span>Yes</span>
+                                        </li>
+                                        <li>
+                                            <input id="radio-2-set" type="radio" class="regular-radio" name="isCA" [(ngModel)]="proWorkExp.isCA" [value]="false">
+                                            <label for="radio-2-set"></label>
+                                            <span>No</span>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-12 col-md-12 cl-sm-12 col-xs-12">
+                            <div class="profile-work-experience-fr-sm-box">
+                                <h6>Work Experience
+                                    <span>Share any relevant work experience you have. </span>
+                                </h6>
+                                <ng-container *ngFor="let wexp of proWorkExp.workExperienceDetail; let wexpIndex=index; let lastIndex = last">
+                                    <div class="work-experince-main-part-dtl">
+                                        <div class="sign-up-firm-fr-fild-inp profile-work-experience-th-box">
+                                            <div class="work-experience-select-box">
+                                                <label>Start Year</label>
+                                                <select id="startYear" name="startYear{{wexpIndex}}" class="l-inp" appSelectValidator="select" [(ngModel)]="wexp.startYear"
+                                                    #startYear="ngModel">
+                                                    <option *ngFor="let item of yearArray" [value]="item.value">{{item.label}}</option>
+                                                </select>
+                                            </div>
+                                            <div class="work-experience-select-box">
+                                                <label>End Year</label>
+                                                <select id="endYear" name="endYear{{wexpIndex}}" class="l-inp" appSelectValidator="select" [(ngModel)]="wexp.endYear" #endYear="ngModel">
+                                                    <option *ngFor="let item of yearArray" [value]="item.value">{{item.label}}</option>
+                                                </select>
+                                            </div>
+                                            <div class="work-experience-right-box">
+                                                <p>Position title at accounting firm</p>
+                                                <ul>
+                                                    <li>
+                                                        <input type="radio" class="regular-radio" [(ngModel)]="wexp.isAccountingFirm" [value]="true" name="isAccountingFirm{{wexpIndex}}"
+                                                            id="isAccountingFirm{{wexpIndex}}">
+                                                        <label for="isAccountingFirm{{wexpIndex}}"></label>
+                                                        <span>Yes</span>
+                                                    </li>
+                                                    <li>
+                                                        <input type="radio" class="regular-radio" [(ngModel)]="wexp.isAccountingFirm" [value]="false" name="isAccountingFirm{{wexpIndex}}"
+                                                            id="isAccountingFirm2{{wexpIndex}}">
+                                                        <label for="isAccountingFirm2{{wexpIndex}}"></label>
+                                                        <span>No</span>
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                        <div class="accounting-select-tpye-two">
+                                            <div class="col-lg-6 col-md-6 cl-sm-6 col-xs-12">
+                                                <div class="sign-up-firm-fr-fild-inp accounting-select-sm-box">
+                                                    <label>Position title at accounting firm </label>
+                                                    <select id="posTitle" class="l-inp" appSelectValidator="select" name="posTitle{{wexpIndex}}" [(ngModel)]="wexp.posTitle"
+                                                        #posTitle="ngModel">
+                                                        <option *ngFor="let item of posArray" [value]="item.value">{{item.label}}</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                            <div class="col-lg-6 col-md-6 cl-sm-6 col-xs-12">
+                                                <div class="sign-up-firm-fr-fild-inp accounting-select-sm-box">
+                                                    <label>Type of firm
+                                                        <span>
+                                                            <img src="assets/images/form-rq.png">
+                                                        </span>
+                                                    </label>
+                                                    <select id="firmType" class="l-inp" appSelectValidator="select" name="firmType{{wexpIndex}}" [(ngModel)]="wexp.firmType"
+                                                        #firmType="ngModel">
+                                                        <option *ngFor="let item of firmTypeArray" [value]="item.value">{{item.label}}</option>
+                                                    </select>
+                                                    <div class="form-hover-text">
+                                                        <p>They firm name will not be
+                                                            <br> visible to clients. Curious
+                                                            <br> what your profile will look
+                                                            <br> like? Scroll up to see the
+                                                            <br> sample profile!</p>
+                                                    </div>
+                                                    <div class="select-company-box">
+                                                        <select id="company" class="l-inp" appSelectValidator="select" name="company{{wexpIndex}}" [(ngModel)]="wexp.company" #company="ngModel">
+                                                            <option *ngFor="let item of companyArray" [value]="item.value">{{item.label}}</option>
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <ng-container *ngIf="lastIndex">
+                                        <div class="add-another" (click)="addWorkExpDetail()">
+                                            <a href="javascript:;" id="add-date">
+                                                <span>
+                                                    <img src="assets/images/pluse.png">
+                                                </span>Add Another</a>
+                                        </div>
+                                        <div class="add-another" style="margin-left: 5px;" *ngIf="proWorkExp.workExperienceDetail.length > 1" (click)="deleteWorkExpDetail(wexpIndex)">
+                                            <a href="javascript:;" id="">
+                                                <span>
+                                                    <img src="assets/images/delete.png">
+                                                </span> Delete </a>
+                                        </div>
+                                    </ng-container>
+                                </ng-container>
+                            </div>
+                        </div>
+                        <div class="col-lg-12 col-md-12 cl-sm-12 col-xs-12">
+                            <div class="profile-work-experience-fr-sm-box Education-designnation-part">
+                                <h6>Education/Designations </h6>
+                                <ng-container *ngFor="let education of proWorkExp.proEducation; let educationIndex=index; let lastIndex = last">
+                                    <div class="education-year-degree sign-up-firm-fr-fild-inp">
+                                        <div class="education-year-degree-main-part">
+                                            <div class="education-year-box">
+                                                <label>Year</label>
+                                                <select id="eduYear" name="eduYear{{educationIndex}}" class="l-inp" appSelectValidator="select" [(ngModel)]="education.year"
+                                                    #eduYear="ngModel">
+                                                    <option *ngFor="let item of yearArray" [value]="item.value">{{item.label}}</option>
+                                                </select>
+                                            </div>
+                                            <div class="education-degree-box">
+                                                <label>Degree/Designation</label>
+                                                <input [(ngModel)]="education.degree" type="text" name="degree{{educationIndex}}" placeholder="Enter Degree/Designation"
+                                                    class="form-control l-inp" required>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <ng-container *ngIf="lastIndex">
+                                        <div class="add-another" (click)="addEducation()">
+                                            <a href="javascript:;" id="add-Degree">
+                                                <span>
+                                                    <img src="assets/images/pluse.png">
+                                                </span>Add Another</a>
+                                        </div>
+                                        <div class="add-another" style="margin-left: 5px;" *ngIf="proWorkExp.proEducation.length > 1" (click)="deleteEducation(educationIndex)">
+                                            <a href="javascript:;" id="">
+                                                <span>
+                                                    <img src="assets/images/delete.png">
+                                                </span> Delete </a>
+                                        </div>
+                                    </ng-container>
+                                </ng-container>
+                            </div>
+                        </div>
+                        <div class="col-lg-12 col-md-12 cl-sm-12 col-xs-12">
+                            <div class="profile-work-experience-fr-sm-box sign-up-firm-fr-fild-inp professional-highlights-part">
+                                <h6>Professional Highlights
+                                    <span>
+                                        <img src="assets/images/form-rq.png">
+                                    </span>
+                                </h6>
+                                <div class="form-hover-text">
+                                    <p>Some example are:</p>
+                                    <p>-Completed over 1000
+                                        <br> Notice-to-reader
+                                        <br> engagements</p>
+                                    <p>-Specializedin review
+                                        <br> Engagementsfor small
+                                        <br> Manufacturing companies</p>
+                                    <p>-Led terms of 2-5 individual
+                                        <br> professinoals</p>
+                                </div>
+                                <div class="sign-up-firm-fr-fild-inp">
+                                    <textarea [(ngModel)]="proWorkExp.proHighLights" name="proHighLights" class="form-control l-inp" placeholder="Enter Professional Highlights"
+                                        required></textarea>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-lg-12 col-md-12 cl-sm-12 col-xs-12">
+                            <div class="profile-work-experience-fr-sm-box">
+                                <h6>Professional Strengths </h6>
+                                <div class="sign-up-firm-fr-fild-inp">
+                                    <p>Which areas do you have experience and expertise in ?</p>
+                                </div>
+                                <div class="profile-work-experience-check-part">
+                                    <div class="sign-up-firm-fr-fild-inp treeview">
+                                        <leo-dropdown-treeview id="book-category" [items]="skillArray | treeviewDataConvert :{nameProp: 'title', isEditmode: editMode , editmodeProp: 'selected'}"
+                                            [childCheckOnParent]="true" (selectedChange)="treeItemsUpdated($event)" (treeItemChange)="onTreeItemChange($event)"
+                                            [retrieveAll]="true" [isAllDisabled]="false"></leo-dropdown-treeview>
+                                    </div>
+                                </div>
+                                <div class="sofatwar-knowledge profile-work-experience-check-part">
+                                    <p>what software du you have a working knowledge of?</p>
+                                    <div class="software-knowledge-sub-box">
+                                        <ul>
+                                            <ng-container *ngFor="let knowledge of knowledgeMasterArray; let ki = index">
+                                                <li>
+                                                    <label class="checkbox-small"> {{knowledge.label}}
+                                                        <input (change)="changeProKnowledge(knowledge.status, knowledge.value, ki)" type="checkbox" name="knowledge{{ki}}" [(ngModel)]="knowledge.status">
+                                                        <span class="checkmark"></span>
+                                                    </label>
+                                                </li>
+                                                <ng-container *ngIf="knowledge.value === 'Other' && knowledge.status">
+                                                    <ng-container *ngFor="let other of knowledge.otherArray;let otheri = index;let lastOther = last">
+                                                        <li>
+                                                            <label></label>
+                                                            <input maxtype="text" name="other{{otheri}}" [(ngModel)]="other.otherValue" class="width140 form-control l-inp">
+                                                            <ng-container *ngIf="lastOther">
+                                                                <a href="javascript:;">
+                                                                    <span *ngIf="lastOther && knowledge.otherArray.length < 5">
+                                                                        <img src="assets/images/pluse.png" (click)="knowledge.otherArray.push({'otherValue':null})">
+                                                                    </span>
+                                                                    <span *ngIf="lastOther && knowledge.otherArray.length > 1">
+                                                                        <img src="assets/images/delete.png" (click)="knowledge.otherArray.splice(otheri,1)">
+                                                                    </span>
+                                                                </a>
+                                                            </ng-container>
+                                                        </li>
+                                                    </ng-container>
+                                                </ng-container>
+
+                                                <!-- <ng-container *ngIf="knowledge.label === 'Other' && knowledge.status">
+                                                    <ng-container *ngFor="let other of knowledge.otherArray;let otheri = index;let lastOther = last">
+                                                        <div class="other-sofatwar-box">
+                                                            <input type="text" name="other{{otheri}}" [(ngModel)]="other" class="form-control l-inp">
+                                                            <ng-container *ngIf="lastOther">
+                                                                <a href="javascript:;">
+                                                                    <span>
+                                                                        <img src="assets/images/pluse.png" (click)="knowledge.otherArray.push([])">
+                                                                    </span>
+                                                                </a>
+                                                            </ng-container>
+                                                        </div>
+                                                    </ng-container>
+                                                </ng-container> -->
+                                            </ng-container>
+                                        </ul>
+
+                                    </div>
+                                </div>
+                                <div class="professional-work-experience-pdf-btm-part">
+                                    <div class="sign-up-firm-fr-fild-inp">
+                                        <p>Please upload your resume you can do so here too Please upload your resume you can
+                                            do so here too!
+                                            <span>
+                                                <img src="assets/images/form-rq.png">
+                                            </span>
+                                        </p>
+                                        <div class="form-hover-text">
+                                            <p>Your resume will kept on file with Top of Mind but it well not visible to your
+                                                clients
+                                            </p>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-12">
+                                        <app-file-upload [dragAndDrop]="true" [data]="documentUpload" (docListEvent)="uploadedDocumentList($event)"></app-file-upload>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div>
+                            <ng-container *ngIf="!componentsAsModal">
+                                <div class="Final-detail-project-sm-btn">
+                                    <a href="javascript:;" class="f-dtl-pr-btn active" (click)="openFullProfile(appConstant.preview)">Preview</a>
+                                </div>
+                            </ng-container>
+                            <div class="Final-detail-project-sm-btn">
+                                <a href="javascript:;" class="f-dtl-pr-btn active" (click)="saveWorkExpProfile()">{{componentsAsModal ? 'Update' : 'Submit'}}</a>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <!-- END :: PERSONAL-PROFILE -->
+</div>
+<ng-container *ngIf="!componentsAsModal">
+    <app-footer></app-footer>
+</ng-container>
+
+
+<!-- <ng-container *ngIf="!componentsAsModal">
+    <app-menu-logo></app-menu-logo>
+</ng-container>
+<div [ngClass]="componentsAsModal ? 'modal-body':'' ">
+    <div class="personal-profile-main firm-profile-two" [ngClass]="componentsAsModal ? 'personal-business-profile-form-main' : ''">
+        <div [ngClass]="componentsAsModal ? '': 'sign-up-container' ">
+            <ng-container *ngIf="!componentsAsModal">
+                <div class="profile-complate-head">
+                    <h3>This is what clients will be seeing.
+                        <br>Tailor it to stand out - it's okay to boast</h3>
+                    <h6 [ngClass]="componentsAsModal ? 'hide': ''">We promise it won't take too long.</h6>
+                </div>
+            </ng-container>
+
+            <div class="personal-profile-form-main">
+                <form id="proWorkExpForm" #proWorkExpForm="ngForm" [ngClass]="{submitted: submitted}">
+                    <div class="personal-profile-form-head">
+                        <h4>Work Experience</h4>
+                        <h6>Step 3 of 3</h6>
+                    </div>
+                    <div class="login-fr-desc-dtl">
+                        <div class="col-lg-12 col-md-12 cl-sm-12 col-xs-12">
+                            <div class="sign-up-firm-fr-fild-inp">
+                                <label>Please provide a few sentences summerizing your professional experience keep it short and
+                                    sweet.
+                                </label>
+                                <input type="text" name="professionalSelfDec" [(ngModel)]="proWorkExp.selfDescription" placeholder="Introduce yourself" class="form-control l-inp"
+                                    required>
+                                <div class="form-hover-text">
+                                    <p>introduce your business to the professionals
+                                        <br> you will be connecting with</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-12 col-md-12 cl-sm-12 col-xs-12">
+                            <div class="sign-up-firm-fr-fild-inp">
+                                <label>Are you Chartered Professional Accountant(CPA)?
+                                </label>
+                                <ul>
+                                    <li>
+                                        <input id="radio-1-set" type="radio" class="regular-radio" name="isCA" [(ngModel)]="proWorkExp.isCA" [value]="true">
+                                        <label for="radio-1-set"></label>
+                                        <span>Yes</span>
+                                    </li>
+                                    <li>
+                                        <input id="radio-2-set" type="radio" class="regular-radio" name="isCA" [(ngModel)]="proWorkExp.isCA" [value]="false">
+                                        <label for="radio-2-set"></label>
+                                        <span>No</span>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                        <ng-container *ngFor="let wexp of proWorkExp.workExperienceDetail; let wexpIndex=index; let lastIndex = last">
+                            <div class="col-lg-4 col-md-6 cl-sm-6 col-xs-12">
+                                        <div class="sign-up-firm-fr-fild-inp">
+                                    <label>Start Year</label>
+                                    <app-common-dropdown [placeholder]="'Select'" [returnType]="appConstant.string" name="startYear{{wexpIndex}}" [(ngModel)]="wexp.startYear"
+                                        [yearDropDown]="true"></app-common-dropdown>
+                                </div>
+                            </div>
+                            <div class="col-lg-4 col-md-6 cl-sm-6 col-xs-12">
+                                <div class="sign-up-firm-fr-fild-inp">
+                                    <label>End Year</label>
+                                    <app-common-dropdown [placeholder]="'Select'" [returnType]="appConstant.string" name="endYear{{wexpIndex}}" [(ngModel)]="wexp.endYear"
+                                        [yearDropDown]="true"></app-common-dropdown>
+                                </div>
+                            </div>
+                            <div class="col-lg-4 col-md-6 cl-sm-6 col-xs-12">
+                                <div class="sign-up-firm-fr-fild-inp">
+                                    <label>Is your position at an accounting firm?</label>
+                                    <ul>
+                                        <li>
+                                            <input type="radio" class="regular-radio" [(ngModel)]="wexp.isAccountingFirm" [value]="true" name="isAccountingFirm{{wexpIndex}}"
+                                                id="isAccountingFirm{{wexpIndex}}">
+                                            <label for="isAccountingFirm{{wexpIndex}}"></label>
+                                            <span>Yes</span>
+                                        </li>
+                                        <li>
+                                            <input type="radio" class="regular-radio" [(ngModel)]="wexp.isAccountingFirm" [value]="false" name="isAccountingFirm{{wexpIndex}}"
+                                                id="isAccountingFirm2{{wexpIndex}}">
+                                            <label for="isAccountingFirm2{{wexpIndex}}"></label>
+                                            <span>No</span>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+
+                            <div class="col-lg-4 col-md-6 cl-sm-6 col-xs-12">
+                                <div class="sign-up-firm-fr-fild-inp">
+                                    <label>Position title at accounting firm</label>
+                                    <app-common-dropdown [placeholder]="'Select Position'" [returnType]="appConstant.string" name="posTitle{{wexpIndex}}" [(ngModel)]="wexp.posTitle"
+                                        [required]="true" [options]="posArray"></app-common-dropdown>
+                                </div>
+                            </div>
+                            <div class="col-lg-4 col-md-6 cl-sm-6 col-xs-12">
+                                <div class="sign-up-firm-fr-fild-inp">
+                                    <label>Type of Firm</label>
+                                    <app-common-dropdown [placeholder]="'Select Category'" [returnType]="appConstant.string" name="firmType{{wexpIndex}}" [(ngModel)]="wexp.firmType"
+                                        [required]="true" [options]="firmTypeArray"></app-common-dropdown>
+
+                                </div>
+                            </div>
+                            <div class="col-lg-4 col-md-6 cl-sm-6 col-xs-12">
+                                <div class="sign-up-firm-fr-fild-inp">
+                                    <label>Type of Firm</label>
+                                    <app-common-dropdown [placeholder]="'Select Company'" [returnType]="appConstant.string" name="company{{wexpIndex}}" [(ngModel)]="wexp.company"
+                                        [required]="true" [options]="companyArray"></app-common-dropdown>
+                                </div>
+                            </div>
+                            <ng-container *ngIf="lastIndex">
+                                <div class="col-lg-12 col-md-6 cl-sm-6 col-xs-12">
+                                    <div class="sign-up-firm-fr-fild-inp">
+                                        <label (click)="addWorkExpDetail()">Add Another</label>
+                                    </div>
+                                </div>
+                            </ng-container>
+                        </ng-container>
+
+                        <ng-container *ngFor="let education of proWorkExp.proEducation; let educationIndex=index; let lastEIndex = last">
+                            <div class="col-lg-4 col-md-6 cl-sm-6 col-xs-12">
+                                <div class="sign-up-firm-fr-fild-inp">
+                                    <label>Year</label>
+                                    <app-common-dropdown [placeholder]="'Select'" [returnType]="appConstant.string" name="year{{educationIndex}}" [(ngModel)]="education.year"
+                                        [yearDropDown]="true"></app-common-dropdown>
+                                </div>
+                            </div>
+                            <div class="col-lg-8 col-md-6 cl-sm-6 col-xs-12">
+                                <div class="sign-up-firm-fr-fild-inp">
+                                    <label>Degree/Designation</label>
+                                    <input [(ngModel)]="education.degree" type="text" name="degree{{educationIndex}}" placeholder="Enter Degree/Designation"
+                                        class="form-control l-inp" required>
+                                </div>
+                            </div>
+                            <ng-container *ngIf="lastEIndex">
+                                <div class="col-lg-12 col-md-6 cl-sm-6 col-xs-12">
+                                    <div class="sign-up-firm-fr-fild-inp">
+                                        <label (click)="addEducation()">Add Another</label>
+                                    </div>
+                                </div>
+                            </ng-container>
+                        </ng-container>
+
+                        <div class="col-lg-12 col-md-12 cl-sm-12 col-xs-12">
+                            <div class="sign-up-firm-fr-fild-inp">
+                                <label>Professional Highlights
+                                </label>
+                                <input type="text" name="prohighlight" placeholder="Enter your Professional Highlights" [(ngModel)]="proWorkExp.proHighLights"
+                                    class="form-control l-inp" required>
+                                <div class="form-hover-text">
+                                    <p>introduce your business to the professionals
+                                        <br> you will be connecting with</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-lg-12">
+                            <div class="sign-up-firm-fr-fild-inp">
+                                <leo-dropdown-treeview id="book-category" [items]="treeViewData | treeviewDataConvert :{nameProp: 'title', isEditmode: editMode , editmodeProp: 'select'}"
+                                    [childCheckOnParent]="true" (selectedChange)="treeItemsUpdated($event)" (treeItemChange)="onTreeItemChange($event)"
+                                    [retrieveAll]="true" [isAllDisabled]="false"></leo-dropdown-treeview>
+                            </div>
+                        </div>
+
+                        <div class="col-lg-12">
+                            <div class="sign-up-firm-fr-fild-inp">
+                                <label>COMMON CHK</label>
+                                {{knowledgeArray | json}}
+                               <app-common-checkbox  name="sasas" [class]="'col-lg-6'" [(ngModel)]="knowledgeArray" (selectedEvent)="proKnowledgeSelected($event)" [options]="abc" [reloadable]="'options'"></app-common-checkbox>
+                            </div>
+                        </div>
+                        
+                        <div class="col-lg-6 col-md-6 cl-sm-6 col-xs-12">
+                            <div class="sign-up-firm-fr-fild-inp">
+                                <label>File</label>
+                                <app-file-upload [dragAndDrop]="true" [data]="documentUpload" (docListEvent)="uploadedDocumentList($event)"></app-file-upload>
+                            </div>
+                        </div>
+                        <div class="col-lg-6 col-md-6 cl-sm-6 col-xs-12">
+                            {{documentList | json}}
+                            <ng-container *ngIf="documentList.length">
+                                <ng-container *ngFor="let document of documentList">
+                                    <div class="sign-up-firm-fr-fild-inp">
+                                        <label>{{document.docTitle}}</label>
+                                    </div>
+                                </ng-container>
+                            </ng-container>
+                        </div>
+                        <div class="col-lg-6 col-md-6 cl-sm-6 col-xs-12">
+                            <div class="login-fr-btn-part">
+                                <input type="submit" name="submit" (click)="saveWorkExpProfile()" value="submit" class="form-control l-inp">
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+<ng-container *ngIf="!componentsAsModal">
+    <app-footer></app-footer>
+</ng-container> -->

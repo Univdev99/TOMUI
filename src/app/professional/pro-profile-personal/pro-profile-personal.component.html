@@ -1,0 +1,126 @@
+<!-- START :: PERSONAL-PROFILE -->
+<ng-container *ngIf="!componentsAsModal">
+<app-nav-bar></app-nav-bar>
+</ng-container>
+<div [ngClass]="componentsAsModal ? 'modal-body':'' ">
+    <div class="personal-profile-main firm-profile-two" [ngClass]="componentsAsModal ? 'personal-business-profile-form-main' : ''">
+        <div [ngClass]="componentsAsModal ? '' : 'sign-up-container'">
+            <ng-container *ngIf="!componentsAsModal">
+                <div class="profile-complate-head">
+                    <h3>Thanks! Please also confirm your
+                        <br> personal information.</h3>
+                </div>
+            </ng-container>
+            <div class="personal-profile-form-main">
+                <form id="proPersonalForm" #proPersonalForm="ngForm" [ngClass]="{submitted: submitted}">
+                    <div class="personal-profile-form-head">
+                        <h4>Personal Profile</h4>
+                        <h6>Step 2 of 3</h6>
+                    </div>
+                    <div class="login-fr-desc-dtl">
+                        <div class="col-lg-6 col-md-6 cl-sm-6 col-xs-12">
+                            <div class="sign-up-firm-fr-fild-inp">
+                                <label>First Name</label>
+                                <input type="text" name="First name" [(ngModel)]="proProfile.firstName" placeholder="Enter Your First Name" class="form-control l-inp"
+                                    required>
+                            </div>
+                        </div>
+                        <div class="col-lg-6 col-md-6 cl-sm-6 col-xs-12">
+                            <div class="sign-up-firm-fr-fild-inp">
+                                <label>Last Name</label>
+                                <input type="text" name="Last name" [(ngModel)]="proProfile.lastName" placeholder="Enter Your Last name" class="form-control l-inp"
+                                    required>
+                            </div>
+                        </div>
+                        <div class="col-lg-6 col-md-6 cl-sm-6 col-xs-12">
+                            <div class="sign-up-firm-fr-fild-inp">
+                                <label>Address</label>
+                                <input type="text" name="streetAddress" [(ngModel)]="proProfile.address" placeholder="Enter Street Address" class="form-control l-inp"
+                                    required>
+                            </div>
+                        </div>
+                        <div class="col-lg-6 col-md-6 cl-sm-6 col-xs-12">
+                            <div>
+                                <label></label>
+                                <app-simple-soft-search [returnType]="appConstant.string" [placeholder]="'Enter City'" [(ngModel)]="proProfile.cityNgModel"
+                                    name="city" [dataUrl]="elementRest.allCity" [whereClause]="cityWhereClause" [required]="true">
+                                </app-simple-soft-search>
+                            </div>
+                        </div>
+                        <div class="col-lg-6 col-md-6 cl-sm-6 col-xs-12">
+                            <div>
+                                <label></label>
+                                <app-simple-soft-search [returnType]="appConstant.string" name="provinceId" [dataUrl]="elementRest.allProvince" [placeholder]="'Enter Province'"
+                                    [returnType]="appConstant.string" [whereClause]="'1=1'" [reloadable]="appConstant.whereClause"
+                                    [(ngModel)]="proProfile.provinceNgModel" [required]="true">
+                                </app-simple-soft-search>
+                            </div>
+                        </div>
+                        <div class="col-lg-6 col-md-6 cl-sm-6 col-xs-12">
+                            <div class="sign-up-firm-fr-fild-inp">
+                                <label>&nbsp;</label>
+                                <input type="text" name="zipcode" [(ngModel)]="proProfile.zipCode" placeholder="Enter Zip Code" class="form-control l-inp"
+                                    required maxlength="7" pattern="[0-9]+"> 
+                            </div>
+                        </div>
+                        <div class="col-lg-6 col-md-6 cl-sm-6 col-xs-12">
+                            <div class="sign-up-firm-fr-fild-inp photo-upload">
+                                <label>Photo upload (optional)
+                                    <span>
+                                        <img src="assets/images/form-rq.png">
+                                    </span>
+                                </label>
+                                <div class="Upload-Profile">
+                                    <div class="file-upload">
+                                        <div class="file-select">
+                                            <div class="file-select-button" [ngClass]="proProfile.picBase64 ? '' : 'blueBackGround' " id="fileName1">
+                                                <ng-container *ngIf="proProfile.picBase64; else emptyImage">
+                                                    <img class="circleImage" [src]="proProfile.picBase64">
+                                                </ng-container>
+                                                <ng-template #emptyImage>
+                                                    <img src="assets/images/upload-file.png">
+                                                </ng-template>
+                                            </div>
+                                            <div class="file-select-name" id="noFile1">Upload Your Photo</div>
+                                            <input type="file" (change)="onSelectFile($event)" name="chooseFile1" id="chooseFile1" title="doc/pdf">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-hover-text">
+                                    <p>A professinoal
+                                        <br> photo is best
+                                        <br> no pictures with
+                                        <br> your cat, please!</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-6 col-md-6 cl-sm-6 col-xs-12">
+                            <div class="sign-up-firm-fr-fild-inp Hourly-fee">
+                                <label>Hourly Fee
+                                    <span>
+                                        <img src="assets/images/form-rq.png">
+                                    </span>
+                                </label>
+                                <input type="text" placeholder="$" maxlength="7" pattern="\d+(\.\d{1,2})?" [(ngModel)]="proProfile.hourlyFee" name="hourlyFee" class="form-control l-inp" required>
+                                <div class="form-hover-text">
+                                    <p>The rate that you are
+                                        <br> expecting to be paid</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-lg-6 col-md-6 cl-sm-6 col-xs-12">
+                            <div class="login-fr-btn-part">
+                                <input type="submit" name="submit" (click)="savePrpPesonalProfille()" value="submit" class="form-control l-inp">
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- END :: PERSONAL-PROFILE -->
+<ng-container *ngIf="!componentsAsModal">
+    <app-footer></app-footer>
+</ng-container>

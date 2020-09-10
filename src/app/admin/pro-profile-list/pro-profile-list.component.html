@@ -1,0 +1,336 @@
+<div class="project-details-main-mid-part" id="Employee_profile">
+    <div class="project-details-left-part-tab beforeScroll" style="height: 800px;">
+        <div class="project-details-main-left-desc-dtl customScrollBar">
+            <h2>Professionals</h2>
+            <div class="job-list">
+                <div class="job-see-all">
+                    <p>Name</p>
+                </div>
+                <ng-container *ngIf="proNameList.length">
+                    <ng-container *ngFor="let profile of proNameList; let i=index">
+                        <div (click)="setProfData(profile.proProfileId, profile.userStatus)" (click)="chanegViewParams(i)" class="pointer my-project-right"
+                            [ngClass]="{'active': profile.isView}">
+                            <div class="my-open-project-right">
+                                <h5>{{profile.proName}}</h5>
+                            </div>
+                        </div>
+                    </ng-container>
+                </ng-container>
+            </div>
+        </div>
+    </div>
+    <div class="project-details-right-part-main same-height beforeScroll" style="height: 800px;">
+        <div class="project-details-main-right-desc-dtl customScrollBar">
+            <div class="project-details-main-right-head">
+                <h2>Professional Profile</h2>
+                <ng-container *ngIf="proProfileStatus">
+                    <div class="Employee_profile_tp_right_dtl">
+                        <ng-container *ngIf="proProfileStatus === appConstant.accepted">
+                            <a href="javascript:;">Accepted
+                                <i class="fas fa-check-circle"></i>
+                            </a>
+                        </ng-container>
+                        <ng-container *ngIf="proProfileStatus === appConstant.declined">
+                            <a href="javascript:;">Declined
+                                <i class="fas fa-times"></i>
+                            </a>
+                        </ng-container>
+                    </div>
+                </ng-container>
+            </div>
+            <div class="Employee_profile_sm_box">
+                <h6>Contact</h6>
+                <div class="Employee_profile_sm_box_dtl_part">
+                    <h4 href="javascript:;">Email</h4>
+                    <a href="javascript:;">{{proPersonal.workEmail}}</a>
+                </div>
+            </div>
+            <div class="Employee_profile_sm_box">
+                <h6>Work Availability</h6>
+                <div class="Employee_profile_sm_box_dtl_part">
+                    <table>
+                        <tbody>
+                            <tr>
+                                <th>Start Date</th>
+                                <th>Last Date</th>
+                            </tr>
+                            <tr>
+                                <td>{{proPersonal.startDate | customDate:'dateOnly':true}}</td>
+                                <td>{{proPersonal.lastDate | customDate:'dateOnly':true}}</td>
+                            </tr>
+                            <tr>
+                                <th>Weekly Availability</th>
+                                <th>Location Availability</th>
+                            </tr>
+                            <tr>
+                                <td>{{proPersonal.workAvailability}}</td>
+                                <td>{{proPersonal.locationAvailability}}</td>
+                            </tr>
+                            <tr>
+                                <th>Are you interested in full-time work?</th>
+                                <th></th>
+                            </tr>
+                            <tr>
+                                <td>{{proPersonal.isFullTime ? 'Yes' : 'No'}}</td>
+                                <td></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <div class="Employee_profile_sm_box">
+                <h6>Personal Profile</h6>
+                <div class="Employee_profile_sm_box_dtl_part">
+                    <table>
+                        <tbody>
+                            <tr>
+                                <th>First Name </th>
+                                <th>Last Name</th>
+                            </tr>
+                            <tr>
+                                <td>{{proPersonal.firstName}}</td>
+                                <td>{{proPersonal.lastName}}</td>
+                            </tr>
+                            <tr>
+                                <th>Address</th>
+                                <th>City</th>
+                            </tr>
+                            <tr>
+                                <td>{{proPersonal.firstName}}</td>
+                                <td>{{proPersonal.address}}</td>
+                            </tr>
+                            <tr>
+                                <th>Province</th>
+                                <th>ZIP Code </th>
+                            </tr>
+                            <tr>
+                                <td>{{proPersonal.provinceName}}</td>
+                                <td>{{proPersonal.zipCode}}</td>
+                            </tr>
+                            <tr>
+                                <th>Photo Upload (Optional)</th>
+                                <th>Houry Fee</th>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <div class="Upload-Profile">
+                                        <div class="file-upload">
+                                            <div class="file-select">
+                                                <div class="file-select-button" id="fileName1">
+                                                    <ng-container *ngIf="proPersonal.picBase64; else elseViewProPIC">
+                                                        <img class="circleImage" [src]="proPersonal.picBase64">
+                                                    </ng-container>
+                                                    <ng-template #elseViewProPIC>
+                                                        <img src="assets/images/work-experince-mea2.png">
+
+                                                    </ng-template>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td>{{proPersonal.hourlyFee}}</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <div class="Employee_profile_sm_box">
+                <h6>Work Experience </h6>
+                <div class="Employee_profile_sm_box_dtl_part">
+                    <h4>Please provide a few sentences summarizing your professional experience. Keep it short and sweet
+                    </h4>
+                    <p>{{proWorkExp?.selfDescription}}</p>
+                </div>
+            </div>
+            <div class="Employee_profile_sm_box Employee_profile_cpa_table">
+                <div class="Employee_profile_sm_box_dtl_part">
+                    <div class="Employee_profile_sm_box_dtl_part_CPA">
+                        <h4>Are you a Chartered Professional Accountant (CPA)?</h4>
+                        <p>{{proWorkExp?.isCA ? 'Yes' : 'No'}}</p>
+                    </div>
+                    <div class="Employee_profile_sm_box_dtl_part">
+                        <table>
+                            <tbody>
+                                <ng-container *ngIf="proWorkExp && proWorkExp.workExperienceDetail?.length">
+                                    <ng-container *ngFor="let expDetail of proWorkExp.workExperienceDetail; let firstDetail = first">
+                                        <ng-container *ngIf="firstDetail">
+                                            <tr>
+                                                <th>Start Year</th>
+                                                <th>End Year</th>
+                                                <th>Is your position at an accounting firm?</th>
+                                            </tr>
+                                        </ng-container>
+                                        <tr>
+                                            <td>{{expDetail.startYear | removeSelect}}</td>
+                                            <td>{{expDetail.endYear | removeSelect}}</td>
+                                            <td>{{expDetail.isAccountingFirm ? 'Yes' : 'No'}}</td>
+                                        </tr>
+                                    </ng-container>
+                                </ng-container>
+                                <ng-container *ngIf="proWorkExp && proWorkExp.workExperienceDetail?.length">
+                                    <ng-container *ngFor="let expDetail of proWorkExp.workExperienceDetail; let firstDetail = first">
+                                        <ng-container *ngIf="firstDetail">
+                                            <tr>
+                                                <th>Position title at accounting firm </th>
+                                                <th></th>
+                                            </tr>
+                                        </ng-container>
+                                        <tr>
+                                            <td>{{expDetail.posTitle | removeSelect}}</td>
+                                            <td></td>
+                                        </tr>
+                                    </ng-container>
+                                </ng-container>
+                                <ng-container *ngIf="proWorkExp && proWorkExp.workExperienceDetail?.length">
+                                    <ng-container *ngFor="let expDetail of proWorkExp.workExperienceDetail; let firstDetail = first">
+                                        <ng-container *ngIf="firstDetail">
+                                            <tr>
+                                                <th>Type of firm </th>
+                                                <th></th>
+                                            </tr>
+                                        </ng-container>
+                                        <tr>
+                                            <td>{{expDetail.firmType | removeSelect}}</td>
+                                            <td></td>
+                                        </tr>
+                                    </ng-container>
+                                </ng-container>
+                                <ng-container *ngIf="proWorkExp && proWorkExp.workExperienceDetail?.length">
+                                    <ng-container *ngFor="let expDetail of proWorkExp.workExperienceDetail; let firstDetail = first">
+                                        <ng-container *ngIf="firstDetail">
+                                            <tr>
+                                                <th>Company</th>
+                                                <th></th>
+                                            </tr>
+                                        </ng-container>
+                                        <tr>
+                                            <td>{{expDetail.company | removeSelect}}</td>
+                                            <td></td>
+                                        </tr>
+                                    </ng-container>
+                                </ng-container>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+            <div class="Employee_profile_sm_box">
+                <h6>Education/Designations </h6>
+                <div class="Employee_profile_sm_box_dtl_part">
+                    <table>
+                        <tbody>
+                            <ng-container *ngIf="proWorkExp.proEducation.length">
+                                <ng-container *ngFor="let education of proWorkExp.proEducation; let firstEducation = first">
+                                    <ng-container *ngIf="firstEducation">
+                                        <tr>
+                                            <th style="width: 127px;">Year</th>
+                                            <th>Degree/Designation </th>
+                                        </tr>
+                                    </ng-container>
+                                    <tr>
+                                        <td>{{education.year | removeSelect}} </td>
+                                        <td> {{education.degree}}
+                                        </td>
+                                    </tr>
+                                </ng-container>
+                            </ng-container>
+
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <div class="Employee_profile_sm_box">
+                <h6>Professional Highlights</h6>
+                <div class="Employee_profile_sm_box_dtl_part">
+                    <p>{{proWorkExp.proHighLights}}</p>
+                </div>
+            </div>
+            <div class="Employee_profile_sm_box">
+                <h6>Professional Strengths </h6>
+                <div class="Employee_profile_sm_box_dtl_part">
+                    <h4>Skilled in:</h4>
+                    <ng-container *ngIf="skillArray.length">
+                        <ng-container *ngFor="let master of skillArray | GroupByPipe : 'masterSkillName'">
+                            <p>{{master.key}}</p>
+                            <ng-container *ngFor="let category of master.value | GroupByPipe : 'categorySkillName'">
+                                <ng-container *ngIf="category.key && category.key != 'null' && category.key !== 'undefined'">
+                                    <p class="m-l-10">{{category.key}}</p>
+                                </ng-container>
+                                <ng-container *ngFor="let detail of category.value">
+                                    <ng-container *ngIf="detail.detailSkillName && detail.detailSkillName != 'null' && detail.detailSkillName != 'undefined'">
+                                        <p class="m-l-20">{{detail.detailSkillName}}</p>
+                                    </ng-container>
+                                </ng-container>
+                            </ng-container>
+                        </ng-container>
+                    </ng-container>
+                    <h4>Software / Applications:</h4>
+                    <ul>
+                        <li>TaxPrep</li>
+                        <li>Caseware</li>
+                    </ul>
+                </div>
+            </div>
+            <!--   <div class="Employee_profile_sm_box">
+                <h6>Document Attachments </h6>
+                <div class="pdf-right-bg-box-sm-box">
+                    <div class="pdf-icon-dtl">
+                        <div class="pdf-icon-bg">
+                            <h6>DOC</h6>
+                        </div>
+                        <div class="pdf-icon-dtl-main">
+                            <h5>File Name.docx</h5>
+                            <h6>158kb / 158kb</h6>
+                        </div>
+                    </div>
+                    <div class="pdf-icon-close">
+                        <a href="javascript:;">
+                            <img src="assets/images/file-doc.png">
+                        </a>
+                    </div>
+                </div>
+                <div class="pdf-right-bg-box-sm-box">
+                    <div class="pdf-icon-dtl">
+                        <div class="pdf-icon-bg">
+                            <h6>DOC</h6>
+                        </div>
+                        <div class="pdf-icon-dtl-main">
+                            <h5>File Name.docx</h5>
+                            <h6>158kb / 158kb</h6>
+                        </div>
+                    </div>
+                    <div class="pdf-icon-close">
+                        <a href="javascript:;">
+                            <img src="assets/images/file-doc.png">
+                        </a>
+                    </div>
+                </div>
+                <div class="pdf-right-bg-box-sm-box">
+                    <div class="pdf-icon-dtl">
+                        <div class="pdf-icon-bg">
+                            <h6>DOC</h6>
+                        </div>
+                        <div class="pdf-icon-dtl-main">
+                            <h5>File Name.docx</h5>
+                            <h6>158kb / 158kb</h6>
+                        </div>
+                    </div>
+                    <div class="pdf-icon-close">
+                        <a href="javascript:;">
+                            <img src="assets/images/file-doc.png">
+                        </a>
+                    </div>
+                </div>
+            </div> -->
+            <div class="proFooterBTN">
+                <div class="Final-detail-project-sm-btn">
+                    <a href="javascript:;" class="f-dtl-pr-btn active" (click)="approveProProfileByAdmin(proPersonal.userId, appConstant.approve)">Approve</a>
+                </div>
+                <div class="Final-detail-project-sm-btn">
+                    <a href="javascript:;" class="f-dtl-pr-btn active" (click)="approveProProfileByAdmin(proPersonal.userId, appConstant.decline)">Decline</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

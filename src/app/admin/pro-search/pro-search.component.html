@@ -1,0 +1,73 @@
+<div class="project-details-main-mid-part" id="my_jobs_page">
+    <div class="project-details-left-part-tab same-height beforeScroll" style="height: 800px;">
+        <div class="project-details-main-left-desc-dtl customScrollBar">
+            <h2>Professionals</h2>
+            <div class="job-list">
+                <div class="job-see-all">
+                    <p>Name</p>
+                </div>
+                <ng-container *ngIf="proNameList.length; else emptyView">
+                    <ng-container *ngFor="let pro of proNameList; let i = index;let first = first;">
+                        <div (click)="changeViewParameter(pro.proProfileId)" class="pointer my-project-right" [ngClass]="{'active': pro.isView}">
+                            <div class="my-open-project-right">
+                                <h5>{{pro.proName}}</h5>
+                            </div>
+                        </div>
+                    </ng-container>
+                </ng-container>
+                <ng-template #emptyView>
+                    <div class="profile-update-my-project">
+                        <h6>No Record Found </h6>
+                    </div>
+                </ng-template>
+            </div>
+        </div>
+    </div>
+    <div class="project-details-right-part-main same-height tab-content beforeScroll" style="height: 800px;">
+        <div id="overViewSection" class="project-details-main-right-desc-dtl tab-pane active customScrollBar">
+            <div class="project-details-main-right-head">
+                <h2>Overview</h2>
+            </div>
+            <ng-container *ngIf="jobStatusList.length">
+                <div class="my-jobs-part">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Projects</th>
+                                <th class="width160">By Firm</th>
+                                <th class="width160">By Pro</th>
+                                <th class="width160">Status</th>
+                                <th class="width160">No of Hours</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <ng-container *ngFor="let job of jobStatusList">
+                                <ng-container *ngIf="job.isView">
+                                    <tr>
+                                        <td>
+                                            <h5>{{job.projectName}}</h5>
+                                        </td>
+                                        <td>
+                                            <h5>{{job.rateByFirm}}</h5>
+                                        </td>
+                                        <td>
+                                            <h5>{{job.rateByPro}}</h5>
+                                        </td>
+                                        <td>
+                                            <h5>{{job.projectStatus}}</h5>
+                                        </td>
+                                        <td>
+                                            <h5>{{job.requiredHours}}</h5>
+                                        </td>
+                                    </tr>
+                                </ng-container>
+                            </ng-container>
+                        </tbody>
+                    </table>
+                </div>
+
+            </ng-container>
+
+        </div>
+    </div>
+</div>

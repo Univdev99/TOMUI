@@ -1,0 +1,173 @@
+<ng-container *ngIf="argFrom === appConstant.firm">
+    <div class="modal-body">
+        <div class="profile-work-experience-modal-bg-part Final-detail-project">
+            <div class="profile-work-experience-modal-dtl-part">
+                <div class="profile-work-experience-tp-head">
+                    <div class="edit-event-back" appCloseModal>
+                        <a href="javascript:;" id="back-modal">
+                            <img src="assets/images/pop-back-arrow.png">
+                            <h6>Back</h6>
+                        </a>
+                    </div>
+                    <h2>Review Professional</h2>
+                </div>
+                <div class="resview_professional_dlt">
+                    <p>Please take a minute to review your experience working with this client.</p>
+                </div>
+                <div class="profile-work-experience-men-dtl" style="align-items: flex-start">
+                    <div class="resview_professional_dlt_main_left">
+                        <div class="profile-work-experience-men-profile-sub-dtl" style="padding-top: 0">
+                            <div class="profile-work-experience-men-pic">
+                                    <img [src]="projectData.picBase64 ? projectData.picBase64 : 'assets/images/work-experince-mea2.png'">
+                            </div>
+                            <div class="rating-stars">
+                                <ng-template #avgReview let-fill="fill">
+                                    <span class="reviewHeader" [class.full]="fill === 100">
+                                        <span class="half" [style.width.%]="fill">
+                                            &#9733;</span>&#9733;
+                                    </span>
+                                </ng-template>
+                                <ngb-rating [(rate)]="averageRating" [starTemplate]="avgReview" [max]="5" [readonly]="true"></ngb-rating>
+                            </div>
+                            <p>({{reviewCount}} Review)</p>
+                            <div class="review_professional_dlt_left_btm">
+                                <p>{{projectData.proName}}</p>
+                                <p>Project Type :{{projectData.projectName}}</p>
+                                <p>Total Hours: {{projectData.requiredHours}}</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="review_professional_dlt_main_right">
+                        <div class="review_professional_dlt_right_tp_main_part">
+                            <p>The overall rating will be visible to the public.</p>
+                            <div>
+                                <ng-template #t let-fill="fill">
+                                    <span class="reviewHeader" [class.full]="fill === 100">
+                                        <span class="half" [style.width.%]="fill">
+                                            &#9733;</span>&#9733;
+                                    </span>
+                                </ng-template>
+                                <ngb-rating [(rate)]="currentProjectRating" [readonly]="proReadOnly" [starTemplate]="t" [max]="5" (rateChange)="setRating(currentProjectRating)"></ngb-rating>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="review_professional_dlt_right_tp_main_part" style="display: none">
+                        <p>These details are just between you and Top of Mind.</p>
+                        <div class="rating-stars">
+                            <ul id="stars">
+                                <li class="star selected" title="Poor" data-value="1">
+                                    <i class="fa fa-star fa-fw"></i>
+                                </li>
+                                <li class="star selected" title="Fair" data-value="2">
+                                    <i class="fa fa-star fa-fw"></i>
+                                </li>
+                                <li class="star selected" title="Good" data-value="3">
+                                    <i class="fa fa-star fa-fw"></i>
+                                </li>
+                                <li class="star selected" title="Excellent" data-value="4">
+                                    <i class="fa fa-star fa-fw"></i>
+                                </li>
+                                <li class="change-color star" title="WOW!!!" data-value="5">
+                                    <i class="fa fa-star fa-fw"></i>
+                                </li>
+                            </ul>
+                            <p>Communication</p>
+                        </div>
+                    </div>
+                </div>
+                <ng-container *ngIf="!proReadOnly">
+                    <div class="histroy_project_dtl_btm_btn">
+                        <div class="professional-profile-right-tp-btn">
+                            <a href="javascript:;" (click)="saveReview()">Submit Review</a>
+                        </div>
+                    </div>
+                </ng-container>
+            </div>
+        </div>
+    </div>
+</ng-container>
+<ng-container *ngIf="argFrom === appConstant.professional">
+    <div class="modal-body">
+        <div class="profile-work-experience-modal-bg-part Final-detail-project">
+            <div class="profile-work-experience-modal-dtl-part">
+                <div class="profile-work-experience-tp-head">
+                    <div class="edit-event-back" appCloseModal>
+                        <a href="javascript:;" id="back-modal">
+                            <img src="assets/images/pop-back-arrow.png">
+                            <h6>Back</h6>
+                        </a>
+                    </div>
+                    <h2>Review Firm</h2>
+                </div>
+                <div class="resview_professional_dlt">
+                    <p>Please take a minute to review your experience working with this client.</p>
+                </div>
+                <div class="profile-work-experience-men-dtl" style="align-items: flex-start">
+                        <div class="resview_professional_dlt_main_left">
+                            <div class="profile-work-experience-men-profile-sub-dtl" style="padding-top: 0">
+                            <h5>{{projectData.businessName}}</h5>
+                            <div class="rating-stars">
+                                <ng-template #avgReview let-fill="fill">
+                                    <span class="reviewHeader" [class.full]="fill === 100">
+                                        <span class="half" [style.width.%]="fill">
+                                            &#9733;</span>&#9733;
+                                    </span>
+                                </ng-template>
+                                <ngb-rating [(rate)]="averageRating" [starTemplate]="avgReview" [max]="5" [readonly]="true"></ngb-rating>
+                            </div>
+                            <p>({{reviewCount}} Review)</p>
+                            <div class="review_professional_dlt_left_btm">
+                                <p>Project Type :{{projectData.projectName}}</p>
+                                <p>Total Hours: {{projectData.requiredHours}}</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="review_professional_dlt_main_right">
+                        <div class="review_professional_dlt_right_tp_main_part">
+                            <p>The overall rating will be visible to the public.</p>
+                            <div>
+                                <ng-template #t let-fill="fill">
+                                    <span class="reviewHeader" [class.full]="fill === 100">
+                                        <span class="half" [style.width.%]="fill">
+                                            &#9733;</span>&#9733;
+                                    </span>
+                                </ng-template>
+                                <ngb-rating [(rate)]="currentProjectRating" [readonly]="firmReadOnly" [starTemplate]="t" [max]="5" (rateChange)="setRating(currentProjectRating)"></ngb-rating>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="review_professional_dlt_right_tp_main_part" style="display: none">
+                        <p>These details are just between you and Top of Mind.</p>
+                        <div class="rating-stars">
+                            <ul id="stars">
+                                <li class="star selected" title="Poor" data-value="1">
+                                    <i class="fa fa-star fa-fw"></i>
+                                </li>
+                                <li class="star selected" title="Fair" data-value="2">
+                                    <i class="fa fa-star fa-fw"></i>
+                                </li>
+                                <li class="star selected" title="Good" data-value="3">
+                                    <i class="fa fa-star fa-fw"></i>
+                                </li>
+                                <li class="star selected" title="Excellent" data-value="4">
+                                    <i class="fa fa-star fa-fw"></i>
+                                </li>
+                                <li class="change-color star" title="WOW!!!" data-value="5">
+                                    <i class="fa fa-star fa-fw"></i>
+                                </li>
+                            </ul>
+                            <p>Communication</p>
+                        </div>
+                    </div>
+                </div>
+                <ng-container *ngIf="!firmReadOnly">
+                    <div class="histroy_project_dtl_btm_btn">
+                        <div class="professional-profile-right-tp-btn">
+                            <a href="javascript:;" (click)="saveReview()">Submit Review</a>
+                        </div>
+                    </div>
+                </ng-container>
+            </div>
+        </div>
+    </div>
+</ng-container>

@@ -1,0 +1,202 @@
+<div class="project-details-main-mid-part" id="find-job-details">
+    <div class="project-details-left-part-tab beforeScroll" style="height: 800px">
+        <div class="project-details-main-left-desc-dtl customScrollBar">
+            <h2>Firms </h2>
+            <ng-container *ngIf="firmNameList.length; else emptyView">
+                <div class="job-list">
+                    <div class="job-see-all">
+                        <p>Name</p>
+                    </div>
+                    <ng-container *ngFor="let firmDetail of firmNameList; let i = index;let first = first;">
+                        <div class="my-project-right pointer" (click)="setViewOfFirm(firmDetail.firmProfileId, i)" [ngClass]="firmDetail.isView ? 'active': ''">
+                            <div class="my-open-project-right">
+                                <h5>{{firmDetail.businessName}}</h5>
+                            </div>
+                        </div>
+                    </ng-container>
+                </div>
+            </ng-container>
+        </div>
+    </div>
+    <div class="project-details-right-part-main same-height tab-content beforeScroll" style="height: 800px">
+        <div id="firmOverViewSection" class="project-details-main-right-desc-dtl tab-pane active customScrollBar">
+            <div class="project-details-main-right-head">
+                <h2>Overview</h2>
+            </div>
+            <ng-container *ngIf="firmList.length">
+                <div class="my-jobs-part">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th class="width265">Firms</th>
+                                <th>Date</th>
+                                <th>No of Hrs</th>
+                                <th class="width160">Professional</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <ng-container *ngFor="let firm of firmList">
+                                <ng-container *ngIf="firm.isView">
+                                    <tr class="pointer" (click)="callJQuery('firmOverViewSection','firmDetailSection', 'overViewSection', firm)">
+                                        <td>
+                                            <h3> {{firm.businessName}}</h3>
+                                            <h5>{{firm.projectName}}</h5>
+                                        </td>
+                                        <td>
+                                            <h5>{{firm.createdDate | customDate:'dateOnly':true}}</h5>
+                                        </td>
+                                        <td>
+                                            <h5>{{firm.hours}}</h5>
+                                        </td>
+                                        <td>
+                                            <h5>{{firm.proName}}</h5>
+                                        </td>
+                                    </tr>
+                                </ng-container>
+                            </ng-container>
+                        </tbody>
+                    </table>
+                </div>
+            </ng-container>
+        </div>
+        <div id="firmDetailSection" class="project-details-main-right-desc-dtl tab-pane active customScrollBar" style="display: none;">
+            <div class="project-details-main-right-head">
+                <h2>Firm Job Details</h2>
+                <div class="Employee_profile_tp_right_dtl">
+                    <a href="javascript:;" (click)="callJQuery('firmDetailSection','firmOverViewSection', 'firmJobDetails', null)">Back to Requests Overview</a>
+                </div>
+            </div>
+            <div class="firm-job-details-main-part">
+                <ng-container *ngFor="let firm of firmList; let rightIndex = index;let first = first;let last = last;">
+                    <ng-container *ngIf="firm.isView">
+                        <div class="firm-job-details-main-part-table-main">
+                            <table>
+                                <thead>
+                                    <tr>
+                                        <th>Firms</th>
+                                        <th>Date</th>
+                                        <th>No. of Hrs</th>
+                                        <th>Professional</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>
+                                            <h5>{{firm.businessName}}</h5>
+                                            <h6> {{firm.projectName}}</h6>
+                                        </td>
+                                        <td>{{firm.createdDate | customDate:'dateOnly':true}}</td>
+                                        <td>{{firm.hours}}</td>
+                                        <td>{{firm.proName}}</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        <div class="firm-job-details-main-part-table-main firm-job-sub-table">
+                            <table>
+                                <thead>
+                                    <tr>
+                                        <th>
+                                            <h5>{{firm.projectName}}</h5>
+                                        </th>
+                                        <th>Date</th>
+                                        <th>Status</th>
+                                        <th>Action</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>Project Requested</td>
+                                        <td>{{firm.projectReqDate | customDate:'dateOnly':true}}</td>
+                                        <td>{{firm.projectReqStatus}}</td>
+                                        <td>
+                                            <a (click)="projectRequestedAction(firm, rightIndex)" href="javascript:;">{{firm.projectReqStatus === appConstant.awaitingAdmin ? 'Confirm Completed' :
+                                                'View'}}
+                                            </a>
+                                        </td>
+                                    </tr>
+                                    <ng-container *ngIf="firm.projectReqStatus === appConstant.completed">
+                                        <tr class="firm-b-t">
+                                            <td>Meeting</td>
+                                            <td>{{firm.meetingDate | customDate:'dateOnly':true}}</td>
+                                            <td>{{firm.meetingStatus}}</td>
+                                            <td>
+                                                <a (click)="meetingAction(firm, rightIndex)" href="javascript:;">Confirm Meeting</a>
+                                            </td>
+                                        </tr>
+                                    </ng-container>
+                                    <ng-container *ngIf="firm.addtionalTimeStatus">
+                                        <tr class="firm-b-t">
+                                            <td>Additional Time</td>
+                                            <td>{{firm.addtionalTimeDate | customDate:'dateOnly':true}}</td>
+                                            <td>{{firm.addtionalTimeStatus}}</td>
+                                            <td>
+                                                <ng-container *ngIf="firm.addtionalTimeStatus === appConstant.awaitingAdmin">
+                                                    <a (click)="additionalTimeRequestAction(firm, rightIndex)" href="javascript:;">Confirm Details</a>
+                                                </ng-container>
+                                            </td>
+                                        </tr>
+                                    </ng-container>
+                                    <ng-container *ngIf="firm.meetingStatus === appConstant.completed">
+                                        <tr class="firm-b-t">
+                                            <td>Details Finalized</td>
+                                            <td>{{firm.finalizedDate | customDate:'dateOnly':true}}</td>
+                                            <td>{{firm.finalizedStatus}}</td>
+                                            <td>
+                                                <ng-container *ngIf="firm.finalizedStatus === appConstant.awaitingFirm">
+                                                    <a (click)="projectFinalizedAction(firm, rightIndex)" href="javascript:;">Confirm Meeting</a>
+                                                </ng-container>
+                                                <ng-container *ngIf="firm.finalizedStatus === appConstant.awaitingAdmin">
+                                                    <a (click)="projectFinalizedAction(firm, rightIndex)" href="javascript:;">Confirm Details</a>
+                                                </ng-container>
+                                            </td>
+                                        </tr>
+                                    </ng-container>
+                                    <ng-container *ngIf="firm.finalizedStatus === appConstant.completed">
+                                        <tr class="firm-b-t">
+                                            <td>Job Completed</td>
+                                            <td>{{firm.jobCompleteDate | customDate:'dateOnly':true}}</td>
+                                            <td>{{firm.jobCompleteStatus}}</td>
+                                            <td>
+                                                <ng-container *ngIf="firm.jobCompleteStatus === appConstant.awaitingAdmin">
+                                                    <a href="javascript:;" (click)="jobCompleteAction(firm, rightIndex)">Confirm Complete</a>
+                                                </ng-container>
+                                                <ng-container *ngIf="firm.jobCompleteStatus === appConstant.awaitingPayment">
+                                                    <a href="javascript:;" (click)="jobCompleteAction(firm, rightIndex)">Confirm Paid</a>
+                                                </ng-container>
+                                            </td>
+                                        </tr>
+                                    </ng-container>
+                                    <ng-container *ngIf="firm.jobCompleteStatus === appConstant.completed">
+                                        <ng-container *ngIf="firm.firmRating">
+                                            <tr class="firm-b-t">
+                                                <td>Firm Rating</td>
+                                                <td></td>
+                                                <td></td>
+                                                <td>
+                                                    <a href="javascript:;" class="active" (click)="getAvgAndCountOfFirmReview(firm)">View</a>
+                                                </td>
+                                            </tr>
+                                        </ng-container>
+                                    </ng-container>
+                                    <ng-container *ngIf="firm.jobCompleteStatus === appConstant.completed">
+                                        <ng-container *ngIf="firm.proRating">
+                                            <tr class="firm-b-t">
+                                                <td>Pro Rating</td>
+                                                <td></td>
+                                                <td></td>
+                                                <td>
+                                                    <a href="javascript:;" class="active" (click)="getAvgAndCountOfProReview(firm)">View</a>
+                                                </td>
+                                            </tr>
+                                        </ng-container>
+                                    </ng-container>
+                                </tbody>
+                            </table>
+                        </div>
+                    </ng-container>
+                </ng-container>
+            </div>
+        </div>
+    </div>
+</div>

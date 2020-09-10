@@ -1,0 +1,133 @@
+<div class="modal-body">
+    <div class="personal-profile-form-main" id="search_result">
+        <div class="connect-expert-main-desc-dtl">
+            <div class="personal-profile-form-head">
+                <h4>Search Results</h4>
+                <div class="search-results-main-box">
+                    <div class="search-results-head" [ngClass]="{'active': dropdownOpenClose}" (click)="dropdownClicked()">
+                        <a href="javascript:;" class="search-results-bg-box">
+                            <span>
+                                <img src="assets/images/fillter.png">
+                            </span>filter</a>
+                        <h6>
+                            <span>
+                                <img src="assets/images/down-caret.png">
+                            </span>
+                        </h6>
+                    </div>
+                    <div class="search-results-dtl profile-work-experience-check-part" [ngClass]="{'active': dropdownOpenClose}">
+                        <div class="search-results-dtl-box-check">
+                            <h6>Weekly Availability:</h6>
+                            <ul>
+                                <ng-container *ngFor="let workAvail of workAvailArray; let i=index">
+                                    <li>
+                                        <label class="checkbox-small">{{workAvail.label}}
+                                            <input type="checkbox" [name]="workAvail.label" [value]="workAvail.value" [(ngModel)]="workAvail.status">
+                                            <span class="checkmark"></span>
+                                        </label>
+                                    </li>
+                                </ng-container>
+                            </ul>
+                        </div>
+                        <div class="search-results-dtl-box-check">
+                            <h6>Location Availability:</h6>
+                            <ul>
+                                <ng-container *ngFor="let location of locaionAvailArray; let i=index">
+                                    <li>
+                                        <label class="checkbox-small">{{location.label}}
+                                            <input type="checkbox" [name]="location.label" [value]="location.value" [(ngModel)]="location.status">
+                                            <span class="checkmark"></span>
+                                        </label>
+                                    </li>
+                                </ng-container>
+                            </ul>
+                        </div>
+                        <div class="search-results-dtl-box-check">
+                            <h6>Interest In Full-Time:</h6>
+                            <ul>
+                                <ng-container *ngFor="let time of fullTimeArray">
+                                    <li>
+                                        <label class="checkbox-small">{{time.label}}
+                                            <input type="checkbox" name="time.label" [value]="time.value" [(ngModel)]="time.status">
+                                            <span class="checkmark"></span>
+                                        </label>
+                                    </li>
+                                </ng-container>
+                            </ul>
+                        </div>
+                        <div class="search-results-dtl-box-check">
+                            <h6>Hourly Rate:</h6>
+                            <ul>
+                                <ng-container *ngFor="let hour of hourArray; let i=index">
+                                    <li>
+                                        <label class="checkbox-small">$&nbsp;{{hour.label}}
+                                            <input type="checkbox" [value]="hour.value" [(ngModel)]="hour.status">
+                                            <span class="checkmark"></span>
+                                        </label>
+                                    </li>
+                                </ng-container>
+                            </ul>
+                        </div>
+                        <div class="search-results-btm-btn-part">
+                            <div class="search-results-sm-btn">
+                                <a href="javascript:;" class="s-results-bg-btn active" (click)="applyFilter()">Apply</a>
+                            </div>
+                            <div class="search-results-sm-btn">
+                                <a href="javascript:;" (click)="clearAllFilter()" class="s-results-bg-btn">Clear All</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="search-results-modal-dtl">
+                <ng-container *ngFor="let pro of proViewList; let index = index;">
+                    <div class="search-results-box-bg-part">
+                        <div class="search-results-box-part">
+                            <div class="search-results-box-left-part">
+                                <div class="search-results-round-bg">
+                                    <h5>
+                                        <ng-container *ngIf="pro.picBase64; else emptyView">
+                                            <img class="circleImage" [src]="pro.picBase64">
+                                        </ng-container>
+                                        <ng-template #emptyView>
+                                            {{pro.proName?.charAt(0)}}
+                                        </ng-template>
+                                    </h5>
+                                </div>
+                                <div class="search-results-left-tp-part">
+                                    <div class="search-results-mid">
+                                        <h4>{{pro.proName}}</h4>
+                                        <h6 class="float-right">
+                                            <label>Available</label>&nbsp;{{pro.workAvailability}}</h6>
+                                    </div>
+                                    <p class="ellipseView">{{pro.selfDescription | truncatePipe : 108}}</p>
+                                    <p class="fullView">{{pro.selfDescription}}</p>
+                                    <ng-container *ngIf="pro.selfDescription?.length >= 108">
+                                        <a href="javascript:;" (click)="setView($event, 'fullView','ellipseView')" class="ellipseView Results-see-more">See More</a>
+                                        <a href="javascript:;" (click)="setView($event, 'ellipseView', 'fullView')" class="fullView Results-see-more">See Less</a>
+                                    </ng-container>
+
+                                </div>
+                            </div>
+                            <div class="search-results-box-right-part">
+                                <div class="search-results-right-prize">
+                                    <h5>$
+                                        <!-- <strong>{{pro.hourlyFee}}</strong> /hr</h5> -->
+                                        <strong>{{pro.countedFee}}</strong> /hr</h5>
+                                    <div class="search-results-right-btn">
+                                        <a href="javascript:;" (click)="openProProfileView(pro)">Connect with Professional</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </ng-container>
+            </div>
+            <ng-container *ngIf="profList.length">
+                <div class="load-more-btn">
+                    <a href="javascript:;" id="load-more" (click)="loadMore()">Load More</a>
+                </div>
+            </ng-container>
+        </div>
+    </div>
+</div>

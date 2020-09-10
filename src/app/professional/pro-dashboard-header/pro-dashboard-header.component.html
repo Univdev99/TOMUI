@@ -1,0 +1,28 @@
+<div class="new-deshboad-header">
+  <div class="new-deshboad-tgext">
+    <h2>Dashboard</h2>
+  </div>
+  <div class="new-deshboad-accout dropdown">
+    <span class="dash-header">{{proName}} </span>
+    <span class="headerDropDown dropdown-toggle pointer" data-toggle="dropdown">
+      <img src="assets/images/dh-profile.png">
+    </span>
+    <div class="notification-modal-part op dropdown-menu">
+      <div class="notification-modal-bg-main">
+        <div class="notification-modal-sm-box">
+          <h6>Notifications</h6>
+          <a href="javascript:;"></a>
+        </div>
+        <ng-container *ngFor="let notification of notificationList; let i=index">
+          <div class="noti-detail">
+            <p>{{notification.notificationMessage}}</p>
+            <div class="noti-le-right">
+              <p></p>
+              <a href="javascript:;" (click)="saveMarkAsRead(notification.notificationId, i, $event)">Mark as Reads</a>
+            </div>
+          </div>
+        </ng-container>
+      </div>
+    </div>
+  </div>
+</div>

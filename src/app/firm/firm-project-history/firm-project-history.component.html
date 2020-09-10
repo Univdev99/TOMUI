@@ -1,0 +1,87 @@
+<div class="project-details-main-mid-part" id="open_project_dtl">
+    <div class="project-details-left-part-tab same-height beforeScroll" style="height: 800px;">
+        <div class="project-details-main-left-desc-dtl customScrollBar">
+            <h2>My Projects</h2>
+            <div class="job-list customScrollLeftside">
+                <ng-container *ngIf="projectNameList.length; else emptyView">
+                    <ng-container *ngFor="let project of projectNameList; let i = index;let first = first;">
+                        <ng-container *ngIf="first">
+                            <div class="job-see-all">
+                                <p>Accepted
+                                    <i class="fas fa-history"></i>
+                                </p>
+                            </div>
+                        </ng-container>
+                        <div (click)="changeViewParameter(project.projectId, i)" class="pointer my-project-right" [ngClass]="project.isView ? 'active': ''">
+                            <div class="my-open-project-right">
+                                <h5>{{project.projectName}}</h5>
+                                <h6>{{project.createdDate | customDate:'dateOnly':true}}</h6>
+                            </div>
+                        </div>
+                    </ng-container>
+                </ng-container>
+                <ng-template #emptyView>
+                    <div class="profile-update-my-project">
+                        <h6>What are you waiting for? </h6>
+                        <p>Connect with professionals and they will appear here.</p>
+                    </div>
+                </ng-template>
+            </div>
+        </div>
+    </div>
+    <div class="project-details-right-part-main same-height beforeScroll" style="height: 800px;">
+        <div class="project-details-main-right-desc-dtl customScrollBar">
+            <div class="project-details-main-right-head">
+                <h2>Project Details</h2>
+            </div>
+            <ng-container *ngFor="let prjDetail of projectList; let rightIndex = index;let first = first;let last = last;">
+                <ng-container *ngIf="prjDetail.isView">
+                    <div class="project-details-tp-desc-dtl">
+                        <div class="project-details-tp-desc-dtl-sm-box">
+                            <h5>
+                                <span>Date:</span>{{prjDetail.createdDate | customDate:'dateOnly':true}}</h5>
+                        </div>
+                        <div class="project-details-tp-desc-dtl-sm-box">
+                            <h5>
+                                <span>Project Name:</span>{{prjDetail.projectName}}</h5>
+                        </div>
+                        <div class="project-details-tp-desc-dtl-sm-box">
+                            <h5>
+                                <span>Hours Required:</span>{{prjDetail.requiredHours}}</h5>
+                        </div>
+                        <div class="project-details-tp-desc-dtl-sm-box">
+                            <h5>
+                                <span>Scope of Work:</span>{{prjDetail.workScope}}</h5>
+                        </div>
+                        <div class="project-details-tp-desc-dtl-sm-box">
+                            <h5>
+                                <span>Project Deadline:</span>{{prjDetail.deadLine | customDate:'dateOnly':true}}</h5>
+                        </div>
+                    </div>
+                    <div class="project-details-table-part">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Professional</th>
+                                    <th>Status</th>
+                                    <th>Payment</th>
+                                    <th>Action</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>{{prjDetail.proName}}</td>
+                                    <td>Completed</td>
+                                    <td>Received</td>
+                                    <td class="View">
+                                        <a href="javascript:;" (click)="openReviewModal(prjDetail, rightIndex)">Review</a>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </ng-container>
+            </ng-container>
+        </div>
+    </div>
+</div>

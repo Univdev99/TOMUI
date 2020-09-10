@@ -1,0 +1,94 @@
+<div class="project-details-main-mid-part" id="open_project_dtl">
+    <div class="project-details-left-part-tab same-height beforeScroll" style="height: 800px;">
+        <div class="project-details-main-left-desc-dtl customScrollBar">
+            <h2>My Projects</h2>
+            <div class="job-list customScrollLeftside">
+                <ng-container *ngIf="projectNameList.length; else emptyView">
+                    <ng-container *ngFor="let project of projectNameList; let i = index;let first = first;">
+                        <ng-container *ngIf="first">
+                            <div class="job-see-all">
+                                <p>Accepted
+                                    <!-- <span>{{project.projectCount}}</span> -->
+                                </p>
+                            </div>
+                        </ng-container>
+                        <div (click)="changeViewParameter(project.projectId, i)" class="my-project-right" [ngClass]="project.isView ? 'active': ''">
+                            <div class="my-open-project-right">
+                                <h5>{{project.businessName}}</h5>
+                                <h6>{{project.projectName}}</h6>
+                            </div>
+                        </div>
+                    </ng-container>
+                </ng-container>
+                <ng-template #emptyView>
+                    <div class="profile-update-my-project">
+                        <h6>No Record Found!! </h6>
+                        <p></p>
+                    </div>
+                </ng-template>
+            </div>
+        </div>
+    </div>
+    <div class="project-details-right-part-main same-height " style="height: 800px;">
+        <div class="project-details-main-right-desc-dtl ">
+            <div class="project-details-main-right-head">
+                <h2>Project Details</h2>
+            </div>
+            <ng-container *ngFor="let prjDetail of projectList; let rightIndex = index;let first = first;let last = last;">
+                <ng-container *ngIf="prjDetail.isView">
+                    <div class="project-details-tp-desc-dtl">
+                        <div class="project-details-tp-desc-dtl-sm-box">
+                            <h5>
+                                <span>Date:</span>{{prjDetail.createdDate | customDate:'dateOnly':true}}</h5>
+                        </div>
+                        <div class="project-details-tp-desc-dtl-sm-box">
+                            <h5>
+                                <span>Project Name:</span>{{prjDetail.projectName}}</h5>
+                        </div>
+                        <div class="project-details-tp-desc-dtl-sm-box">
+                            <h5>
+                                <span>Required Expertise:</span>{{prjDetail.expertise}}</h5>
+                        </div>
+                        <div class="project-details-tp-desc-dtl-sm-box">
+                            <h5>
+                                <span>City:</span>{{prjDetail.cityName}}</h5>
+                        </div>
+                        <div class="project-details-tp-desc-dtl-sm-box">
+                            <h5>
+                                <span>Location of Work:</span>{{prjDetail.workLocation}}</h5>
+                        </div>
+                        <div class="project-details-tp-desc-dtl-sm-box">
+                            <h5>
+                                <span>Hours Required:</span>{{prjDetail.hours}}{{prjDetail.hoursDuration ? '/ ': ' '}}{{prjDetail.hoursDuration}}</h5>
+                        </div>
+                        <div class="project-details-tp-desc-dtl-sm-box">
+                            <h5>
+                                <span>Project Description:</span>{{prjDetail.projectDescription}}</h5>
+                            <h6></h6>
+                        </div>
+                        <div class="project-details-tp-desc-dtl-sm-box">
+                            <h5>
+                                <span>Project Deadline:</span>{{prjDetail.targetDate | customDate:'dateOnly':true}}</h5>
+                        </div>
+                    </div>
+                    <div class="Final-detail-project-th-btn borderB p-b-25 p-t-10">
+                        <ng-container *ngIf="prjDetail.projectCompleteId; else elseView">
+                            <div class="Final-detail-project-sm-btn disableBtn">
+                                <a href="javascript:;" class="f-dtl-pr-btn disableView">Completed</a>
+                            </div>
+                        </ng-container>
+                        <ng-template #elseView>
+                            <div class="Final-detail-project-sm-btn">
+                                <a href="javascript:;" class="f-dtl-pr-btn active" (click)="projectCompletedByPro(prjDetail, rightIndex)">Job Complete</a>
+                            </div>
+                            <div class="Final-detail-project-sm-btn">
+                                <a href="javascript:;" class="f-dtl-pr-btn width300" (click)="openAdditionalTimeModal(prjDetail)">Request Additional Time</a>
+                            </div>
+                        </ng-template>
+                    </div>
+                </ng-container>
+            </ng-container>
+
+        </div>
+    </div>
+</div>

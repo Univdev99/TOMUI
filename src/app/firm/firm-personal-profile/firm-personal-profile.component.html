@@ -1,0 +1,131 @@
+<ng-container *ngIf="!componentsAsModal; else personalProfileModal">
+    <!-- START :: PERSONAL-PROFILE -->
+    <app-nav-bar></app-nav-bar>
+    <div class="personal-profile-main firm-profile-two">
+        <div class="sign-up-container">
+            <div class="profile-complate-head">
+                <h3>Thanks! Please also confirm your
+                    <br> personal information.</h3>
+            </div>
+            <div class="personal-profile-form-main">
+                <form id="firmPersonalProfileForm" #firmPersonalProfileForm="ngForm" [ngClass]="{submitted: submitted}">
+                    <div class="personal-profile-form-head">
+                        <h4>Personal Profile</h4>
+                        <h6>Step 2 of 3</h6>
+                    </div>
+                    <div class="login-fr-desc-dtl">
+                        <div class="col-lg-6 col-md-6 cl-sm-6 col-xs-12">
+                            <div class="sign-up-firm-fr-fild-inp">
+                                <label>First Name</label>
+                                <input type="text" [(ngModel)]="firmProfile.firstName" name="First name" placeholder="Enter Your First Name" class="form-control l-inp"
+                                    required>
+                            </div>
+                        </div>
+                        <div class="col-lg-6 col-md-6 cl-sm-6 col-xs-12">
+                            <div class="sign-up-firm-fr-fild-inp">
+                                <label>Last Name</label>
+                                <input type="text" [(ngModel)]="firmProfile.lastName" name="Last name" placeholder="Enter Your Last name" class="form-control l-inp"
+                                    required>
+                            </div>
+                        </div>
+                        <div class="col-lg-6 col-md-6 cl-sm-6 col-xs-12">
+                            <div class="sign-up-firm-fr-fild-inp">
+                                <label>Phone Number</label>
+                                <!-- <input type="number" [(ngModel)]="firmProfile.phoneNumber" name="Phone Number" placeholder="Enter Your Phone Number" minlength="10"
+                                    maxlength="10" pattern="[0-9]" class="form-control l-inp" required> -->
+                                <p-inputMask [autoClear]="false" [styleClass]="'form-control zip'" name="phoneNumber" [(ngModel)]="firmProfile.phoneNumber"
+                                    mask="(999) 999-9999" required unmask="true">
+                                </p-inputMask>
+                            </div>
+                        </div>
+                        <div class="col-lg-6 col-md-6 cl-sm-6 col-xs-12">
+                            <div class="sign-up-firm-fr-fild-inp">
+                                <label>Work Email
+                                    <span>
+                                        <img src="assets/images/form-rq.png">
+                                    </span>
+                                </label>
+                                <input type="email" [(ngModel)]="firmProfile.workEmail" name="Work Email" placeholder="Enter Your Work Email" appEmailValidator
+                                    class="form-control l-inp" required>
+                                <div class="form-hover-text">
+                                    <p>Please use your Official
+                                        <br>business email.Others(e.g.
+                                        <br>Gmail) will not be accepted
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-6 col-md-6 cl-sm-6 col-xs-12">
+                            <div class="login-fr-btn-part">
+                                <input type="submit" name="submit" (click)="saveFirmPersonalProfile()" value="submit" class="form-control l-inp">
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <!-- END :: PERSONAL-PROFILE -->
+    <app-footer></app-footer>
+</ng-container>
+
+<ng-template #personalProfileModal>
+    <div class="modal-body">
+        <div class="personal-profile-form-main" id="personal-profile-fild-pop">
+            <form id="firmPersonalProfileForm" #firmPersonalProfileForm="ngForm" [ngClass]="{submitted: submitted}">
+                <div class="personal-profile-form-head">
+                    <h4>Personal Profile</h4>
+                </div>
+                <div class="login-fr-desc-dtl">
+                    <div class="col-lg-6 col-md-6 cl-sm-6 col-xs-12">
+                        <div class="sign-up-firm-fr-fild-inp">
+                            <label>First Name</label>
+                            <input type="text" [(ngModel)]="firmProfile.firstName" name="First name" placeholder="Enter Your First Name" class="form-control l-inp"
+                                required>
+                        </div>
+                    </div>
+                    <div class="col-lg-6 col-md-6 cl-sm-6 col-xs-12">
+                        <div class="sign-up-firm-fr-fild-inp">
+                            <label>Last Name</label>
+                            <input type="text" [(ngModel)]="firmProfile.lastName" name="Last name" placeholder="Enter Your Last name" class="form-control l-inp"
+                                required>
+                        </div>
+                    </div>
+                    <div class="col-lg-6 col-md-6 cl-sm-6 col-xs-12">
+                        <div class="sign-up-firm-fr-fild-inp">
+                            <label>Phone Number</label>
+                            <!-- <input type="text" [(ngModel)]="firmProfile.phoneNumber" name="Phone Number"
+                                placeholder="Enter Your Phone Number" minlength="10" maxlength="10" 
+                                    ="[0-9]"  class="form-control l-inp" required> -->
+                            <p-inputMask [autoClear]="false" [styleClass]="'form-control zip'" name="phoneNumber" [(ngModel)]="firmProfile.phoneNumber"
+                                mask="(999) 999-9999" required unmask="true">
+                            </p-inputMask>
+                        </div>
+                    </div>
+                    <div class="col-lg-6 col-md-6 cl-sm-6 col-xs-12">
+                        <div class="sign-up-firm-fr-fild-inp">
+                            <label>Work Email
+                                <span>
+                                    <img src="assets/images/form-rq.png">
+                                </span>
+                            </label>
+                            <input type="email" [(ngModel)]="firmProfile.workEmail" name="Work Email" placeholder="Enter Your Work Email" appEmailValidator
+                                class="form-control l-inp" required>
+                            <div class="form-hover-text">
+                                <p>Please use your Official
+                                    <br>business email.Others(e.g.
+                                    <br>Gmail) will not be accepted
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-12 col-md-12 cl-sm-12 col-xs-12">
+                        <div class="login-fr-btn-part">
+                            <input type="submit" name="Update" value="Update" class="form-control l-inp" id="p-profile-btn" (click)="saveFirmPersonalProfile()">
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</ng-template>

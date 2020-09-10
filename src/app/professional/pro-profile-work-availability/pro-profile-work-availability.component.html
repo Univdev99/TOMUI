@@ -1,0 +1,90 @@
+<ng-container *ngIf="!componentsAsModal">
+<app-nav-bar></app-nav-bar>
+</ng-container>
+<div class="personal-profile-main firm-profile-main-part">
+    <div [class]="!componentsAsModal ? sign-up-container : ''">
+        <ng-container *ngIf="!componentsAsModal">
+            <div class="profile-complate-head">
+                <h3>This is what clients will be seeing.
+                    <br> Tailor it to stand out - it's okay toboast</h3>
+                <h6>Need some inspiration? Check out this profile</h6>
+            </div>
+        </ng-container> 
+        <div class="personal-profile-form-main">
+            <form id="workAvailProfileForm" #workAvailProfileForm="ngForm" [ngClass]="{submitted: submitted}">
+                <div class="personal-profile-form-head">
+                    <h4>Work Availability</h4>
+                    <ng-container *ngIf="!componentsAsModal">
+                        <h6>Step 1 of 3</h6>
+                    </ng-container>
+                </div>
+                <div class="login-fr-desc-dtl">
+                    <div class="col-lg-6 col-md-6 cl-sm-6 col-xs-12">
+                        <div class="sign-up-firm-fr-fild-inp">
+                            <label>Start Date</label>
+                            <app-calender (ngModelChange)= "setLastMinDate($event)"[(ngModel)]="proWorkAvailability.startDate" [minDate]="todayDate" name="startDate" [dateFormate]="appConstant.dateFormateWithShortMonth"></app-calender>
+                        </div>
+                    </div>
+                    <div class="col-lg-6 col-md-6 cl-sm-6 col-xs-12">
+                        <div class="sign-up-firm-fr-fild-inp">
+                            <label>Last Date</label>
+                            <app-calender  (ngModelChange)= "lastDateRangeSet($event)" [(ngModel)]="proWorkAvailability.lastDate" name="lastDate" [minDate]="minLastDate" [dateFormate]="appConstant.dateFormateWithShortMonth"></app-calender>
+                        </div>
+                    </div>
+                    <div id="workAvailDateRange" class="workAvailDateRange col-lg-12 col-md-6 cl-sm-6 col-xs-12">
+                        <label></label>
+                        <p-calendar  [readonlyInput]="true" [selectOtherMonths]="true" [inline]="true" [(ngModel)]="selectedDateRange"  name="dateNgModel" [selectionMode]="'range'"></p-calendar>
+                        <!-- <app-date-range-picker [inLine]="true" name="dateRange" [(ngModel)]="proWorkAvailability.dateRange"></app-date-range-picker> -->
+                        <!-- <app-date-range-picker [inLine]="true" name="dateRange" [(ngModel)]="proWorkAvailability.dateRange"></app-date-range-picker> -->
+                    </div>
+                    <div class="col-lg-4">
+                        <div class="sign-up-firm-fr-fild-inp">
+                            <label>Work Availability</label>
+                            <select id="workAvailability" name="workAvailability" class="l-inp" appSelectValidator="select" [(ngModel)]="proWorkAvailability.workAvailability"
+                                #workAvailability="ngModel">
+                                <option *ngFor="let item of workAvailArray" [value]="item.value">{{item.label}}</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col-lg-4">
+                        <div class="sign-up-firm-fr-fild-inp">
+                            <label>Location Availability</label>
+                            <select id="locAvailability" name="locAvailability" class="l-inp" appSelectValidator="select" [(ngModel)]="proWorkAvailability.locationAvailability"
+                                #locAvailability="ngModel">
+                                <option *ngFor="let item of locaionAvailArray" [value]="item.value">{{item.label}}</option>
+                            </select>
+
+                        </div>
+                    </div>
+                    <div class="col-lg-4">
+                        <div class="sign-up-firm-fr-fild-inp">
+                            <label>Are you interested im full-time work?</label>
+                            <ul>
+                                <li>
+                                    <input type="radio" class="regular-radio" [(ngModel)]="proWorkAvailability.isFullTime" [value]="true" name="isFullTime" id="radio-1-set">
+                                    <label for="radio-1-set"></label>
+                                    <span>Yes</span>
+                                </li>
+                                <li>
+                                    <input type="radio" class="regular-radio" [(ngModel)]="proWorkAvailability.isFullTime" [value]="false" name="isFullTime"
+                                        id="radio-2-set">
+                                    <label for="radio-2-set"></label>
+                                    <span>no</span>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="col-lg-12 col-md-12 cl-sm-12 col-xs-12">
+                        <div class="login-fr-btn-part">
+                            <input type="submit" name="submit" (click)="saveWorkAvailProfile()" value="submit" class="form-control l-inp">
+                        </div>
+                    </div>
+
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+<ng-container *ngIf="!componentsAsModal">
+    <app-footer></app-footer>
+</ng-container>

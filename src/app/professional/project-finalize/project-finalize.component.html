@@ -1,0 +1,49 @@
+<!-- finalize modal -->
+<div class="modal-body">
+    <form id="projectFinalizeModal" #projectFinalizeForm="ngForm" [ngClass]="{submitted: submitted}">
+        <div class="profile-work-experience-modal-bg-part Final-detail-project" id="choose-metting-time">
+            <div class="profile-work-experience-modal-dtl-part">
+                <div class="profile-work-experience-tp-head" appCloseModal>
+                    <div class="edit-event-back" appCloseModal>
+                        <a href="javascript:;" id="back-modal">
+                            <img src="assets/images/pop-back-arrow.png">
+                            <h6>Back</h6>
+                        </a>
+                    </div>
+                    <h2>Final Details of Project</h2>
+                </div>
+                <div class="profile-work-experience-men-dtl">
+                    <p>Please Input the final details of the project as discussed with the client. this information will be
+                        used for invoicing and payment purposes. Once the client approves this, the job is yours!.
+                    </p>
+                </div>
+                <div class="row col-lg-12 col-md-12 cl-sm-12 col-xs-12">
+                    <div class="col-lg-4 col-md-4 cl-sm-4 col-xs-4">
+                        <div class="sign-up-firm-fr-fild-inp">
+                            <label>Hours Required</label>
+                            <input type="number" [(ngModel)]="projectFinalize.requiredHours" name="requiredHours" placeholder="Enter Hours" class="form-control l-inp"
+                                required>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 col-md-4 cl-sm-4 col-xs-4">
+                        <div class="sign-up-firm-fr-fild-inp">
+                            <label>Project Deadline</label>
+                            <app-calender  [minDate]="minDate" [placeholder]="'Enter Date'" [(ngModel)]="projectFinalize.deadLine" name="deadLine" [dateFormate]="appConstant.dateFormateWithShortMonth"></app-calender>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-12 col-md-12 cl-sm-12 col-xs-12">
+                    <div class="sign-up-firm-fr-fild-inp">
+                        <label>Scope of Work</label>
+                        <textarea name="workScope" [(ngModel)]="projectFinalize.workScope" placeholder="Enter the Scope of Work" class="form-control l-inp"
+                            required></textarea>
+                    </div>
+                </div>
+                <div class="professional-profile-fild-btn-last">
+                    <a href="javascript:;" (click)="saveProjectFinalize()">Send Confirmation</a>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>
+<!-- finalize modal -->

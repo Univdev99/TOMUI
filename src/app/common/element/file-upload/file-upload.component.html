@@ -1,0 +1,55 @@
+<div class="professional-work-experience-pdf-box-part">
+  <div class="professional-work-experience-pdf-left-bg-box upload-drop-zone" (drop)="ondrop($event)" (dragover)="dragover($event)"
+    id="drop-zone">
+    <div class="Upload-Profile">
+      <div class="file-upload">
+        <div class="file-select">
+          <div class="file-select-button" id="fileName2">
+            <img src="assets/images/upload-file.png">
+          </div>
+          <div class="file-select-name" id="noFile2">Drang and Drop or
+            <br>
+            <a href="javascript:;" class="form-control l-inp">Browse</a>
+          </div>
+          <input type="file" name="chooseFile2" id="chooseFile2" title="doc/pdf" (change)="fileChange($event)" accept="{{allowedExtentionType}}">
+          <!-- <app-file-upload [dragAndDrop]="true" [data]="documentUpload" (docListEvent)="uploadedDocumentList($event)"></app-file-upload> -->
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="professional-work-experience-pdf-left-bg-box pdf-right-bg-box">
+    <ng-container *ngIf="documentList.length">
+      <ng-container *ngFor="let document of documentList; let i = index">
+        <div class="pdf-right-bg-box-sm-box active">
+          <div class="pdf-icon-dtl">
+            <div class="pdf-icon-bg">
+              <h6>DOC</h6>
+            </div>
+            <div class="pdf-icon-dtl-main">
+              <h5 (click)="openDocumentInNewTab(document.docPath)">{{document.docTitle}}.docx</h5>
+              <h6>{{document.size}} kb</h6>
+            </div>
+          </div>
+          <div class="pdf-icon-close">
+            <a href="javascript:;" (click)="deleteDocument(document.documentId, i)">
+              <img src="assets/images/close-pdf.png">
+            </a>
+          </div>
+        </div>  
+      </ng-container>
+    </ng-container>
+  </div>
+</div>
+<!--   <div class="input-group borB" >
+    <input type="file"  name="file" id="fileUpload" [disabled]="disable" class="form-control" (change)="fileChange($event)"
+      accept="{{allowedExtentionType}}" />
+ <span class="input-group-btn">
+      <button type="button" title="{{supportedFormatAsText}}" class="btn pull-right" data-toggle="dropdown"
+        aria-expanded="false"><i class="omio om_info"></i></button>
+    </span>
+  </div>
+  <div *ngIf="!disable && dragAndDrop "  class="upload-drop-zone" (drop)="ondrop($event)" (dragover)="dragover($event)"
+    id="drop-zone">
+    Drag and drop files here...
+  </div>
+ -->

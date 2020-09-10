@@ -1,0 +1,65 @@
+<ng-container *ngIf="isMenuNeeded">
+    <app-nav-bar></app-nav-bar>
+</ng-container>
+<ng-container *ngIf="isProLeftMenuNeeded">
+    <app-pro-menu></app-pro-menu>
+</ng-container>
+<ng-container *ngIf="isFirmLeftMenuNeeded">
+    <app-dashboard-menu></app-dashboard-menu>
+</ng-container>
+
+<div class="contact-banner">
+    <div class="contact-banner-part">
+        <img src="assets/images/contact-banner.png">
+    </div>
+</div>
+<div class="sign-up-firm-main-part contact-page-main-dtl">
+    <div class="sign-up-container">
+        <div class="sign-up-firm-mid-sec-part">
+            <div class="col-lg-5 col-md-5 cl-sm-5 col-xs-12 p_0">
+                <div class="sign-up-firm-right-main-part help-page">
+                    <div class="contact-form-dtl-main">
+                        <h5>Contact</h5>
+                        <h2>Have a question? Connect with Top of Mind.</h2>
+                        <h6>Fill in the form or email us at
+                            <a href="javascript:;">info@topofmind.work</a>.</h6>
+                        <h6>You'll hear back from us soon!</h6>
+                    </div>
+                    <form id="helpForm" #helpForm="ngForm" [ngClass]="{submitted: submitted}">
+                        <div class="login-fr-desc-dtl">
+                            <div class="sign-up-firm-fr-fild-inp">
+                                <input type="text" name="First name" maxlength="50" [(ngModel)]="help.firstName" placeholder="First name" class="form-control l-inp"
+                                    required>
+                            </div>
+                            <div class="sign-up-firm-fr-fild-inp">
+                                <input type="email" name="Email address" appEmailValidator maxlength="50" [(ngModel)]="help.email" placeholder="Email" class="form-control l-inp"
+                                    required>
+                            </div>
+                            <div class="sign-up-firm-fr-fild-inp">
+                                <input type="text" name="Subject" maxlength="200" [(ngModel)]="help.subject" placeholder="Subject" class="form-control l-inp"
+                                    required>
+                            </div>
+                            <div class="sign-up-firm-fr-fild-inp">
+                                <textarea class="form-control l-inp" name="message" maxlength="10000" [(ngModel)]="help.message" placeholder="Message" required></textarea>
+                            </div>
+                            <div class="contact-form-btn-part">
+                                <div class="contact-capcha">
+                                    <!-- <img src="images/capcha-code.png"> -->
+                                </div>
+                                <div class="login-fr-btn-part">
+                                    <input type="submit" name="Send Message" (click)="saveAndSendMail()" value="Send Message" class="form-control l-inp">
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+            <div class="col-lg-5 col-md-5 cl-sm-5 col-xs-12 p_0">
+                <div class="sign-up-firm-left-part">
+                    <img src="assets/images/contact-right-side-pic.png">
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<app-footer></app-footer>

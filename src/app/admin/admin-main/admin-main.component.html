@@ -1,0 +1,56 @@
+<app-admin-menu></app-admin-menu>
+<div class="new-section-design dashbord-tp-part-main dashbord-main-bg-part">
+    <div class="new-deshboad-header">
+        <div class="new-deshboad-tgext">
+            <h2>Dashboard</h2>
+        </div>
+        <div class="new-deshboad-accout dropdown">
+            <span class="dash-header">{{adminName}} </span>
+            <span class="headerDropDown dropdown-toggle pointer" data-toggle="dropdown">
+              <img src="assets/images/dh-profile.png">
+            </span>
+            <div class="notification-modal-part op dropdown-menu">
+              <div class="notification-modal-bg-main">
+                <div class="notification-modal-sm-box">
+                  <h6>Notifications</h6>
+                  <a href="javascript:;"></a>
+                </div>
+                <ng-container *ngFor="let notification of notificationList; let i=index">
+                  <div class="noti-detail">
+                <p>{{notification.notificationMessage}}</p>
+                    <div class="noti-le-right">
+                      <p></p>
+                      <a href="javascript:;" (click)="saveMarkAsRead(notification.notificationId, i, $event)">Mark as Reads</a>
+                    </div>
+                  </div>
+                </ng-container>
+              </div>
+            </div>
+          </div>
+        <!-- <div class="new-deshboad-accout"> -->
+            <!-- <a href="javascript:;">{{adminName}}
+                <span (click)="notificationClicked()">
+                    <img src="assets/images/dh-profile.png">
+                </span>
+            </a>
+            <div class="notification-modal-part op" [style.display]="isNotification ? 'block' : 'none'">
+                <div class="notification-modal-bg-main">
+                    <div class="notification-modal-sm-box">
+                        <h6>Notifications</h6>
+                        <a href="javascript:;"></a>
+                    </div>
+                    <ng-container *ngFor="let notification of notificationList; let i=index">
+                        <div class="noti-detail">
+                            <p>{{notification.notificationMessage}}</p>
+                            <div class="noti-le-right">
+                                <p></p>
+                                <a href="javascript:;" (click)="saveMarkAsRead(notification.notificationId, i)">Mark as Reads</a>
+                            </div>
+                        </div>
+                    </ng-container>
+                </div>
+            </div> -->
+        <!-- </div> -->
+    </div>
+    <router-outlet></router-outlet>
+</div>

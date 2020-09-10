@@ -1,0 +1,264 @@
+@font-face {
+    font-family: 'Trueno';
+    src: url('TruenoBlk.eot');
+    src: url('TruenoBlk.eot?#iefix') format('embedded-opentype'),
+        url('TruenoBlk.woff2') format('woff2'),
+        url('TruenoBlk.woff') format('woff'),
+        url('TruenoBlk.ttf') format('truetype'),
+        url('TruenoBlk.svg#TruenoBlk') format('svg');
+    font-weight: 900;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Trueno';
+    src: url('TruenoExBdIt.eot');
+    src: url('TruenoExBdIt.eot?#iefix') format('embedded-opentype'),
+        url('TruenoExBdIt.woff2') format('woff2'),
+        url('TruenoExBdIt.woff') format('woff'),
+        url('TruenoExBdIt.ttf') format('truetype'),
+        url('TruenoExBdIt.svg#TruenoExBdIt') format('svg');
+    font-weight: 800;
+    font-style: italic;
+}
+
+@font-face {
+    font-family: 'Trueno';
+    src: url('TruenoUltLt.eot');
+    src: url('TruenoUltLt.eot?#iefix') format('embedded-opentype'),
+        url('TruenoUltLt.woff2') format('woff2'),
+        url('TruenoUltLt.woff') format('woff'),
+        url('TruenoUltLt.ttf') format('truetype'),
+        url('TruenoUltLt.svg#TruenoUltLt') format('svg');
+    font-weight: 200;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Trueno';
+    src: url('TruenoRg.eot');
+    src: url('TruenoRg.eot?#iefix') format('embedded-opentype'),
+        url('TruenoRg.woff2') format('woff2'),
+        url('TruenoRg.woff') format('woff'),
+        url('TruenoRg.ttf') format('truetype'),
+        url('TruenoRg.svg#TruenoRg') format('svg');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Trueno';
+    src: url('TruenoBlkOlIt.eot');
+    src: url('TruenoBlkOlIt.eot?#iefix') format('embedded-opentype'),
+        url('TruenoBlkOlIt.woff2') format('woff2'),
+        url('TruenoBlkOlIt.woff') format('woff'),
+        url('TruenoBlkOlIt.ttf') format('truetype'),
+        url('TruenoBlkOlIt.svg#TruenoBlkOlIt') format('svg');
+    font-weight: 900;
+    font-style: italic;
+}
+
+@font-face {
+    font-family: 'Trueno';
+    src: url('TruenoExBdOlIt.eot');
+    src: url('TruenoExBdOlIt.eot?#iefix') format('embedded-opentype'),
+        url('TruenoExBdOlIt.woff2') format('woff2'),
+        url('TruenoExBdOlIt.woff') format('woff'),
+        url('TruenoExBdOlIt.ttf') format('truetype'),
+        url('TruenoExBdOlIt.svg#TruenoExBdOlIt') format('svg');
+    font-weight: 800;
+    font-style: italic;
+}
+
+@font-face {
+    font-family: 'Trueno';
+    src: url('TruenoBdOlIt.eot');
+    src: url('TruenoBdOlIt.eot?#iefix') format('embedded-opentype'),
+        url('TruenoBdOlIt.woff2') format('woff2'),
+        url('TruenoBdOlIt.woff') format('woff'),
+        url('TruenoBdOlIt.ttf') format('truetype'),
+        url('TruenoBdOlIt.svg#TruenoBdOlIt') format('svg');
+    font-weight: bold;
+    font-style: italic;
+}
+
+@font-face {
+    font-family: 'Trueno';
+    src: url('TruenoSBdIt.eot');
+    src: url('TruenoSBdIt.eot?#iefix') format('embedded-opentype'),
+        url('TruenoSBdIt.woff2') format('woff2'),
+        url('TruenoSBdIt.woff') format('woff'),
+        url('TruenoSBdIt.ttf') format('truetype'),
+        url('TruenoSBdIt.svg#TruenoSBdIt') format('svg');
+    font-weight: 600;
+    font-style: italic;
+}
+
+@font-face {
+    font-family: 'Trueno';
+    src: url('TruenoBlkOl.eot');
+    src: url('TruenoBlkOl.eot?#iefix') format('embedded-opentype'),
+        url('TruenoBlkOl.woff2') format('woff2'),
+        url('TruenoBlkOl.woff') format('woff'),
+        url('TruenoBlkOl.ttf') format('truetype'),
+        url('TruenoBlkOl.svg#TruenoBlkOl') format('svg');
+    font-weight: 900;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Trueno';
+    src: url('TruenoBdIt.eot');
+    src: url('TruenoBdIt.eot?#iefix') format('embedded-opentype'),
+        url('TruenoBdIt.woff2') format('woff2'),
+        url('TruenoBdIt.woff') format('woff'),
+        url('TruenoBdIt.ttf') format('truetype'),
+        url('TruenoBdIt.svg#TruenoBdIt') format('svg');
+    font-weight: bold;
+    font-style: italic;
+}
+
+@font-face {
+    font-family: 'Trueno';
+    src: url('TruenoLtIt.eot');
+    src: url('TruenoLtIt.eot?#iefix') format('embedded-opentype'),
+        url('TruenoLtIt.woff2') format('woff2'),
+        url('TruenoLtIt.woff') format('woff'),
+        url('TruenoLtIt.ttf') format('truetype'),
+        url('TruenoLtIt.svg#TruenoLtIt') format('svg');
+    font-weight: 300;
+    font-style: italic;
+}
+
+@font-face {
+    font-family: 'Trueno';
+    src: url('TruenoExBdOl.eot');
+    src: url('TruenoExBdOl.eot?#iefix') format('embedded-opentype'),
+        url('TruenoExBdOl.woff2') format('woff2'),
+        url('TruenoExBdOl.woff') format('woff'),
+        url('TruenoExBdOl.ttf') format('truetype'),
+        url('TruenoExBdOl.svg#TruenoExBdOl') format('svg');
+    font-weight: 800;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Trueno';
+    src: url('TruenoExBd.eot');
+    src: url('TruenoExBd.eot?#iefix') format('embedded-opentype'),
+        url('TruenoExBd.woff2') format('woff2'),
+        url('TruenoExBd.woff') format('woff'),
+        url('TruenoExBd.ttf') format('truetype'),
+        url('TruenoExBd.svg#TruenoExBd') format('svg');
+    font-weight: 800;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Trueno';
+    src: url('TruenoUltBlk.eot');
+    src: url('TruenoUltBlk.eot?#iefix') format('embedded-opentype'),
+        url('TruenoUltBlk.woff2') format('woff2'),
+        url('TruenoUltBlk.woff') format('woff'),
+        url('TruenoUltBlk.ttf') format('truetype'),
+        url('TruenoUltBlk.svg#TruenoUltBlk') format('svg');
+    font-weight: 900;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Trueno';
+    src: url('TruenoBlkIt.eot');
+    src: url('TruenoBlkIt.eot?#iefix') format('embedded-opentype'),
+        url('TruenoBlkIt.woff2') format('woff2'),
+        url('TruenoBlkIt.woff') format('woff'),
+        url('TruenoBlkIt.ttf') format('truetype'),
+        url('TruenoBlkIt.svg#TruenoBlkIt') format('svg');
+    font-weight: 900;
+    font-style: italic;
+}
+
+@font-face {
+    font-family: 'Trueno';
+    src: url('TruenoBd.eot');
+    src: url('TruenoBd.eot?#iefix') format('embedded-opentype'),
+        url('TruenoBd.woff2') format('woff2'),
+        url('TruenoBd.woff') format('woff'),
+        url('TruenoBd.ttf') format('truetype'),
+        url('TruenoBd.svg#TruenoBd') format('svg');
+    font-weight: bold;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Trueno';
+    src: url('TruenoLt.eot');
+    src: url('TruenoLt.eot?#iefix') format('embedded-opentype'),
+        url('TruenoLt.woff2') format('woff2'),
+        url('TruenoLt.woff') format('woff'),
+        url('TruenoLt.ttf') format('truetype'),
+        url('TruenoLt.svg#TruenoLt') format('svg');
+    font-weight: 300;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Trueno';
+    src: url('TruenoSBd.eot');
+    src: url('TruenoSBd.eot?#iefix') format('embedded-opentype'),
+        url('TruenoSBd.woff2') format('woff2'),
+        url('TruenoSBd.woff') format('woff'),
+        url('TruenoSBd.ttf') format('truetype'),
+        url('TruenoSBd.svg#TruenoSBd') format('svg');
+    font-weight: 600;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Trueno';
+    src: url('TruenoUltLtIt.eot');
+    src: url('TruenoUltLtIt.eot?#iefix') format('embedded-opentype'),
+        url('TruenoUltLtIt.woff2') format('woff2'),
+        url('TruenoUltLtIt.woff') format('woff'),
+        url('TruenoUltLtIt.ttf') format('truetype'),
+        url('TruenoUltLtIt.svg#TruenoUltLtIt') format('svg');
+    font-weight: 200;
+    font-style: italic;
+}
+
+@font-face {
+    font-family: 'Trueno';
+    src: url('TruenoRgIt.eot');
+    src: url('TruenoRgIt.eot?#iefix') format('embedded-opentype'),
+        url('TruenoRgIt.woff2') format('woff2'),
+        url('TruenoRgIt.woff') format('woff'),
+        url('TruenoRgIt.ttf') format('truetype'),
+        url('TruenoRgIt.svg#TruenoRgIt') format('svg');
+    font-weight: normal;
+    font-style: italic;
+}
+
+@font-face {
+    font-family: 'Trueno';
+    src: url('TruenoBdOl.eot');
+    src: url('TruenoBdOl.eot?#iefix') format('embedded-opentype'),
+        url('TruenoBdOl.woff2') format('woff2'),
+        url('TruenoBdOl.woff') format('woff'),
+        url('TruenoBdOl.ttf') format('truetype'),
+        url('TruenoBdOl.svg#TruenoBdOl') format('svg');
+    font-weight: bold;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Trueno';
+    src: url('TruenoUltBlkIt.eot');
+    src: url('TruenoUltBlkIt.eot?#iefix') format('embedded-opentype'),
+        url('TruenoUltBlkIt.woff2') format('woff2'),
+        url('TruenoUltBlkIt.woff') format('woff'),
+        url('TruenoUltBlkIt.ttf') format('truetype'),
+        url('TruenoUltBlkIt.svg#TruenoUltBlkIt') format('svg');
+    font-weight: 900;
+    font-style: italic;
+}
+

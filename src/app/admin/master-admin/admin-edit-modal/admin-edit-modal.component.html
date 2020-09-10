@@ -1,0 +1,48 @@
+<div class="modal-body">
+    <div class="personal-profile-form-main Business-profile-pop-part" id="password-change-pop">
+        <form id="adminSignupEditForm" #adminSignupForm="ngForm" [ngClass]="{submitted: submitted}">
+            <div class="personal-profile-form-head">
+                <h4>Password Change</h4> 
+            </div>
+            <div class="login-fr-desc-dtl">
+                <div class="col-lg-12 col-md-12 cl-sm-12 col-xs-12">
+                    <div class="sign-up-firm-fr-fild-inp">
+                        <label>Existing Password</label>
+                        <input type="password" name="Existing Password" id="password-field" placeholder="Existing Password" value="" class="form-control l-inp"
+                            required="" maxlength="8">
+                        <span toggle="#password-field" class="field-icon toggle-password">
+                            <img src="assets/images/pwd-loak.png">
+                        </span>
+                        <p></p>
+                    </div>
+                </div>
+                <div class="col-lg-12 col-md-12 cl-sm-12 col-xs-12">
+                    <div class="sign-up-firm-fr-fild-inp">
+                        <label>New Password</label>
+                        <input type="password" name="New Password" id="password-field" placeholder="New Password" value="" class="form-control l-inp"
+                            required="" maxlength="8">
+                        <span toggle="#password-field" class="field-icon toggle-password">
+                            <img src="assets/images/pwd-loak.png">
+                        </span>
+                        <p>Password must be at least 8 characters.</p>
+                    </div>
+                </div>
+                <div class="col-lg-12 col-md-12 cl-sm-12 col-xs-12">
+                    <div class="sign-up-firm-fr-fild-inp">
+                        <label>Confirm New Password</label>
+                        <input type="password" name="Confirm New Password" id="password-field" placeholder="Confirm New Password" value="" class="form-control l-inp"
+                            required="" maxlength="8">
+                        <span toggle="#password-field" class="field-icon toggle-password">
+                            <img src="assets/images/pwd-loak.png">
+                        </span>
+                    </div>
+                </div>
+                <div class="col-lg-12 col-md-12 cl-sm-12 col-xs-12">
+                    <div class="login-fr-btn-part">
+                        <input type="submit" name="Update" value="Update" class="form-control l-inp" id="change-pwd-btn">
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>

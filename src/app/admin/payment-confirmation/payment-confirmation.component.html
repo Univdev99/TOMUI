@@ -1,0 +1,55 @@
+<!-- finalize by firm modal -->
+<div class="modal-body">
+    <div class="profile-work-experience-modal-bg-part Final-detail-project">
+        <div class="profile-work-experience-modal-dtl-part">
+            <div class="profile-work-experience-tp-head">
+                <div class="edit-event-back" appCloseModal>
+                    <a href="javascript:;" id="back-modal">
+                        <img src="assets/images/pop-back-arrow.png">
+                        <h6>Back</h6>
+                    </a>
+                </div>
+                <h2>Job Details</h2>
+            </div>
+            <div class="Final-desc-detail-project">
+                <div class="Final-detail-project-sm-box">
+                    <p>
+                        <span>Date:</span>{{projectData.createdDate | customDate:'dateOnly':true}}</p>
+                    <p>
+                        <span>Project Name:</span>{{projectData.projectName}}</p>
+                    <p>
+                        <span>Hours Required:</span>{{projectData.requiredHours}}</p>
+                    <p>
+                        <span>Scope of Work:</span>
+                        <br>{{projectData.workScope}}</p>
+                    <p>
+                        <span>Project Deadline:</span>{{projectData.deadLine | customDate:'dateOnly':true}}</p>
+                </div>
+                <ng-container *ngIf="projectData.jobCompleteStatus === appConstant.awaitingAdmin">
+                    <div class="Final-detail-project-th-btn">
+                        <div class="Final-detail-project-sm-btn">
+                            <a href="javascript:;" class="f-dtl-pr-btn active" (click)="jobCompleteByAdmin()">Job Complete</a>
+                        </div>
+                        <div class="Final-detail-project-sm-btn disableBtn">
+                            <a href="javascript:;" class="f-dtl-pr-btn width400 disableView">Payment Confirmed & move to History</a>
+                        </div>
+                    </div>
+                </ng-container>
+                <ng-container *ngIf="projectData.jobCompleteStatus === appConstant.awaitingPayment">
+                    <div class="Final-detail-project-th-btn disableBtn">
+                        <div class="Final-detail-project-sm-btn">
+                            <a href="javascript:;" class="f-dtl-pr-btn disableView">Job Completed</a>
+                        </div>
+                        <div class="Final-detail-project-sm-btn">
+                            <a href="javascript:;" class="f-dtl-pr-btn active width400" (click)="paymentConfirmedByAdmin()">Payment Confirmed & move to History</a>
+                        </div>
+                    </div>
+                </ng-container>
+
+
+
+            </div>
+        </div>
+    </div>
+</div>
+<!-- finalize by firm modal -->

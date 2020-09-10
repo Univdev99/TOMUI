@@ -1,0 +1,99 @@
+<div class="project-details-main-mid-part" id="my_jobs_page">
+    <div class="project-details-left-part-tab same-height" style="height: 500px;">
+        <div class="project-details-main-left-desc-dtl">
+            <h2>Add New Admin</h2>
+            <div class="job-list">
+                <div class="job-see-all">
+                    <form id="adminSignupForm" #adminSignupForm="ngForm" [ngClass]="{submitted: submitted}">
+                        <div class="col-lg-12 col-md-12 cl-sm-12 col-xs-12">
+                            <div class="sign-up-firm-fr-fild-inp">
+                                <label>Name</label>
+                                <input type="text" maxlength="50" name="bDescription" [(ngModel)]="adminSignup.firstName" placeholder="Enter new Admin Name"
+                                    class="form-control l-inp" required>
+                            </div>
+                        </div>
+                        <div class="col-lg-12 col-md-12 cl-sm-12 col-xs-12">
+                            <div class="sign-up-firm-fr-fild-inp">
+                                <label>Email</label>
+                                <input type="text" name="email" appEmailValidator [(ngModel)]="adminSignup.workEmail" placeholder="Enter Email" class="form-control l-inp"
+                                    required>
+                            </div>
+                        </div>
+                        <div class="col-lg-12 col-md-12 cl-sm-12 col-xs-12">
+                            <div class="sign-up-firm-fr-fild-inp">
+                                <label>Password</label>
+                                <input type="password" maxlength="50" name="password" [(ngModel)]="adminSignup.password" placeholder="Enter Password" class="form-control l-inp"
+                                    required>
+                            </div>
+                        </div>
+                        <div class="col-lg-12 col-md-12 cl-sm-12 col-xs-12">
+                            <div class="login-fr-btn-part">
+                                <input type="submit" name="submit" (click)="saveAdmin()" value="Submit" class="form-control l-inp" id="b-profile-btn">
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <div class="project-details-main-left-desc-dtl">
+            <h2>Profit</h2>
+            <div class="job-list">
+                <div class="job-see-all">
+                        <form id="adminProfitForm" #adminProfitForm="ngForm" [ngClass]="{submitted: adminProfitSubmitted}">
+                        <div class="col-lg-12 col-md-12 cl-sm-12 col-xs-12">
+                            <div class="sign-up-firm-fr-fild-inp">
+                                <label>Profit Percentage</label>
+                                <input type="text" maxlength="10" pattern="^\d*(\.\d{0,2})?$" name="profit" [(ngModel)]="adminProfit.profit" placeholder="Percentage"
+                                    class="form-control l-inp" required>
+                            </div>
+                        </div>
+                        <div class="col-lg-12 col-md-12 cl-sm-12 col-xs-12">
+                            <div class="login-fr-btn-part">
+                                <input type="submit" name="submit" (click)="saveAdminProfit(adminProfitForm)" value="Submit" class="form-control l-inp">
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="project-details-right-part-main same-height tab-content beforeScroll" style="height: 800px;">
+        <div id="adminViewSection" class="project-details-main-right-desc-dtl tab-pane active customScrollBar">
+            <div class="project-details-main-right-head">
+                <h2>Admin Support</h2>
+            </div>
+            <ng-container *ngIf="adminList.length">
+                <div class="my-jobs-part">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th class="width265">Admin</th>
+                                <th>Email</th>
+                                <th class="width160">Password</th>
+                                <th>Action</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <ng-container *ngFor="let admin of adminList">
+                                <tr>
+                                    <td>
+                                        <h3> {{admin.firstName}}</h3>
+                                    </td>
+                                    <td>
+                                        <h3> {{admin.workEmail}}</h3>
+                                    </td>
+                                    <td>
+                                        <h5>*******</h5>
+                                    </td>
+                                    <td>
+                                        <a href="javascript:;" (click)="openModalAndEditModal(admin)">Edit</a>
+                                    </td>
+                                </tr>
+                            </ng-container>
+                        </tbody>
+                    </table>
+                </div>
+            </ng-container>
+        </div>
+    </div>
+</div>

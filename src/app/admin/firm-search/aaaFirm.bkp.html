@@ -1,0 +1,172 @@
+<div class="project-details-main-mid-part" id="my_jobs_page">
+    <div class="project-details-left-part-tab same-height" style="height: 800px;">
+        <div class="project-details-main-left-desc-dtl">
+            <h2>Firms</h2>
+            <ng-container *ngIf="firmNameList.length; else emptyView">
+                <div class="my-jobs-main-right-part">
+                    <ul class="nav nav-tabs ">
+                        <ng-container *ngFor="let firmDetail of firmNameList; let i = index;let first = first;">
+                            <li class="nav-item my-project-right" (click)="setViewOfFirm(firmDetail.firmProfileId, i)" [ngClass]="firmDetail.isView ? 'active': ''">
+                                <a class="nav-link" href="javascript:;">
+                                    <div class="my-open-project-right">
+                                        <h3>{{firmDetail.businessName}}</h3>
+                                    </div>
+                                </a>
+                            </li>
+                        </ng-container>
+                    </ul>
+                </div>
+            </ng-container>
+            <ng-template #emptyView>
+                <div class="profile-update-my-project">
+                    <h6>No Record Found </h6>
+                </div>
+            </ng-template>
+        </div>
+    </div>
+    <div class="project-details-right-part-main same-height tab-content" style="height: 800px;">
+        <div id="firmOverViewSection" class="project-details-main-right-desc-dtl tab-pane active">
+            <div class="project-details-main-right-head">
+                <h2>Overview</h2>
+            </div>
+            <ng-container *ngIf="firmList.length">
+                <div class="my-jobs-part">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th class="width265">Firms</th>
+                                <th>Date</th>
+                                <th>No of Hrs</th>
+                                <th class="width160">Professional</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <ng-container *ngFor="let firm of firmList">
+                                <ng-container *ngIf="firm.isView">
+                                    <tr class="pointer" (click)="callJQuery('firmOverViewSection','firmDetailSection', 'overViewSection', firm)">
+                                        <td>
+                                            <h3> {{firm.businessName}}</h3>
+                                            <h5>{{firm.projectName}}</h5>
+                                        </td>
+                                        <td>
+                                            <h5>{{firm.createdDate | customDate:'dateOnly':true}}</h5>
+                                        </td>
+                                        <td>
+                                            <h5>{{firm.hours}}</h5>
+                                        </td>
+                                        <td>
+                                            <h5>{{firm.proName}}</h5>
+                                        </td>
+                                    </tr>
+                                </ng-container>
+                            </ng-container>
+                        </tbody>
+                    </table>
+                </div>
+            </ng-container>
+        </div>
+        <div id="firmDetailSection" class="project-details-main-right-desc-dtl tab-pane" style="display: none;">
+            <div class="project-details-main-right-head project-details-main-right-two-part">
+                <h2>Firm Job Details</h2>
+                <a href="javascript:;" (click)="callJQuery('firmDetailSection','firmOverViewSection', 'firmJobDetails', null)">Back to Overview</a>
+            </div>
+            <ng-container *ngFor="let firm of firmList; let rightIndex = index;let first = first;let last = last;">
+                <ng-container *ngIf="firm.isView && firm.projectScheduleId">
+                    <div class="my-job-project-details-head-btm">
+                        <div class="my-jobs-part-project-dtl-head-bg">
+                            <div class="my-open-project-right">
+                                <h6>Firm</h6>
+                                <p>{{firm.businessName}}
+                                    <br> {{firm.projectName}} </p>
+                            </div>
+                            <div class="my-open-project-right">
+                                <h6>Date</h6>
+                                <p>{{firm.createdDate | customDate:'dateOnly':true}}</p>
+                            </div>
+                            <div class="my-open-project-right">
+                                <h6>No of Hrs</h6>
+                                <p>{{firm.hours}}</p>
+                            </div>
+                            <div class="my-open-project-right">
+                                <h6>Professional</h6>
+                                <p>{{firm.proName}}</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="my-job-project-details-head-btm">
+                        <div class="my-jobs-part-project-dtl-head-bg">
+                            <div class="my-open-project-right">
+                                <h6>Project Requested</h6>
+                            </div>
+                            <div class="my-open-project-right">
+                                <h6>Date</h6>
+                            </div>
+                            <div class="my-open-project-right">
+                                <ng-container *ngIf="!firm.projectScheduleByProId">
+                                    <h6>Awaiting Pro</h6>
+                                </ng-container>
+                                <ng-container *ngIf="firm.projectScheduleByProId">
+                                    <h6>Awaiting Meeting</h6>
+                                </ng-container>
+                                <ng-container *ngIf="firm.scheduleByAdmin">
+                                    <h6>Complete</h6>
+                                </ng-container>
+                                <ng-container *ngIf="firm.isDeclineByPro">
+                                    <h6>Decline</h6>
+                                </ng-container>
+                            </div>
+                            <div class="my-open-project-right">
+                                <ng-container *ngIf="!firm.projectScheduleByProId">
+                                    <h6 (click)="openViewScheduleDetail(firm, 'forViewByAdmin', rightIndex)">View
+                                    </h6>
+                                </ng-container>
+                                <ng-container *ngIf="firm.projectScheduleByProId">
+                                    <h6 (click)="openViewScheduleDetail(firm, 'forConfirmationByAdmin', rightIndex)">View
+                                    </h6>
+                                </ng-container>
+                                <ng-container *ngIf="firm.scheduleByAdmin">
+                                    <h6 (click)="projectMeetDoneByAdmin(firm, rightIndex)">Yes</h6>
+                                </ng-container>
+                                <ng-container *ngIf="firm.isDeclineByPro">
+                                    <h6>Yes</h6>
+                                </ng-container>
+                                <h6></h6>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- STEP 2 -->
+                    <ng-container *ngIf="firm.scheduleByAdmin">
+                        <div class="my-job-project-details-head-btm">
+                            <div class="my-jobs-part-project-dtl-head-bg">
+                                <div class="my-open-project-right">
+                                    <h6>Meeting</h6>
+                                </div>
+                                <div class="my-open-project-right">
+                                    <h6>Date</h6>
+                                </div>
+                                <div class="my-open-project-right">
+                                    <ng-container *ngIf="firm.scheduleByAdmin">
+                                        <h6>Awaiting Meeting</h6>
+                                    </ng-container>
+                                    <ng-container *ngIf="firm.isCompletedByAdmin">
+                                        <h6>Completed</h6>
+                                    </ng-container>
+                                </div>
+                                <div class="my-open-project-right">
+                                    <ng-container *ngIf="firm.scheduleByAdmin">
+                                        <h6 (click)="projectMeetDoneByAdmin(firm, rightIndex)">Confirm Button
+                                        </h6>
+                                    </ng-container>
+                                    <ng-container *ngIf="firm.isCompletedByAdmin">
+                                        <h6>Yes</h6>
+                                    </ng-container>
+                                </div>
+                            </div>
+                        </div>
+                    </ng-container>
+                    <!-- STEP - 2  -->
+                </ng-container>
+            </ng-container>
+        </div>
+    </div>
+</div>

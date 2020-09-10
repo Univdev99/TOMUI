@@ -1,0 +1,449 @@
+<ng-container *ngIf="!componentsAsModal;">
+    <app-nav-bar></app-nav-bar>
+</ng-container>
+    <!-- START :: FIRM-PROFILE -->
+    <div class="personal-profile-main firm-profile-main-part">
+        <div [ngClass]="componentsAsModal ? '': 'sign-up-container'">
+            <ng-container *ngIf="!componentsAsModal">
+                    <div class="profile-complate-head">
+                            <h3>Please complete your Profile first so we
+                                <br> can match you with the right candidates!</h3>
+                            <h6>We promise it won't take too long.</h6>
+                        </div>
+            </ng-container>
+            <div class="personal-profile-form-main">
+                <form id="firmBusinessProfileForm" #firmBusinessProfileForm="ngForm" [ngClass]="{submitted: submitted}">
+                    <div class="personal-profile-form-head">
+                        <h4>Business Profile</h4>
+                        <ng-container *ngIf="!componentsAsModal">
+                            <h6>Step 1 of 2</h6>
+                        </ng-container>
+                    </div>
+                    <div class="login-fr-desc-dtl">
+                        <div class="col-lg-6 col-md-6 cl-sm-6 col-xs-12">
+                            <div class="sign-up-firm-fr-fild-inp">
+                                <label>Business Name </label>
+                                <input type="text" name="BusinessName" placeholder="Business Name" class="form-control l-inp" required [(ngModel)]="firmProfile.businessName">
+                            </div>
+                        </div>
+                        <div class="col-lg-6 col-md-6 cl-sm-6 col-xs-12">
+                            <div class="sign-up-firm-fr-fild-inp">
+                                <label>Branch (if applicable)</label>
+                                <input type="text" name="branch" placeholder="Enter Branch" class="form-control l-inp" [(ngModel)]="firmProfile.branchName">
+                            </div>
+                        </div>
+                        <div class="col-lg-6 col-md-6 cl-sm-6 col-xs-12">
+                            <div class="sign-up-firm-fr-fild-inp">
+                                <label>Business Address</label>
+                                <input type="text" name="streetAddress" placeholder="Enter Street Address" class="form-control l-inp" required [(ngModel)]="firmProfile.streetAddress"
+                                    (ngModelChange)="setBillAddress()">
+                            </div>
+                        </div>
+                        <div class="col-lg-6 col-md-6 cl-sm-6 col-xs-12">
+                            <div class="sign-up-firm-fr-fild-inp">
+                                <label>&nbsp;</label>
+                                <select id="provinceId" (change)="setBillAddress()" name="provinceId" class="l-inp" appSelectValidator="select" (change)="setCityWhereClause(firmProfile.provinceId)"
+                                    [(ngModel)]="firmProfile.provinceId" #provinceMaster="ngModel">
+                                    <option *ngFor="let item of provinceMasterData" [value]="item.value"> {{item.label}}</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-lg-6 col-md-6 cl-sm-6 col-xs-12">
+                            <div class="">
+                                <label></label>
+                                <app-simple-soft-search [chips]="true" [placeholder]="'Enter City'" name="city" [dataUrl]="elementRest.allCity" [whereClause]="cityWhereClause"
+                                    (selectedEvent)="citySeleceted(firmProfile.city)" [returnType]="appConstant.object" [(ngModel)]="firmProfile.city"
+                                    [required]="true" (ngModelChange)="setBillAddress()">
+                                </app-simple-soft-search>
+                            </div>
+                        </div>
+                        <div class="col-lg-6 col-md-6 cl-sm-6 col-xs-12">
+                            <div class="sign-up-firm-fr-fild-inp">
+                                <label>&nbsp;</label>
+                                <p-inputMask [autoClear]="false" [styleClass]="'form-control zip'" name="zipcode" placeholder="Enter Zip Code" [(ngModel)]="firmProfile.zipCode"
+                                    mask="a9aa9a" required unmask="true" minlength="6" (ngModelChange)="setBillAddress()">
+                                </p-inputMask>
+                            </div>
+                        </div>
+                        <div class="col-lg-12 col-md-12 cl-sm-12 col-xs-12">
+                            <div class="sign-up-firm-fr-fild-inp">
+                                <label>Brief Description of your Business
+                                    <span>
+                                        <img src="assets/images/form-rq.png">
+                                    </span>
+                                </label>
+                                <input type="text" name="bDescription" [(ngModel)]="firmProfile.businessDesc" placeholder="Introduce your Business" class="form-control l-inp"
+                                    required>
+                                <div class="form-hover-text">
+                                    <p>introduce your business to the professionals
+                                        <br> you will be connecting with</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-6 col-md-6 cl-sm-6 col-xs-12">
+                            <div class="sign-up-firm-fr-fild-inp sign-up-radio-part">
+                                <label>is your business an accounting firm?</label>
+                                <ul>
+                                    <li>
+                                        <input type="radio" class="regular-radio" [(ngModel)]="firmProfile.isAccountingFirm" [value]="true" name="isAccountingFirm"
+                                            id="radio-1-set">
+                                        <label for="radio-1-set"></label>
+                                        <span>Yes</span>
+                                    </li>
+                                    <li>
+                                        <input type="radio" class="regular-radio" [(ngModel)]="firmProfile.isAccountingFirm" [value]="false" name="isAccountingFirm"
+                                            id="radio-2-set">
+                                        <label for="radio-2-set"></label>
+                                        <span>no</span>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="col-lg-6 col-md-6 cl-sm-6 col-xs-12">
+                            <div class="sign-up-firm-fr-fild-inp sign-up-radio-part">
+                                <label>is it a registered business?
+                                    <span>
+                                        <img src="assets/images/form-rq.png">
+                                    </span>
+                                </label>
+                                <ul>
+                                    <li>
+                                        <input type="radio" class="regular-radio" [value]="true" [(ngModel)]="firmProfile.isRegisteredFirm" name="isregistered" id="radio-3-set">
+                                        <label for="radio-3-set"></label>
+                                        <span>Yes</span>
+                                    </li>
+                                    <li>
+                                        <input type="radio" class="regular-radio" [value]="false" [(ngModel)]="firmProfile.isRegisteredFirm" name="isregistered"
+                                            id="radio-4-set">
+                                        <label for="radio-4-set"></label>
+                                        <span>no</span>
+                                    </li>
+                                </ul>
+                                <div class="form-hover-text">
+                                    <p>Top of Mind is currently only opne to
+                                        <br> registered Canadian business</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-6 col-md-6 cl-sm-6 col-xs-12">
+                            <div class="sign-up-firm-fr-fild-inp">
+                                <label>Business HST Number(Optional)</label>
+                                <input type="number" name="hstNumber" [(ngModel)]="firmProfile.hstNumber" placeholder="Enter Business HST Number" class="form-control l-inp">
+                            </div>
+                        </div>
+                        <div class="col-lg-6 col-md-6 cl-sm-6 col-xs-12">
+                            <div class="sign-up-firm-fr-fild-inp">
+                                <label>Business Website</label>
+                                <input type="text" name="webSite" [(ngModel)]="firmProfile.webSite" placeholder="Enter Business Website" class="form-control l-inp"
+                                    pattern="https?://.+" required>
+                            </div>
+                        </div>
+                        <div class="col-lg-6 col-md-6 cl-sm-6 col-xs-12">
+                            <div class="sign-up-firm-fr-fild-inp Billing-email">
+                                <label>Billing Email Address
+                                    <span>
+                                        <img src="assets/images/form-rq.png">
+                                    </span>
+                                </label>
+                                <input type="text" name="busEmailAddress" placeholder="Enter Billing Email Address" [(ngModel)]="firmProfile.billEmailAddress"
+                                    class="form-control l-inp" required appEmailValidator>
+                                <div class="form-hover-text">
+                                    <p>All invoice will be sent to this
+                                        <br> email address</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-12 col-md-12 cl-sm-12 col-xs-12">
+                            <div class="sign-up-firm-fr-fild-inp sign-up-radio-part">
+                                <label>Billing Business</label>
+                                <ul>
+                                    <li class="billing-business-head">same as Business Address</li>
+                                    <li>
+                                        <input type="radio" class="regular-radio" [value]="true" name="sameAddressRadio" [(ngModel)]="firmProfile.isBothAddressSame"
+                                            id="radio-5-set" (ngModelChange)="setBillAddress()">
+                                        <label for="radio-5-set"></label>
+                                        <span>Yes</span>
+                                    </li>
+                                    <li>
+                                        <input type="radio" class="regular-radio" [value]="false" name="sameAddressRadio" [(ngModel)]="firmProfile.isBothAddressSame"
+                                            id="radio-6-set" (ngModelChange)="clearBillAddress()">
+                                        <label for="radio-6-set"></label>
+                                        <span>no</span>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="col-lg-6 col-md-6 cl-sm-6 col-xs-12 ">
+                            <div class="sign-up-firm-fr-fild-inp">
+                                <input type="text" name="billStreetAddress" [(ngModel)]="firmProfile.billStreetAddress" placeholder="Enter Street Address"
+                                    class="form-control l-inp" required>
+                            </div>
+                        </div>
+                        <div class="col-lg-6 col-md-6 cl-sm-6 col-xs-12">
+                            <!-- <div class="">
+                                    <app-simple-soft-search name="billProvinceId" [(ngModel)]="firmProfile.billProvinceId" [dataUrl]="elementRest.allProvince"
+                                        [placeholder]="'Enter Province'" [whereClause]="'1=1'" [reloadable]="appConstant.whereClause"
+                                        [required]  ="true">
+                                    </app-simple-soft-search>
+                                </div> -->
+                            <div class="sign-up-firm-fr-fild-inp">
+                                <label></label>
+                                <select id="billProvinceId" name="billProvinceId" class="l-inp" appSelectValidator="select" [(ngModel)]="firmProfile.billProvinceId"
+                                    (change)="setBillCityWhereClause(firmProfile.billProvinceId)" #billProvinceId="ngModel">
+                                    <option *ngFor="let item of provinceMasterData" [value]="item.value">{{item.label}}</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-lg-6 col-md-6 cl-sm-6 col-xs-12 m-b-20">
+                            <div class="">
+                                <app-simple-soft-search name="billCityId" [placeholder]="'Enter City'" [dataUrl]="elementRest.allCity" [whereClause]="billCityWhereClause"
+                                    [chips]="true" [returnType]="appConstant.object" (selectedEvent)="billCitySeleceted(firmProfile.billCity)"
+                                    [(ngModel)]="firmProfile.billCity" [required]="true">
+                                </app-simple-soft-search>
+                            </div>
+                        </div>
+                        <div class="col-lg-6 col-md-6 cl-sm-6 col-xs-12">
+                            <div class="sign-up-firm-fr-fild-inp">
+                                <label></label>
+                                <!-- <input  type="text" minlength="6" maxlength="6" name="billZipcode" placeholder="Enter Zipcode" [(ngModel)]="firmProfile.billZipcode"
+                                    class="form-control l-inp" required> -->
+                                <p-inputMask [autoClear]="false" [styleClass]="'form-control zip'" name="billZipcode" [(ngModel)]="firmProfile.billZipcode"
+                                    placeholder="Enter Zip Code" mask="a9aa9a" required unmask="true" minlength="6">
+                                </p-inputMask>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-12 col-md-12 cl-sm-12 col-xs-12 ">
+                        <div class="login-fr-btn-part ">
+                            <input type="submit" name="submit " (click)="saveBusinessProfile() " value="Submit" class="form-control l-inp ">
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+<!-- END :: FIRM-PROFILE -->
+<ng-container *ngIf="!componentsAsModal;">
+    <app-footer></app-footer>
+</ng-container>
+
+<ng-template #businessProfileModal>
+    <!-- <div class="modal-body ">
+        <div class="personal-profile-form-main personal-business-profile-form-main " id="personal-business-profile-fild-pop
+                                    " style="display: flex; ">
+            <form id="firmBusinessProfileForm " #firmBusinessProfileForm="ngForm " [ngClass]="{submitted: submitted} ">
+                <div class="personal-profile-form-head ">
+                    <h4>Business Profile</h4>
+                </div>
+                <div class="login-fr-desc-dtl ">
+                    <div class="col-lg-6 col-md-6 cl-sm-6 col-xs-12 ">
+                        <div class="sign-up-firm-fr-fild-inp ">
+                            <label>Business Name </label>
+                            <input type="text " name="BusinessName " placeholder="Business Name " class="form-control l-inp
+                                    " required [(ngModel)]="firmProfile.businessName ">
+                        </div>
+                    </div>
+                    <div class="col-lg-6 col-md-6 cl-sm-6 col-xs-12 ">
+                        <div class="sign-up-firm-fr-fild-inp ">
+                            <label>Branch (if applicable)</label>
+                            <input type="text " name="branch " placeholder="Enter Branch " class="form-control l-inp
+                                    " [(ngModel)]="firmProfile.branchName ">
+                        </div>
+                    </div>
+                    <div class="col-lg-6 col-md-6 cl-sm-6 col-xs-12 ">
+                        <div class="sign-up-firm-fr-fild-inp Description-business ">
+                            <label>Business Address</label>
+                            <input type="text " name="streetAddress " placeholder="Enter Street Address " class="form-control
+                                    l-inp " required [(ngModel)]="firmProfile.streetAddress "
+                                (ngModelChange)="setBillAddress() ">
+                        </div>
+                    </div>
+                    <div class="col-lg-6 col-md-6 cl-sm-6 col-xs-12 ">
+                        <div class=" ">
+                            <label></label>
+                            <app-simple-soft-search name="city " [(ngModel)]="firmProfile.cityId " [dataUrl]="elementRest.allCity
+                                    " [placeholder]=" 'Enter City' "
+                                [whereClause]="cityWhereClause " [reloadable]="appConstant.whereClause " [required]="true
+                                    " (selectedEvent)="setBillAddress() ">
+                            </app-simple-soft-search>
+                        </div>
+                    </div>
+                    <div class="col-lg-6 col-md-6 cl-sm-6 col-xs-12 ">
+                        <div class=" ">
+                            <label></label>
+                            <app-simple-soft-search name="provinceId " [(ngModel)]="firmProfile.provinceId
+                                    " [dataUrl]="elementRest.allProvince " [placeholder]=" 'Enter Province' "
+                                (selectedEvent)="setBillAddress() " [whereClause]=" '1=1' " [reloadable]="appConstant.whereClause "
+                                [required]="true " (selectedEvent)="setBillAddress() ">
+                            </app-simple-soft-search>
+                        </div>
+                    </div>
+                    <div class="col-lg-6 col-md-6 cl-sm-6 col-xs-12 ">
+                        <div class="sign-up-firm-fr-fild-inp ">
+                            <label>&nbsp;</label>
+                            <input type="text " name="zipcode " placeholder="Enter Zip Code " class="form-control l-inp
+                                    " required [(ngModel)]="firmProfile.zipCode "
+                                (ngModelChange)="setBillAddress() ">
+                        </div>
+                    </div>
+                    <div class="col-lg-12 col-md-12 cl-sm-12 col-xs-12 ">
+                        <div class="sign-up-firm-fr-fild-inp ">
+                            <label>Brief Description of your Business
+                                <span>
+                                    <img src="assets/images/form-rq.png ">
+                                </span>
+                            </label>
+                            <input type="text " name="bDescription " [(ngModel)]="firmProfile.businessDesc
+                                    " placeholder="Introduce your Business " class="form-control l-inp "
+                                required>
+                            <div class="form-hover-text ">
+                                <p>introduce your business to the professionals
+                                    <br> you will be connecting with</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-6 col-md-6 cl-sm-6 col-xs-12 ">
+                        <div class="sign-up-firm-fr-fild-inp sign-up-radio-part ">
+                            <label>is your business an accounting firm?</label>
+                            <ul>
+                                <li>
+                                    <input type="radio " class="regular-radio " [(ngModel)]="firmProfile.isAccountingFirm
+                                    " [value]="true " name="isAccountingFirm "
+                                        id="radio-1-set ">
+                                    <label for="radio-1-set "></label>
+                                    <span>Yes</span>
+                                </li>
+                                <li>
+                                    <input type="radio " class="regular-radio " [(ngModel)]="firmProfile.isAccountingFirm
+                                    " [value]="false " name="isAccountingFirm "
+                                        id="radio-2-set ">
+                                    <label for="radio-2-set "></label>
+                                    <span>no</span>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="col-lg-6 col-md-6 cl-sm-6 col-xs-12 ">
+                        <div class="sign-up-firm-fr-fild-inp sign-up-radio-part ">
+                            <label>is it a registered business?
+                                <span>
+                                    <img src="assets/images/form-rq.png ">
+                                </span>
+                            </label>
+                            <ul>
+                                <li>
+                                    <input type="radio " class="regular-radio " [value]="true " [(ngModel)]="firmProfile.isRegisteredFirm
+                                    " name="isregistered " id="radio-3-set ">
+                                    <label for="radio-3-set "></label>
+                                    <span>Yes</span>
+                                </li>
+                                <li>
+                                    <input type="radio " class="regular-radio " [value]="false " [(ngModel)]="firmProfile.isRegisteredFirm
+                                    " name="isregistered "
+                                        id="radio-4-set ">
+                                    <label for="radio-4-set "></label>
+                                    <span>no</span>
+                                </li>
+                            </ul>
+                            <div class="form-hover-text ">
+                                <p>Top of Mind is currently only opne to
+                                    <br> registered Canadian business</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-6 col-md-6 cl-sm-6 col-xs-12 ">
+                        <div class="sign-up-firm-fr-fild-inp ">
+                            <label>Business HST Number(Optional)</label>
+                            <input type="number " name="hstNumber " [(ngModel)]="firmProfile.hstNumber " placeholder="Enter
+                                    Business HST Number " class="form-control l-inp ">
+                        </div>
+                    </div>
+                    <div class="col-lg-6 col-md-6 cl-sm-6 col-xs-12 ">
+                        <div class="sign-up-firm-fr-fild-inp ">
+                            <label>Business Website</label>
+                            <input type="text " name="webSite " [(ngModel)]="firmProfile.webSite " placeholder="Enter Business
+                                    Website " class="form-control l-inp "
+                                required>
+                        </div>
+                    </div>
+                    <div class="col-lg-6 col-md-6 cl-sm-6 col-xs-12 ">
+                        <div class="sign-up-firm-fr-fild-inp Billing-email ">
+                            <label>Billing Email Address
+                                <span>
+                                    <img src="assets/images/form-rq.png ">
+                                </span>
+                            </label>
+                            <input type="text " name="busEmailAddress " placeholder="Enter Billing Email Address
+                                    " [(ngModel)]="firmProfile.billEmailAddress "
+                                class="form-control l-inp " required appEmailValidator>
+                            <div class="form-hover-text ">
+                                <p>All invoice will be sent to this
+                                    <br> email address</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-6 col-md-6 cl-sm-6 col-xs-12 "></div>
+                    <div class="col-lg-12 col-md-12 cl-sm-12 col-xs-12 ">
+                        <div class="sign-up-firm-fr-fild-inp sign-up-radio-part ">
+                            <label>Billing Business</label>
+                            <ul>
+                                <li class="billing-business-head ">same as Business Address</li>
+                                <li>
+                                    <input type="radio " class="regular-radio " [value]="true " name="sameAddressRadio
+                                    " [(ngModel)]="firmProfile.isBothAddressSame "
+                                        id="radio-5-set " (ngModelChange)="setBillAddress() ">
+                                    <label for="radio-5-set "></label>
+                                    <span>Yes</span>
+                                </li>
+                                <li>
+                                    <input type="radio " class="regular-radio " [value]="false " name="sameAddressRadio
+                                    " [(ngModel)]="firmProfile.isBothAddressSame "
+                                        id="radio-6-set " (ngModelChange)="clearBillAddress() ">
+                                    <label for="radio-6-set "></label>
+                                    <span>no</span>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="col-lg-6 col-md-6 cl-sm-6 col-xs-12 ">
+                        <div class="sign-up-firm-fr-fild-inp ">
+                            <input type="text " name="billStreetAddress " [(ngModel)]="firmProfile.billStreetAddress
+                                    " placeholder="Enter Street Address "
+                                class="form-control l-inp " required>
+                        </div>
+                    </div>
+                    <div class="col-lg-6 col-md-6 cl-sm-6 col-xs-12 ">
+                        <div class=" ">
+                            <app-simple-soft-search name="billCityId " [placeholder]=" 'Enter City' " [dataUrl]="elementRest.allCity
+                                    " [whereClause]=" '1=1' "
+                                [(ngModel)]="firmProfile.billCityId " [required]="true ">
+                            </app-simple-soft-search>
+                        </div>
+                    </div>
+                    <div class="col-lg-6 col-md-6 cl-sm-6 col-xs-12 ">
+                        <div class=" ">
+                            <app-simple-soft-search name="billProvinceId " [(ngModel)]="firmProfile.billProvinceId
+                                    " [dataUrl]="elementRest.allProvince "
+                                [placeholder]=" 'Enter Province' " [whereClause]=" '1=1' " [reloadable]="appConstant.whereClause "
+                                [required]="true ">
+                            </app-simple-soft-search>
+                        </div>
+                    </div>
+                    <div class="col-lg-6 col-md-6 cl-sm-6 col-xs-12 ">
+                        <div class="sign-up-firm-fr-fild-inp ">
+                            <input type="text " name="billZipcode " placeholder="Enter Zipcode " [(ngModel)]="firmProfile.billZipcode
+                                    " class="form-control l-inp "
+                                required>
+                        </div>
+                    </div>
+                    <div class="col-lg-12 col-md-12 cl-sm-12 col-xs-12 ">
+                        <div class="login-fr-btn-part ">
+                            <input type="submit " name="Update " (click)="saveBusinessProfile() " value="Update
+                                    " class="form-control l-inp " id="b-profile-btn ">
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div> -->
+</ng-template>

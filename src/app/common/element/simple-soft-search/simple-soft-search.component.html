@@ -1,0 +1,13 @@
+<div class="tom_softsearch">
+    <!-- value{{value | json}} simpleSoftsearchValue{{simpleSoftsearchValue | json}} -->
+    <p-autoComplete [(ngModel)]="simpleSoftsearchValue" 
+    (ngModelChange)="onSimpleSoftsearchNgModelChange($event)" (completeMethod)="filterData($event)"
+        (onSelect)="onSelect($event)"
+         (onUnselect)="onUnselect($event)" 
+         [suggestions]="items" [minLength]="minLength"
+          [placeholder]="placeholder"
+        field="label" [inputStyleClass]="'form-control'"
+         [required]="true" [disabled]="disabled" 
+         (onBlur)="onBlurEvent($event)">
+    </p-autoComplete>
+</div>
