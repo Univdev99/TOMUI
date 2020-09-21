@@ -15,6 +15,8 @@ export const allPath = {
         forgotPassword: '/forgot-password',
         contact: '/contact',
         about: '/about',
+        howItWorks: '/how-it-works',
+        privacyPolicy: '/privacy-policy',
         
         
         

@@ -20,7 +20,9 @@ import interactionPlugin from '@fullcalendar/interaction';
 import { AboutComponent } from './about/about.component';
 import { ForgotPasswordComponent } from './forgot-password/forgot-password.component';
 import { ChangeRecoverPasswordComponent } from './change-recover-password/change-recover-password.component';
-import { ResetMailSuccessComponent } from './reset-mail-success/reset-mail-success.component'; // a plugin
+import { ResetMailSuccessComponent } from './reset-mail-success/reset-mail-success.component';
+import { HowItWorksComponent } from './how-it-works/how-it-works.component';
+import { PrivacyPolicyComponent } from './privacy-policy/privacy-policy.component'; // a plugin
 
 FullCalendarModule.registerPlugins([ // register FullCalendar plugins
   dayGridPlugin,
@@ -39,6 +41,8 @@ FullCalendarModule.registerPlugins([ // register FullCalendar plugins
     ForgotPasswordComponent,
     ChangeRecoverPasswordComponent,
     ResetMailSuccessComponent,
+    HowItWorksComponent,
+    PrivacyPolicyComponent,
   ],
   imports: [
     BrowserModule,

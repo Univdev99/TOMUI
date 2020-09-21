@@ -9,6 +9,8 @@ import { ForgotPasswordComponent } from './forgot-password/forgot-password.compo
 import { ChangeRecoverPasswordComponent } from './change-recover-password/change-recover-password.component';
 import { ResetMailSuccessComponent } from './reset-mail-success/reset-mail-success.component';
 import { HelpComponent } from './common/common-page/help/help.component';
+import { HowItWorksComponent } from './how-it-works/how-it-works.component';
+import { PrivacyPolicyComponent } from './privacy-policy/privacy-policy.component';
 
 
 const routes: Routes = [
@@ -20,6 +22,8 @@ const routes: Routes = [
   { path: 'recover-password', component: ChangeRecoverPasswordComponent },
   { path: 'contact', component: HelpComponent },
   { path: 'about', component: AboutComponent },
+  { path: 'how-it-works', component: HowItWorksComponent },
+  { path: 'privacy-policy', component: PrivacyPolicyComponent },
   { path: 'login', component: LoginComponent, canActivate: [IsAlreadyLoggedinService] },
   {
     path: 'firm', loadChildren: () => import('./firm/firm.module').then(m => m.FirmModule)

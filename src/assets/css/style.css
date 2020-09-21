@@ -1794,7 +1794,8 @@ abbr[title] {
     margin-top: 65px;
 }
 
-.sign-up-firm-right-main-part:not(.help-page) {
+/*.sign-up-firm-right-main-part:not(.help-page) {*/
+.sign-up-firm-right-main-part {
     width: 400px;
     float: left;
     margin-left: 60px;
@@ -7260,13 +7261,17 @@ i.fas.fa-times {
     object-fit: cover;
 }
 
-/* .sign-up-firm-right-main-part {
+.sign-up-firm-right-main-part form{
+    padding: 0px;
+}
+
+.sign-up-firm-right-main-part {
     box-shadow: none;
     width: 100%;
     border: 0px;
     background-color: transparent;
     margin: 0px;
-} */
+} 
 
 .contact-page-main-dtl .sign-up-container {
     width: 1100px;
@@ -7603,4 +7608,130 @@ i.fas.fa-times {
 }
 .about-page-main-dtl .contact-form-dtl-main{
     padding-bottom: 0px !important;
+}
+
+
+/*privacy-policy-page*/
+.privacy-policy-page-dtl .sign-up-firm-mid-sec-part{
+    justify-content: center;
+}
+.privacy-policy-banner-desc-dtl{
+    position: absolute;
+    left: 0px;
+    right: 0px;
+    margin: auto;
+    text-align: center;
+    top: 50%;transform: translateY(-50%);
+}
+.privacy-policy-banner-desc-dtl h2{
+    font-size: 40px;
+    color: #fff;
+    font-family: 'TruenoBd';
+    text-transform: uppercase;
+}
+.privacy-policy-banner .contact-banner-part{
+    position: relative;
+}
+.privacy-policy-desc-dtl-single-block{
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    margin-bottom: 40px;
+}
+.privacy-policy-desc-dtl-single-block p{
+    margin-bottom: 25px;
+    display: flex;
+    flex-wrap: wrap;
+    padding-bottom: 0px !important;
+}
+.privacy-policy-desc-dtl-single-block p:last-child{
+    margin-bottom: 0px;
+}
+.privacy-policy-desc-dtl-single-block ul{
+    padding: 0px;
+    margin: 0px;
+}
+.privacy-policy-desc-dtl-single-block ul li{
+    list-style: none;
+    display: flex;
+    font-size: 16px;
+    color: #454545;
+    font-family: 'TruenoRg';
+    line-height: 24px;
+    padding-bottom: 30px;
+}
+.privacy-policy-desc-dtl-single-block ul li span{
+    padding-right: 5px;
+}
+
+
+/*faq-page*/
+.faq-tp-btn-part{
+    width: 100%;
+    margin-top: 70px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+.faq-bg-btn{
+    width: auto;
+    margin: 0px 15px;
+}
+.faq-for-btn{
+    width: fit-content;
+    font-size: 18px;
+    color: #fff;
+    font-family: 'TruenoRg';
+    border: 2px solid #50babc;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    min-height: 56px;
+    min-width: 300px;
+    text-decoration-line: none;
+    border-radius: 10px;
+    margin: auto;
+}
+.faq-for-btn:hover{
+    background-color: #50babc;
+    color: #fff;
+    text-decoration-line: none;
+}
+.Faq-page-tp-dtl{
+    padding-top: 0px;
+    padding-bottom: 80px;
+}
+.Faq-page-tp-dtl .sign-up-container{
+    width: 1225px;
+}
+.Faq-page-tp-dtl .sign-up-firm-right-main-part{
+    padding-top: 80px;
+    border-bottom: 2px solid #ebebeb;
+    border-radius: 0px !important;
+}
+.faq-part-desc-dtl-main{
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+.Faq-page-tp-dtl .sign-up-firm-right-main-part:last-child{
+    border-bottom: 0px;
+}
+.Faq-page-tp-dtl .sign-up-firm-mid-sec-part{
+    flex-wrap: wrap;
+}
+.Faq-page-tp-dtl .contact-form-dtl-main p a{
+    color: #50babc;
+}
+.Faq-page-tp-dtl .privacy-policy-desc-dtl-single-block p{
+    display: unset;
+}
+.privacy-policy-desc-dtl-single-block p{
+    display: unset;
+}
+.privacy-policy-desc-dtl-single-block p a{
+    color: #50babc;
+    text-decoration-line: none;
 }
