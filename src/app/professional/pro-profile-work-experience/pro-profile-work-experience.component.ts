@@ -97,16 +97,16 @@ export class ProProfileWorkExperienceComponent implements OnInit {
       this.editMode = true;
       this.proWorkExp = result;
       this.documentUpload = new DocumentUpload('Professional', 'ProWorkExperience', this.proWorkExp.proWorkExperienceId);
-      if (!this.proWorkExp.workExperienceDetail.length) {
+      if (!this.proWorkExp.workExperienceDetail) {
         this.proWorkExp.workExperienceDetail = [new ProWorkExperienceDetail()];
       }
-      if (!this.proWorkExp.proEducation.length) {
+      if (!this.proWorkExp.proEducation) {
         this.proWorkExp.proEducation = [new ProEducation()];
       }
       if (this.proWorkExp.proKnowledge && this.proWorkExp.proKnowledge.length) {
         this.setProKnowledgeInEditMode();
       }
-      if (this.proWorkExp.proSkill.length) {
+      if (this.proWorkExp.proSkill) {
         for (const savedSkill of this.proWorkExp.proSkill) {
           for (const masterSkill of this.skillArray) {
             if (savedSkill.proSkillMasterId === masterSkill.key) {

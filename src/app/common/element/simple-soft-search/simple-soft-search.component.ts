@@ -255,10 +255,11 @@ export class SimpleSoftSearchComponent implements OnInit, ControlValueAccessor {
       } else if (this.chips) {
         this.items = [{ label: text, value: text }];
         this.onBlurEvent('');
-      } else {
-        this.simpleSoftsearchValue = null;
-        this.value = null;
-      }
+       } 
+      //  else {
+      //   this.simpleSoftsearchValue = null;
+      //   this.value = null;
+      // }
     };
 
     // Softsearch object passed in the payload of REST call
@@ -297,12 +298,13 @@ export class SimpleSoftSearchComponent implements OnInit, ControlValueAccessor {
     console.log(this.simpleSoftsearchValue);
 
     // Emitting blur event of simpleSoftsearch control
-    if (this.chips && typeof this.simpleSoftsearchValue == 'object') {
+    // if (this.chips && typeof this.simpleSoftsearchValue == 'object') {
+      if (this.chips) {
       const obj = { label: this.simpleSoftsearchValue.label, value: this.simpleSoftsearchValue.value };
       this.writeValue(obj);
       // Emitting select event of simpleSoftsearch control
       this.selectedEvent.emit(obj);
-    } else if ((typeof this.simpleSoftsearchValue !== 'object' || this.simpleSoftsearchValue === null)) {
+    } else if (this.simpleSoftsearchValue === null) {
       this.simpleSoftsearchValue = null;
       this.value = null;
     }
